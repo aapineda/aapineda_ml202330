@@ -359,6 +359,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen"><strong>Resumen</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologia"><strong>Metodología</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#librerias-necesarias">Librerias Necesarias</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hola">Hola</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#auto-correlation-function-acf-and-partial-autocorrelation-funcion-pacf">Auto Correlation function (ACF) and Partial Autocorrelation Funcion(PACF).</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-de-entrenamiento-y-prueba">Datos de Entrenamiento y Prueba</a></li>
@@ -492,6 +493,9 @@ La validez del estudio se abordó de la siguiente manera:</p>
 </div>
 </div>
 </div>
+</section>
+<section id="hola">
+<h2>Hola<a class="headerlink" href="#hola" title="Permalink to this heading">#</a></h2>
 </section>
 <section id="dataset">
 <h2>Dataset<a class="headerlink" href="#dataset" title="Permalink to this heading">#</a></h2>
@@ -1208,7 +1212,7 @@ Los datos son estacionarios (Stationary)
 Dep. Variable:                      y   No. Observations:                  355
 Model:                 ARIMA(4, 0, 0)   Log Likelihood               -3036.764
 Date:                Thu, 28 Sep 2023   AIC                           6085.529
-Time:                        20:42:49   BIC                           6108.761
+Time:                        21:21:01   BIC                           6108.761
 Sample:                             0   HQIC                          6094.771
                                 - 355                                         
 Covariance Type:                  opg                                         
@@ -1496,45 +1500,22 @@ max    3396.234225
 <span class="g g-Whitespace">    </span><span class="mi">367</span>     <span class="c1"># new iteration</span>
 <span class="g g-Whitespace">    </span><span class="mi">368</span>     <span class="n">n_iterations</span> <span class="o">+=</span> <span class="mi">1</span>
 
-<span class="nn">File ~\miniconda3\envs\ml_venv\lib\site-packages\scipy\optimize\_differentiable_functions.py:286,</span> in <span class="ni">ScalarFunction.fun_and_grad</span><span class="nt">(self, x)</span>
+<span class="nn">File ~\miniconda3\envs\ml_venv\lib\site-packages\scipy\optimize\_differentiable_functions.py:285,</span> in <span class="ni">ScalarFunction.fun_and_grad</span><span class="nt">(self, x)</span>
+<span class="g g-Whitespace">    </span><span class="mi">283</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">):</span>
 <span class="g g-Whitespace">    </span><span class="mi">284</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_update_x_impl</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">285</span> <span class="bp">self</span><span class="o">.</span><span class="n">_update_fun</span><span class="p">()</span>
-<span class="ne">--&gt; </span><span class="mi">286</span> <span class="bp">self</span><span class="o">.</span><span class="n">_update_grad</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">285</span> <span class="bp">self</span><span class="o">.</span><span class="n">_update_fun</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">286</span> <span class="bp">self</span><span class="o">.</span><span class="n">_update_grad</span><span class="p">()</span>
 <span class="g g-Whitespace">    </span><span class="mi">287</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">g</span>
 
-<span class="nn">File ~\miniconda3\envs\ml_venv\lib\site-packages\scipy\optimize\_differentiable_functions.py:256,</span> in <span class="ni">ScalarFunction._update_grad</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">254</span> <span class="k">def</span> <span class="nf">_update_grad</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">255</span>     <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">g_updated</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">256</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_update_grad_impl</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">257</span>         <span class="bp">self</span><span class="o">.</span><span class="n">g_updated</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="nn">File ~\miniconda3\envs\ml_venv\lib\site-packages\scipy\optimize\_differentiable_functions.py:251,</span> in <span class="ni">ScalarFunction._update_fun</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">249</span> <span class="k">def</span> <span class="nf">_update_fun</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">250</span>     <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">f_updated</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">251</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_update_fun_impl</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">252</span>         <span class="bp">self</span><span class="o">.</span><span class="n">f_updated</span> <span class="o">=</span> <span class="kc">True</span>
 
-<span class="nn">File ~\miniconda3\envs\ml_venv\lib\site-packages\scipy\optimize\_differentiable_functions.py:173,</span> in <span class="ni">ScalarFunction.__init__.&lt;locals&gt;.update_grad</span><span class="nt">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">171</span> <span class="bp">self</span><span class="o">.</span><span class="n">_update_fun</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">172</span> <span class="bp">self</span><span class="o">.</span><span class="n">ngev</span> <span class="o">+=</span> <span class="mi">1</span>
-<span class="ne">--&gt; </span><span class="mi">173</span> <span class="bp">self</span><span class="o">.</span><span class="n">g</span> <span class="o">=</span> <span class="n">approx_derivative</span><span class="p">(</span><span class="n">fun_wrapped</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">f0</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">174</span>                            <span class="o">**</span><span class="n">finite_diff_options</span><span class="p">)</span>
-
-<span class="nn">File ~\miniconda3\envs\ml_venv\lib\site-packages\scipy\optimize\_numdiff.py:505,</span> in <span class="ni">approx_derivative</span><span class="nt">(fun, x0, method, rel_step, abs_step, f0, bounds, sparsity, as_linear_operator, args, kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">502</span>     <span class="n">use_one_sided</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="g g-Whitespace">    </span><span class="mi">504</span> <span class="k">if</span> <span class="n">sparsity</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">505</span>     <span class="k">return</span> <span class="n">_dense_difference</span><span class="p">(</span><span class="n">fun_wrapped</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">f0</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">506</span>                              <span class="n">use_one_sided</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">507</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">508</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">issparse</span><span class="p">(</span><span class="n">sparsity</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">sparsity</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-
-<span class="nn">File ~\miniconda3\envs\ml_venv\lib\site-packages\scipy\optimize\_numdiff.py:576,</span> in <span class="ni">_dense_difference</span><span class="nt">(fun, x0, f0, h, use_one_sided, method)</span>
-<span class="g g-Whitespace">    </span><span class="mi">574</span>     <span class="n">x</span> <span class="o">=</span> <span class="n">x0</span> <span class="o">+</span> <span class="n">h_vecs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">575</span>     <span class="n">dx</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">x0</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>  <span class="c1"># Recompute dx as exactly representable number.</span>
-<span class="ne">--&gt; </span><span class="mi">576</span>     <span class="n">df</span> <span class="o">=</span> <span class="n">fun</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">f0</span>
-<span class="g g-Whitespace">    </span><span class="mi">577</span> <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;3-point&#39;</span> <span class="ow">and</span> <span class="n">use_one_sided</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
-<span class="g g-Whitespace">    </span><span class="mi">578</span>     <span class="n">x1</span> <span class="o">=</span> <span class="n">x0</span> <span class="o">+</span> <span class="n">h_vecs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-
-<span class="nn">File ~\miniconda3\envs\ml_venv\lib\site-packages\scipy\optimize\_numdiff.py:456,</span> in <span class="ni">approx_derivative.&lt;locals&gt;.fun_wrapped</span><span class="nt">(x)</span>
-<span class="g g-Whitespace">    </span><span class="mi">455</span> <span class="k">def</span> <span class="nf">fun_wrapped</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">456</span>     <span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">fun</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">457</span>     <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">458</span>         <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;`fun` return value has &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">459</span>                            <span class="s2">&quot;more than 1 dimension.&quot;</span><span class="p">)</span>
+<span class="nn">File ~\miniconda3\envs\ml_venv\lib\site-packages\scipy\optimize\_differentiable_functions.py:155,</span> in <span class="ni">ScalarFunction.__init__.&lt;locals&gt;.update_fun</span><span class="nt">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">154</span> <span class="k">def</span> <span class="nf">update_fun</span><span class="p">():</span>
+<span class="ne">--&gt; </span><span class="mi">155</span>     <span class="bp">self</span><span class="o">.</span><span class="n">f</span> <span class="o">=</span> <span class="n">fun_wrapped</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
 
 <span class="nn">File ~\miniconda3\envs\ml_venv\lib\site-packages\scipy\optimize\_differentiable_functions.py:137,</span> in <span class="ni">ScalarFunction.__init__.&lt;locals&gt;.fun_wrapped</span><span class="nt">(x)</span>
 <span class="g g-Whitespace">    </span><span class="mi">133</span> <span class="bp">self</span><span class="o">.</span><span class="n">nfev</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -1549,59 +1530,36 @@ max    3396.234225
 <span class="g g-Whitespace">    </span><span class="mi">533</span> <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
 <span class="ne">--&gt; </span><span class="mi">534</span>     <span class="k">return</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">loglike</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span> <span class="o">/</span> <span class="n">nobs</span>
 
-<span class="nn">File ~\miniconda3\envs\ml_venv\lib\site-packages\statsmodels\tsa\statespace\mlemodel.py:939,</span> in <span class="ni">MLEModel.loglike</span><span class="nt">(self, params, *args, **kwargs)</span>
+<span class="nn">File ~\miniconda3\envs\ml_venv\lib\site-packages\statsmodels\tsa\statespace\mlemodel.py:933,</span> in <span class="ni">MLEModel.loglike</span><span class="nt">(self, params, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">927</span> <span class="n">transformed</span><span class="p">,</span> <span class="n">includes_fixed</span><span class="p">,</span> <span class="n">complex_step</span><span class="p">,</span> <span class="n">kwargs</span> <span class="o">=</span> <span class="n">_handle_args</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">928</span>     <span class="n">MLEModel</span><span class="o">.</span><span class="n">_loglike_param_names</span><span class="p">,</span> <span class="n">MLEModel</span><span class="o">.</span><span class="n">_loglike_param_defaults</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">929</span>     <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">931</span> <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handle_params</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">transformed</span><span class="o">=</span><span class="n">transformed</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">932</span>                             <span class="n">includes_fixed</span><span class="o">=</span><span class="n">includes_fixed</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">933</span> <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">transformed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">includes_fixed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">934</span>             <span class="n">complex_step</span><span class="o">=</span><span class="n">complex_step</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">936</span> <span class="k">if</span> <span class="n">complex_step</span><span class="p">:</span>
 <span class="g g-Whitespace">    </span><span class="mi">937</span>     <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;inversion_method&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">INVERT_UNIVARIATE</span> <span class="o">|</span> <span class="n">SOLVE_LU</span>
-<span class="ne">--&gt; </span><span class="mi">939</span> <span class="n">loglike</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ssm</span><span class="o">.</span><span class="n">loglike</span><span class="p">(</span><span class="n">complex_step</span><span class="o">=</span><span class="n">complex_step</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">941</span> <span class="c1"># Koopman, Shephard, and Doornik recommend maximizing the average</span>
-<span class="g g-Whitespace">    </span><span class="mi">942</span> <span class="c1"># likelihood to avoid scale issues, but the averaging is done</span>
-<span class="g g-Whitespace">    </span><span class="mi">943</span> <span class="c1"># automatically in the base model `fit` method</span>
-<span class="g g-Whitespace">    </span><span class="mi">944</span> <span class="k">return</span> <span class="n">loglike</span>
 
-<span class="nn">File ~\miniconda3\envs\ml_venv\lib\site-packages\statsmodels\tsa\statespace\kalman_filter.py:1001,</span> in <span class="ni">KalmanFilter.loglike</span><span class="nt">(self, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">985</span><span class="w"> </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">986</span><span class="sd"> Calculate the loglikelihood associated with the statespace model.</span>
-<span class="g g-Whitespace">    </span><span class="mi">987</span><span class="sd"> </span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">997</span><span class="sd">     The joint loglikelihood.</span>
-<span class="g g-Whitespace">    </span><span class="mi">998</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">999</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;conserve_memory&#39;</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1000</span>                   <span class="n">MEMORY_CONSERVE</span> <span class="o">^</span> <span class="n">MEMORY_NO_LIKELIHOOD</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1001</span> <span class="n">kfilter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filter</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1002</span> <span class="n">loglikelihood_burn</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;loglikelihood_burn&#39;</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1003</span>                                 <span class="bp">self</span><span class="o">.</span><span class="n">loglikelihood_burn</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1004</span> <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;conserve_memory&#39;</span><span class="p">]</span> <span class="o">&amp;</span> <span class="n">MEMORY_NO_LIKELIHOOD</span><span class="p">):</span>
+<span class="nn">File ~\miniconda3\envs\ml_venv\lib\site-packages\statsmodels\tsa\statespace\sarimax.py:1679,</span> in <span class="ni">SARIMAX.update</span><span class="nt">(self, params, transformed, includes_fixed, complex_step)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1677</span> <span class="c1"># Transition matrix</span>
+<span class="g g-Whitespace">   </span><span class="mi">1678</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">k_ar</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">k_seasonal_ar</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1679</span>     <span class="bp">self</span><span class="o">.</span><span class="n">ssm</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">transition_ar_params_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">reduced_polynomial_ar</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1680</span> <span class="k">elif</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">ssm</span><span class="o">.</span><span class="n">transition</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">params</span><span class="o">.</span><span class="n">dtype</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1681</span>     <span class="c1"># This is required if the transition matrix is not really in use</span>
+<span class="g g-Whitespace">   </span><span class="mi">1682</span>     <span class="c1"># (e.g. for an MA(q) process) so that it&#39;s dtype never changes as</span>
+<span class="g g-Whitespace">   </span><span class="mi">1683</span>     <span class="c1"># the parameters&#39; dtype changes. This changes the dtype manually.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1684</span>     <span class="bp">self</span><span class="o">.</span><span class="n">ssm</span><span class="p">[</span><span class="s1">&#39;transition&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ssm</span><span class="p">[</span><span class="s1">&#39;transition&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">real</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1685</span>         <span class="n">params</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
 
-<span class="nn">File ~\miniconda3\envs\ml_venv\lib\site-packages\statsmodels\tsa\statespace\kalman_filter.py:913,</span> in <span class="ni">KalmanFilter._filter</span><span class="nt">(self, filter_method, inversion_method, stability_method, conserve_memory, filter_timing, tolerance, loglikelihood_burn, complex_step)</span>
-<span class="g g-Whitespace">    </span><span class="mi">907</span> <span class="k">def</span> <span class="nf">_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filter_method</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">inversion_method</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">908</span>             <span class="n">stability_method</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">conserve_memory</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">909</span>             <span class="n">filter_timing</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">loglikelihood_burn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">910</span>             <span class="n">complex_step</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">911</span>     <span class="c1"># Initialize the filter</span>
-<span class="g g-Whitespace">    </span><span class="mi">912</span>     <span class="n">prefix</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">create_filter</span><span class="p">,</span> <span class="n">create_statespace</span> <span class="o">=</span> <span class="p">(</span>
-<span class="ne">--&gt; </span><span class="mi">913</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_initialize_filter</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">914</span>             <span class="n">filter_method</span><span class="p">,</span> <span class="n">inversion_method</span><span class="p">,</span> <span class="n">stability_method</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">915</span>             <span class="n">conserve_memory</span><span class="p">,</span> <span class="n">filter_timing</span><span class="p">,</span> <span class="n">tolerance</span><span class="p">,</span> <span class="n">loglikelihood_burn</span>
-<span class="g g-Whitespace">    </span><span class="mi">916</span>         <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">917</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">918</span>     <span class="n">kfilter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kalman_filters</span><span class="p">[</span><span class="n">prefix</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">920</span>     <span class="c1"># Initialize the state</span>
-
-<span class="nn">File ~\miniconda3\envs\ml_venv\lib\site-packages\statsmodels\tsa\statespace\kalman_filter.py:480,</span> in <span class="ni">KalmanFilter._initialize_filter</span><span class="nt">(self, filter_method, inversion_method, stability_method, conserve_memory, tolerance, filter_timing, loglikelihood_burn)</span>
-<span class="g g-Whitespace">    </span><span class="mi">476</span>     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Must bind a dataset to the model before&#39;</span>
-<span class="g g-Whitespace">    </span><span class="mi">477</span>                        <span class="s1">&#39; filtering or smoothing.&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">479</span> <span class="c1"># Initialize the representation matrices</span>
-<span class="ne">--&gt; </span><span class="mi">480</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">create_statespace</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_initialize_representation</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">482</span> <span class="c1"># Determine if we need to (re-)create the filter</span>
-<span class="g g-Whitespace">    </span><span class="mi">483</span> <span class="c1"># (definitely need to recreate if we recreated the _statespace object)</span>
-<span class="g g-Whitespace">    </span><span class="mi">484</span> <span class="n">create_filter</span> <span class="o">=</span> <span class="n">create_statespace</span> <span class="ow">or</span> <span class="n">prefix</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kalman_filters</span>
-
-<span class="nn">File ~\miniconda3\envs\ml_venv\lib\site-packages\statsmodels\tsa\statespace\representation.py:1005,</span> in <span class="ni">Representation._initialize_representation</span><span class="nt">(self, prefix)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1003</span> <span class="n">new</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="n">matrix</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1004</span> <span class="k">if</span> <span class="n">existing</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">new</span><span class="o">.</span><span class="n">shape</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1005</span>     <span class="n">existing</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">new</span><span class="p">[:]</span>
-<span class="g g-Whitespace">   </span><span class="mi">1006</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1007</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_representations</span><span class="p">[</span><span class="n">prefix</span><span class="p">][</span><span class="n">matrix</span><span class="p">]</span> <span class="o">=</span> <span class="n">new</span>
+<span class="nn">File ~\miniconda3\envs\ml_venv\lib\site-packages\statsmodels\tsa\statespace\representation.py:456,</span> in <span class="ni">Representation.__setitem__</span><span class="nt">(self, key, value)</span>
+<span class="g g-Whitespace">    </span><span class="mi">453</span>         <span class="n">slice_</span> <span class="o">=</span> <span class="n">slice_</span> <span class="o">+</span> <span class="p">(</span><span class="mi">0</span><span class="p">,)</span>
+<span class="g g-Whitespace">    </span><span class="mi">455</span>     <span class="c1"># Set the new value</span>
+<span class="ne">--&gt; </span><span class="mi">456</span>     <span class="n">matrix</span><span class="p">[</span><span class="n">slice_</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+<span class="g g-Whitespace">    </span><span class="mi">457</span>     <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">matrix</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">458</span> <span class="c1"># Otherwise we got a single non-string key, (e.g. mod[:]), which is</span>
+<span class="g g-Whitespace">    </span><span class="mi">459</span> <span class="c1"># invalid</span>
+<span class="g g-Whitespace">    </span><span class="mi">460</span> <span class="k">else</span><span class="p">:</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
@@ -3057,6 +3015,7 @@ NSE (Nash-Sutcliffe Efficiency): 0.65
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen"><strong>Resumen</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologia"><strong>Metodología</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#librerias-necesarias">Librerias Necesarias</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hola">Hola</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#auto-correlation-function-acf-and-partial-autocorrelation-funcion-pacf">Auto Correlation function (ACF) and Partial Autocorrelation Funcion(PACF).</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datos-de-entrenamiento-y-prueba">Datos de Entrenamiento y Prueba</a></li>
