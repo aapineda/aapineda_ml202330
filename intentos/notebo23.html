@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>aapineda &#8212; River Flow Forecasting = A Hybrid Approach Integrating Machine Learning and Linear Time Series Models</title>
+    <title>River Flow Forecasting: A Hybrid Approach Integrating Machine Learning and Linear Time Series Models &#8212; River Flow Forecasting = A Hybrid Approach Integrating Machine Learning and Linear Time Series Models</title>
   
   
   
@@ -156,7 +156,7 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../Texto.html">River Flow Forecasting: A Hybrid Approach Integrating Machine Learning and ARIMA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../notebo23.html">Aplicación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebo23.html">River Flow Forecasting: A Hybrid Approach Integrating Machine Learning and Linear Time Series Models</a></li>
 
 </ul>
 
@@ -341,7 +341,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>aapineda</h1>
+    <h1>River Flow Forecasting: A Hybrid Approach Integrating Machine Learning and Linear Time Series Models</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -351,10 +351,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">aapineda</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#river-flow-forecasting-a-hybrid-approach-integrating-machine-learning-and-linear-time-series-models">River Flow Forecasting: A Hybrid Approach Integrating Machine Learning and Linear Time Series Models</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen"><strong>Resumen</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologia"><strong>Metodología</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">River Flow Forecasting: A Hybrid Approach Integrating Machine Learning and Linear Time Series Models</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#librerias-necesarias">Librerias Necesarias</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relacion-entre-enso-y-caudal">Relacion entre ENSO y Caudal</a><ul class="nav section-nav flex-column">
@@ -438,62 +435,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="aapineda">
-<h1>aapineda<a class="headerlink" href="#aapineda" title="Permalink to this heading">#</a></h1>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="river-flow-forecasting-a-hybrid-approach-integrating-machine-learning-and-linear-time-series-models">
+  <section class="tex2jax_ignore mathjax_ignore" id="river-flow-forecasting-a-hybrid-approach-integrating-machine-learning-and-linear-time-series-models">
 <h1>River Flow Forecasting: A Hybrid Approach Integrating Machine Learning and Linear Time Series Models<a class="headerlink" href="#river-flow-forecasting-a-hybrid-approach-integrating-machine-learning-and-linear-time-series-models" title="Permalink to this heading">#</a></h1>
 <p><img alt="Alt text" src="intentos/1024px-Rio_Magdalena_Delta_landsat.jpg" /></p>
-<section id="resumen">
-<h2><strong>Resumen</strong><a class="headerlink" href="#resumen" title="Permalink to this heading">#</a></h2>
-<p>La precisa estimación del caudal del río Magdalena en la estación de Calamar, Bolívar, es esencial para la gestión de recursos hídricos y la reducción de riesgos de inundaciones en esta región. En este estudio, se emplearon tres enfoques de modelado para estimar el caudal del río a largo plazo (mensuales).
-Los datos necesarios para este análisis fueron recopilados específicamente en la estación de monitoreo de Calamar, Bolívar, a lo largo del río Magdalena. Se examinaron tres enfoques de modelado: modelos autoregresivos (AR), modelos de promedio móvil (MA) y modelos autoregresivos de promedio móvil (ARMA). Los resultados revelaron que los modelos MA superaron consistentemente en rendimiento a los modelos AR y ARMA.
-Además, para mejorar la precisión en la estimación del caudal del río Magdalena, se exploraron modelos de aprendizaje automático. Específicamente, se utilizaron Bosques Aleatorios (RF) y Splines de Regresión Adaptativos Multivariados (MARS) para estimar los valores mensuales de un factor crítico, el caudal del Rio, basándose en datos del Caudal del periodo anterior. Los resultados revelaron que RF y MARS produjeron estimaciones comparables, con RF mostrando una ligera ventaja en el rendimiento.
-Posteriormente, se implementaron modelos híbridos que combinaron enfoques de series temporales y aprendizaje automático, como RF-AR, RF-MA, RF-ARMA, MARS-AR, MARS-MA y MARS-ARMA, con el objetivo de mejorar la precisión en la estimación del Caudal. Entre estos modelos híbridos, RF-AR y MARS-AR demostraron consistentemente un rendimiento sobresaliente.
-Los resultados de este estudio sugieren que la combinación de enfoques híbridos, que integran modelos de series temporales y aprendizaje automático, ofrece un enfoque prometedor para estimar el Caudal en la estación de Calamar, Bolívar, a lo largo del río Magdalena. Estas estimaciones precisas del Caudal tienen aplicaciones significativas en proyectos relacionados con el analisis de Riesgo, planificacion de dragados y Energia hidroelectrica.</p>
-<ul class="simple">
-<li><p>Palabras clave: Río Magdalena · Estimación · Modelos de Series Temporales · Modelos de Aprendizaje Automático · Modelos Independientes y Híbridos · Caudales.</p></li>
-</ul>
-</section>
-<section id="metodologia">
-<h2><strong>Metodología</strong><a class="headerlink" href="#metodologia" title="Permalink to this heading">#</a></h2>
-<p><strong>Población y Muestra:</strong></p>
-<ul class="simple">
-<li><p>Población: La población de interés consistió en todos los datos históricos de caudales disponibles para la estación de Calamar, Bolívar, a lo largo del río Magdalena. (1984-2020)</p></li>
-<li><p>Muestra: La muestra se seleccionó considerando el tiempo y el espacio, incluyendo datos diarios recopilados a lo largo de varios años específicos. La muestra se limitó a la estación de Calamar, Bolívar.</p></li>
-</ul>
-<p><strong>Variables:</strong>
-Se definió un diccionario de características que incluyó las siguientes variables:</p>
-<ul class="simple">
-<li><p>Caudal del río Magdalena (variable objetivo).</p></li>
-<li><p>Variables meteorológicas adicionales (si es necesario).</p></li>
-<li><p>Fechas y marcas temporales para el análisis de series temporales.</p></li>
-</ul>
-<p><strong>Técnicas:</strong>
-Se emplearon diversas técnicas para la estimación del caudal del río Magdalena, que se dividieron en dos categorías principales:</p>
-<p><strong>a. Modelos de Series Temporales:</strong></p>
-<ul class="simple">
-<li><p>Modelos AR (Autoregresivos).</p></li>
-<li><p>Modelos MA (Promedio Móvil).</p></li>
-<li><p>Modelos ARMA (Autoregresivos de Promedio Móvil).</p></li>
-</ul>
-<p><strong>b. Modelos de Aprendizaje Automático:</strong></p>
-<ul class="simple">
-<li><p>Bosques Aleatorios (RF).</p></li>
-<li><p>Splines de Regresión Adaptativos Multivariados (MARS).
-Además, se aplicaron modelos híbridos que combinaron enfoques de series temporales y aprendizaje automático, como RF-AR y MARS-AR.</p></li>
-</ul>
-<p><strong>Diseño General:</strong>
-El estudio siguió un diseño de investigación observacional retrospectiva. Se recopilaron datos históricos de caudales del río Magdalena en la estación de Calamar, Bolívar, así como datos de velocidad del viento y, en su caso, datos meteorológicos adicionales. Estos datos retrospectivos se analizaron para desarrollar modelos de estimación del caudal del río.</p>
-<p><strong>Validez:</strong>
-La validez del estudio se abordó de la siguiente manera:</p>
-<ul class="simple">
-<li><p>Grupos de Datos Coherentes: Se utilizaron datos coherentes y homogéneos recopilados de manera consistente a lo largo del tiempo.</p></li>
-<li><p>Automatizado: La obtención de datos se automatizó mediante la extracción de datos desde fuentes como archivos CSV y, en su caso, API o consultas SQL.</p></li>
-<li><p>Técnicas Estadísticas: Se aplicaron pruebas estadísticas como Chi cuadrado, T-Students, Prueba Fisher y análisis de autocorrelación para evaluar la validez y la robustez de los modelos propuestos y los resultados del estudio.</p></li>
-</ul>
-<p>Este enfoque metodológico riguroso garantiza la calidad y la confiabilidad de los resultados del estudio de estimación del caudal del río Magdalena en la estación de Calamar, Bolívar, y sienta las bases para la mejora de la gestión de recursos hídricos en esta región.</p>
-</section>
 <section id="librerias-necesarias">
 <h2>Librerias Necesarias<a class="headerlink" href="#librerias-necesarias" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
@@ -3642,10 +3586,7 @@ Test-set score: 0.07
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">aapineda</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#river-flow-forecasting-a-hybrid-approach-integrating-machine-learning-and-linear-time-series-models">River Flow Forecasting: A Hybrid Approach Integrating Machine Learning and Linear Time Series Models</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen"><strong>Resumen</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologia"><strong>Metodología</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">River Flow Forecasting: A Hybrid Approach Integrating Machine Learning and Linear Time Series Models</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#librerias-necesarias">Librerias Necesarias</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relacion-entre-enso-y-caudal">Relacion entre ENSO y Caudal</a><ul class="nav section-nav flex-column">
