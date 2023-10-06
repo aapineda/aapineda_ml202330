@@ -1,0 +1,608 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>River Flow Forecasting: A Hybrid Approach Integrating Machine Learning and ARIMA &#8212; River Flow Forecasting = A Hybrid Approach Integrating Machine Learning and Linear Time Series Models</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Texto';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Aplicación" href="notebo23.html" />
+    <link rel="prev" title="Bienvenidos" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Bienvenidos
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">River Flow Forecasting: A Hybrid Approach Integrating Machine Learning and ARIMA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebo23.html">Aplicación</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FTexto.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Texto.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>River Flow Forecasting: A Hybrid Approach Integrating Machine Learning and ARIMA</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen"><strong>Resumen</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologia"><em>Metodología</em></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados-y-discusion">Resultados y Discusión</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados-experimentales">Resultados experimentales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion">Interpretación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones-experimentales">Conclusiones experimentales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitaciones">Limitaciones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#futuras-lineas-de-investigacion">Futuras líneas de investigación</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="river-flow-forecasting-a-hybrid-approach-integrating-machine-learning-and-arima">
+<h1>River Flow Forecasting: A Hybrid Approach Integrating Machine Learning and ARIMA<a class="headerlink" href="#river-flow-forecasting-a-hybrid-approach-integrating-machine-learning-and-arima" title="Permalink to this heading">#</a></h1>
+<p><img alt="Alt text" src="_images/1024px-Rio_Magdalena_Delta_landsat.jpg" /></p>
+<section id="resumen">
+<h2><strong>Resumen</strong><a class="headerlink" href="#resumen" title="Permalink to this heading">#</a></h2>
+<p>La precisa estimación del caudal del río Magdalena en la estación de Calamar, Bolívar, es esencial para la gestión de recursos hídricos y la reducción de riesgos de inundaciones en esta región.
+Los datos necesarios para este análisis fueron recopilados específicamente en la estación de monitoreo de Calamar, Bolívar, a lo largo del río Magdalena. Se examinaron dos enfoques de modelado: modelos autoregresivos (AR) y modelos autoregresivos de promedio móvil (ARMA). Los resultados revelaron que el modelo ARMA supero consistentemente en rendimiento al modelo AR.
+Además, para mejorar la precisión en la estimación del caudal del río Magdalena, se exploraron modelos de aprendizaje automático. Específicamente, se utilizaron Bosques Aleatorios (RF) y Multi Layer Percentron (MLP) para estimar los valores mensuales de un factor crítico, el caudal, basándose en datos del Caudal del periodo anterior y el indice ENSO. Los resultados revelaron que RF y MLP produjeron estimaciones comparables, con RF mostrando una ligera ventaja en el rendimiento.
+Posteriormente, se implementaron modelos híbridos que combinaron enfoques de series temporales y aprendizaje automático, como AR-RF, ARMA-RF, AR-MLP, ARMA-MLP, con el objetivo de mejorar la precisión en la estimación del Caudal. Entre estos modelos híbridos, ARMA-RF y ARMA-MLP demostraron consistentemente un rendimiento por encima.
+Los resultados de este estudio sugieren que la combinación de enfoques híbridos ofrece un enfoque que podria mejorar las estimaciones de Caudal. Estas estimaciones precisas del Caudal tienen aplicaciones significativas en proyectos relacionados con el analisis de Riesgo, planificacion de dragados y Energia hidroelectrica.</p>
+<ul class="simple">
+<li><p>Palabras clave: Río Magdalena · Estimación · Modelos de Series Temporales · Modelos de Aprendizaje Automático · Modelos Independientes y Híbridos · Caudales.</p></li>
+</ul>
+</section>
+<section id="metodologia">
+<h2><em>Metodología</em><a class="headerlink" href="#metodologia" title="Permalink to this heading">#</a></h2>
+<p><em>Población y Muestra:</em></p>
+<ul class="simple">
+<li><p>Población: La población de interés consistió en todos los datos históricos de caudales disponibles para la estación de Calamar, Bolívar, a lo largo del río Magdalena.</p></li>
+<li><p>Muestra: La muestra se seleccionó considerando el tiempo y el espacio, incluyendo datos diarios recopilados a lo largo de los años 1984 hasta el 2020.</p></li>
+</ul>
+<p><em>Zona de estudio</em>
+El río Magdalena es el río más grande de Colombia y uno de los ríos más importantes de América del Sur. Fluye desde el sur de Colombia hacia el norte y desemboca en el mar Caribe. La zona de Calamar, que mencionas, está ubicada en el departamento de Bolívar, cerca de la costa caribeña de Colombia.</p>
+<p>Aquí tienes algunas características generales de la zona de Calamar en el río Magdalena:</p>
+<p>Ubicación: Calamar es un municipio que se encuentra en la región del sur de Bolívar, cerca de la desembocadura del río Magdalena en el mar Caribe. Está situado en la parte baja del río Magdalena. Por lo que es la zona de medición mas cercana al puerto de Barranquilla.</p>
+<p>Importancia económica: La zona de Calamar, al igual que muchas otras áreas a lo largo del río Magdalena, tiene importancia económica debido a la navegación fluvial. El río Magdalena es una vía importante para el transporte de mercancías y carga en Colombia.<br><br><br></p>
+<p><em>Variables:</em>
+Se definió un diccionario de características que incluyó las siguientes variables:</p>
+<ul class="simple">
+<li><p>Caudal del río Magdalena (variable objetivo). El caudal se puede definir como la cantidad de agua que lleva una corriente o que fluye de un manantial o fuente.</p></li>
+<li><p>Variables meteorológicas adicionales: INDICE ENSO. El índice ENSO es una medida de las fluctuaciones de las temperaturas del océano en la parte central y oriental del Pacífico ecuatorial. Se utiliza para clasificar los eventos de El Niño y La Niña, que son fenómenos naturales que tienen un impacto significativo en el clima global.</p></li>
+<li><p>Fechas y marcas temporales para el análisis de series temporales. Días en los que se tomaron las mediciones utilizadas e este estudio.<br><br><br></p></li>
+</ul>
+<p><em>Técnicas:</em>
+Se emplearon diversas técnicas para la estimación del caudal del río Magdalena, que se dividieron en dos categorías principales:</p>
+<p><em>a. Modelos de Series Temporales:</em></p>
+<ul class="simple">
+<li><p>Modelos AR (Autoregresivos). Los modelos AR son modelos estadísticos que predicen los valores futuros de una serie temporal basándose en los valores pasados. Se basan en la idea de que los valores actuales de una serie temporal están relacionados con los valores pasados.</p></li>
+<li><p>Modelos ARMA (Autoregresivos de Promedio Móvil). Los modelos ARMA son modelos estadísticos que combinan los modelos AR y los modelos MA. Se basan en la idea de que los valores actuales de una serie temporal están relacionados con los valores pasados y con los errores aleatorios pasados.|</p></li>
+</ul>
+<p><em>b. Modelos de Aprendizaje Automático:</em></p>
+<ul class="simple">
+<li><p>Bosques Aleatorios (RF). Los bosques aleatorios son un tipo de modelo de aprendizaje automático que se utiliza para la clasificación y la regresión. Se basan en la idea de que un conjunto de árboles de decisión, entrenados de forma independiente, puede proporcionar un mejor rendimiento que un solo árbol de decisión.
+Los bosques aleatorios se construyen seleccionando de forma aleatoria un subconjunto de datos de entrenamiento para cada árbol de decisión. Esto ayuda a reducir la dependencia de los árboles de decisión individuales y a mejorar la precisión del modelo.
+Los bosques aleatorios son un modelo versátil que se puede utilizar para una variedad de aplicaciones. Son especialmente útiles para problemas de clasificación con un número grande de clases.</p></li>
+</ul>
+<p>Además, se aplicaron modelos híbridos que combinaron enfoques de series temporales y aprendizaje automático, como RF-AR y MLP-AR.</p>
+<p>RF-AR (Random Forest Autoregressive) y MLP-AR son dos modelos híbridos de pronóstico de series temporales que combinan modelos de aprendizaje automático con modelos de series temporales tradicionales. Los modelos RF-AR utilizan un bosque aleatorio para aprender las dependencias no lineales en los datos de la serie temporal. Un bosque aleatorio es un conjunto de árboles de decisión, cada uno de los cuales está entrenado en un subconjunto aleatorio de los datos de entrenamiento. Una vez que el bosque aleatorio ha sido entrenado, se puede utilizar para predecir los valores futuros de la serie temporal.<br><br><br></p>
+<p><em>Diseño General:</em>
+El estudio siguió un diseño de investigación observacional retrospectiva. Este tipo de investigación se caracteriza por: Los datos se recopilan después de que se hayan producido los eventos de interés. Los investigadores no tienen control sobre la asignación de los participantes a los grupos de tratamiento o control. Los investigadores no pueden manipular las variables independientes.
+Para este estudio, se recopilaron datos históricos de caudales del río Magdalena en la estación de Calamar, Bolívar, así como datos del indice ENSO obtenidos de la NOAA entre los años 1984-2020. Estos datos retrospectivos se analizaron para desarrollar modelos de estimación del caudal del río.<br><br><br></p>
+<p><em>Validez:</em>
+La validez del estudio se abordó de la siguiente manera:</p>
+<ul class="simple">
+<li><p>Grupos de Datos Coherentes: Se utilizaron datos coherentes y homogéneos recopilados de manera consistente a lo largo del tiempo. Se podría mencionar que los datos se recopilaron de una variedad de fuentes para aumentar la confiabilidad de los resultados. También se podría mencionar que los datos se revisaron cuidadosamente para detectar errores o inconsistencias.</p></li>
+<li><p>La obtención de datos se automatizó mediante la extracción de datos desde archivos CSV, lo cual es importante para garantizar que el proceso de recopilación de datos sea preciso y eficiente.</p></li>
+<li><p>Técnicas Estadísticas: Se realizo un análisis de autocorrelación para evaluar la validez de las variables independientes.</p></li>
+</ul>
+<p>Este enfoque metodológico riguroso garantiza la calidad y la confiabilidad de los resultados del estudio de estimación del caudal del río Magdalena en la estación de Calamar, Bolívar, y sienta las bases para la mejora de la gestión de recursos hídricos en esta región.<br><br><br></p>
+</section>
+<section id="resultados-y-discusion">
+<h2>Resultados y Discusión<a class="headerlink" href="#resultados-y-discusion" title="Permalink to this heading">#</a></h2>
+<section id="resultados-experimentales">
+<h3>Resultados experimentales<a class="headerlink" href="#resultados-experimentales" title="Permalink to this heading">#</a></h3>
+<p>En este estudio, se investigó el desempeño de modelos lineales AR y ARMA en combinación con modelos de machine learning, específicamente Random Forest (RF) y Multi-layer Perceptron (MLP). Los modelos se evaluaron por separado y luego se emparejaron para analizar su impacto en las métricas R2 y RRMSE, que son indicadores clave de rendimiento en la predicción.
+Los valores métricos de evaluación calculados para los modelos independientes RF y MARS en Tabriz y Zahedan. Las estaciones se dan en las Tablas 5 y 6, respectivamente. Los modelos independientes MARS y RF tuvieron un desempeño regular en la estimación del caudal mensual según el criterio de clasificación RRMSE (20%&lt;RRMSE&lt;30%). En total, se desarrollaron y evaluaron seis modelos híbridos: es decir, AR-RF, ARMA-RF, AR-MLP, ARMA- MLP. Las métricas estadísticas calculadas para los modelos híbridos se enumeran en las Tablas 5 y 6. Basado en el índice RRMSE, el desempeño de todos los modelos híbridos no aumento en gran medida los resultados en escala mensual. Los modelos de series temporales MA y ARMA, respectivamente, demostraron por si soloes un buen rendimiento.</p>
+<ol class="arabic simple">
+<li><p><em>Evaluación individual de modelos:</em></p>
+<ul class="simple">
+<li><p>Modelos lineales AR y ARMA: Inicialmente, se evaluaron los modelos AR y ARMA de forma individual. Los resultados mostraron un rendimiento moderado en términos de R2 y RMSE, lo que indica que estos modelos pueden capturar cierta tendencia en los datos.</p></li>
+<li><p>Modelos de machine learning (Ridge, Lasso, k-NN, RF, MLP): Los modelos de machine learning, como Random Forest y Multi-layer Perceptron, se evaluaron independientemente. Estos modelos demostraron un rendimiento inferior en comparación con los modelos lineales AR y ARMA en términos de R2 y RMSE.</p></li>
+</ul>
+</li>
+<li><p><em>Emparejamiento de modelos:</em></p>
+<ul class="simple">
+<li><p>Combinación de AR/ARMA con RF y MLP: Posteriormente, se emparejaron los modelos lineales AR y ARMA con los modelos de machine learning RF y MLP. Este enfoque de combinación de modelos condujo a una mejora en las métricas R2 y RMSE en comparación con los modelos lineales por sí solos. Esto indica que la combinación de modelos AR/ARMA con RF y MLP logra una mejor capacidad de predicción al aprovechar las fortalezas de ambos enfoques.<br><br><br></p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="interpretacion">
+<h3>Interpretación<a class="headerlink" href="#interpretacion" title="Permalink to this heading">#</a></h3>
+<p>Los resultados experimentales muestran que la combinación de modelos lineales AR/ARMA con modelos de Machine Learning RF y MLP puede mejorar el rendimiento en términos de R2 y RMSE. Esto sugiere que esta estrategia puede ser efectiva para capturar tanto las tendencias lineales como los patrones no lineales en los datos, lo que lleva a predicciones más precisas. Los modelos AR/ARMA pueden capturar tendencias lineales en los datos, mientras que los modelos RF/MLP pueden capturar patrones no lineales. La combinación de estos dos tipos de modelos puede ayudar a mejorar la precisión de las predicciones, especialmente para datos que presentan tendencias lineales y patrones no lineales.<br><br><br></p>
+</section>
+<section id="conclusiones-experimentales">
+<h3>Conclusiones experimentales<a class="headerlink" href="#conclusiones-experimentales" title="Permalink to this heading">#</a></h3>
+<p>En resumen, este estudio demuestra que la combinación de modelos lineales AR/ARMA con modelos de machine learning RF y MLP puede ser una estrategia prometedora para mejorar la capacidad de predicción de caudales mensuales para ríos. Estos resultados tienen implicaciones importantes en aplicaciones que requieren predicciones precisas basadas en series temporales como predicciones de niveles y caudales, y sugieren que la combinación de enfoques puede ser una estrategia valiosa a considerar.
+Los resultados obtenidos sugieren que la combinación de modelos AR, ARMA con RF, MLP es una estrategia efectiva para mejorar el rendimiento de los modelos de pronóstico de series temporales. Esta estrategia puede ser útil para una variedad de aplicaciones, como la detección de anomalías.<br><br><br></p>
+</section>
+<section id="limitaciones">
+<h3>Limitaciones<a class="headerlink" href="#limitaciones" title="Permalink to this heading">#</a></h3>
+<p>Es importante destacar que los resultados pueden depender de la naturaleza de los datos y el problema específico, en este caso nos encontramos con caudales promedios de un hidro sistema que está altamente influencia por múltiples factores como cambios de uso de la cuenca, fenómenos globales como el niño y la niña, la precipitación y temperatura en su área tributaria. El punto donde se realizo la predicción corresponde a un punto muy próximo a la desembocadura del Rio Magdalena. Además, se requiere una evaluación más exhaustiva en diferentes estaciones a lo largo del Rio, que permitan validar la generalización de estos hallazgos. <br><br><br></p>
+</section>
+<section id="futuras-lineas-de-investigacion">
+<h3>Futuras líneas de investigación<a class="headerlink" href="#futuras-lineas-de-investigacion" title="Permalink to this heading">#</a></h3>
+<p>Para futuras investigaciones, se pueden explorar diferentes combinaciones de modelos y algoritmos de Machine Learning, o comprobar de manera inversa si al aplicar primero el algoritmo de Machine Learning y luego a los residuos el ARIMA se obtiene un mejor ajuste. También es importante investigar la interpretabilidad de los modelos combinados para comprender mejor los factores que contribuyen a las mejoras en el rendimiento.
+En el contexto de hidrosistemas, se sugiere continuar investigando enfoques híbridos alternativos que involucren la combinación de diversos modelos de series temporales, como el modelo no lineal de heteroscedasticidad condicional autorregresiva (ARCH) y el modelo autorregresivo de umbral autoexcitado (SETAR), junto con modelos de aprendizaje automático como ANFIS, programación de la expresión génica (GEP), redes neuronales convolucionales y aprendizaje profundo. Además, se hace la recomendación de que la metodología presentada en este estudio podría aplicarse para estimar series temporales relacionadas con variables hidrológicas, con el fin de mejorar la comprensión de los hidro sistemas y su comportamiento, lo que contribuiría a una gestión más eficiente y sostenible de los recursos hídricos.<br><br><br></p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Bienvenidos</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="notebo23.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Aplicación</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen"><strong>Resumen</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologia"><em>Metodología</em></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados-y-discusion">Resultados y Discusión</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados-experimentales">Resultados experimentales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion">Interpretación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones-experimentales">Conclusiones experimentales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitaciones">Limitaciones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#futuras-lineas-de-investigacion">Futuras líneas de investigación</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Angel Andres Pineda Lopez
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
