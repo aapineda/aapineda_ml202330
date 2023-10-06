@@ -709,20 +709,20 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>             Flow  ENSO
-0     7046.387097  -0.6
-1     5769.344828  -0.4
-2     5016.483871  -0.3
-3     4613.266667  -0.4
-4     6783.838710  -0.5
-..            ...   ...
-439   7277.535484  -0.6
-440   8679.066667  -0.9
-441   9349.567742  -1.2
-442   9804.350000  -1.3
-443  10353.732258  -1.2
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                   Date          Flow  ENSO
+0   1984-01-16 00:00:00   7046.387097  -0.6
+1   1984-02-15 00:00:00   5769.344828  -0.4
+2   1984-03-16 00:00:00   5016.483871  -0.3
+3   1984-04-15 12:00:00   4613.266667  -0.4
+4   1984-05-16 00:00:00   6783.838710  -0.5
+..                  ...           ...   ...
+439 2020-08-16 00:00:00   7277.535484  -0.6
+440 2020-09-15 12:00:00   8679.066667  -0.9
+441 2020-10-16 00:00:00   9349.567742  -1.2
+442 2020-11-15 12:00:00   9804.350000  -1.3
+443 2020-12-16 00:00:00  10353.732258  -1.2
 
-[444 rows x 2 columns]
+[444 rows x 3 columns]
 </pre></div>
 </div>
 </div>
@@ -752,6 +752,7 @@ dtype: float64
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>Date</th>
       <th>Flow</th>
       <th>ENSO</th>
     </tr>
@@ -759,26 +760,31 @@ dtype: float64
   <tbody>
     <tr>
       <th>0</th>
+      <td>1984-01-16 00:00:00</td>
       <td>7046.387097</td>
       <td>-0.6</td>
     </tr>
     <tr>
       <th>1</th>
+      <td>1984-02-15 00:00:00</td>
       <td>5769.344828</td>
       <td>-0.4</td>
     </tr>
     <tr>
       <th>2</th>
+      <td>1984-03-16 00:00:00</td>
       <td>5016.483871</td>
       <td>-0.3</td>
     </tr>
     <tr>
       <th>3</th>
+      <td>1984-04-15 12:00:00</td>
       <td>4613.266667</td>
       <td>-0.4</td>
     </tr>
     <tr>
       <th>4</th>
+      <td>1984-05-16 00:00:00</td>
       <td>6783.838710</td>
       <td>-0.5</td>
     </tr>
@@ -786,35 +792,41 @@ dtype: float64
       <th>...</th>
       <td>...</td>
       <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
       <th>439</th>
+      <td>2020-08-16 00:00:00</td>
       <td>7277.535484</td>
       <td>-0.6</td>
     </tr>
     <tr>
       <th>440</th>
+      <td>2020-09-15 12:00:00</td>
       <td>8679.066667</td>
       <td>-0.9</td>
     </tr>
     <tr>
       <th>441</th>
+      <td>2020-10-16 00:00:00</td>
       <td>9349.567742</td>
       <td>-1.2</td>
     </tr>
     <tr>
       <th>442</th>
+      <td>2020-11-15 12:00:00</td>
       <td>9804.350000</td>
       <td>-1.3</td>
     </tr>
     <tr>
       <th>443</th>
+      <td>2020-12-16 00:00:00</td>
       <td>10353.732258</td>
       <td>-1.2</td>
     </tr>
   </tbody>
 </table>
-<p>444 rows × 2 columns</p>
+<p>444 rows × 3 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -850,6 +862,7 @@ dtype: float64
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>Date</th>
       <th>Flow</th>
       <th>ENSO</th>
       <th>Mes</th>
@@ -858,30 +871,35 @@ dtype: float64
   <tbody>
     <tr>
       <th>0</th>
+      <td>1984-01-16 00:00:00</td>
       <td>7046.387097</td>
       <td>-0.6</td>
       <td>1</td>
     </tr>
     <tr>
       <th>1</th>
+      <td>1984-02-15 00:00:00</td>
       <td>5769.344828</td>
       <td>-0.4</td>
       <td>2</td>
     </tr>
     <tr>
       <th>2</th>
+      <td>1984-03-16 00:00:00</td>
       <td>5016.483871</td>
       <td>-0.3</td>
       <td>3</td>
     </tr>
     <tr>
       <th>3</th>
+      <td>1984-04-15 12:00:00</td>
       <td>4613.266667</td>
       <td>-0.4</td>
       <td>4</td>
     </tr>
     <tr>
       <th>4</th>
+      <td>1984-05-16 00:00:00</td>
       <td>6783.838710</td>
       <td>-0.5</td>
       <td>5</td>
@@ -891,40 +909,46 @@ dtype: float64
       <td>...</td>
       <td>...</td>
       <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
       <th>439</th>
+      <td>2020-08-16 00:00:00</td>
       <td>7277.535484</td>
       <td>-0.6</td>
       <td>440</td>
     </tr>
     <tr>
       <th>440</th>
+      <td>2020-09-15 12:00:00</td>
       <td>8679.066667</td>
       <td>-0.9</td>
       <td>441</td>
     </tr>
     <tr>
       <th>441</th>
+      <td>2020-10-16 00:00:00</td>
       <td>9349.567742</td>
       <td>-1.2</td>
       <td>442</td>
     </tr>
     <tr>
       <th>442</th>
+      <td>2020-11-15 12:00:00</td>
       <td>9804.350000</td>
       <td>-1.3</td>
       <td>443</td>
     </tr>
     <tr>
       <th>443</th>
+      <td>2020-12-16 00:00:00</td>
       <td>10353.732258</td>
       <td>-1.2</td>
       <td>444</td>
     </tr>
   </tbody>
 </table>
-<p>444 rows × 3 columns</p>
+<p>444 rows × 4 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -938,7 +962,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/487dca15fea29b87a74e8771f277997574c72a2e65c7140857e931ac71bae585.png" src="_images/487dca15fea29b87a74e8771f277997574c72a2e65c7140857e931ac71bae585.png" />
+<img alt="_images/d0421164d47513d5783afbec28054327bb5317662c6d490d3c67cdc861b98905.png" src="_images/d0421164d47513d5783afbec28054327bb5317662c6d490d3c67cdc861b98905.png" />
 </div>
 </div>
 <section id="relacion-entre-enso-y-caudal">
@@ -967,7 +991,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/27f5681cd6894274fcdabe75a63d10df9cc5a75a305eeb977699ca7be1c007be.png" src="_images/27f5681cd6894274fcdabe75a63d10df9cc5a75a305eeb977699ca7be1c007be.png" />
+<img alt="_images/f77383667784ca415c7736ce275a32cfd7baf76441ead1336defa54fc21adf59.png" src="_images/f77383667784ca415c7736ce275a32cfd7baf76441ead1336defa54fc21adf59.png" />
 </div>
 </div>
 <section id="lag-a-los-datos">
@@ -1005,6 +1029,7 @@ dtype: float64
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>Date</th>
       <th>Flow</th>
       <th>ENSO</th>
       <th>Mes</th>
@@ -1015,6 +1040,7 @@ dtype: float64
   <tbody>
     <tr>
       <th>0</th>
+      <td>1984-01-16 00:00:00</td>
       <td>7046.387097</td>
       <td>-0.6</td>
       <td>1</td>
@@ -1023,6 +1049,7 @@ dtype: float64
     </tr>
     <tr>
       <th>1</th>
+      <td>1984-02-15 00:00:00</td>
       <td>5769.344828</td>
       <td>-0.4</td>
       <td>2</td>
@@ -1031,6 +1058,7 @@ dtype: float64
     </tr>
     <tr>
       <th>2</th>
+      <td>1984-03-16 00:00:00</td>
       <td>5016.483871</td>
       <td>-0.3</td>
       <td>3</td>
@@ -1039,6 +1067,7 @@ dtype: float64
     </tr>
     <tr>
       <th>3</th>
+      <td>1984-04-15 12:00:00</td>
       <td>4613.266667</td>
       <td>-0.4</td>
       <td>4</td>
@@ -1047,6 +1076,7 @@ dtype: float64
     </tr>
     <tr>
       <th>4</th>
+      <td>1984-05-16 00:00:00</td>
       <td>6783.838710</td>
       <td>-0.5</td>
       <td>5</td>
@@ -1060,9 +1090,11 @@ dtype: float64
       <td>...</td>
       <td>...</td>
       <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
       <th>439</th>
+      <td>2020-08-16 00:00:00</td>
       <td>7277.535484</td>
       <td>-0.6</td>
       <td>440</td>
@@ -1071,6 +1103,7 @@ dtype: float64
     </tr>
     <tr>
       <th>440</th>
+      <td>2020-09-15 12:00:00</td>
       <td>8679.066667</td>
       <td>-0.9</td>
       <td>441</td>
@@ -1079,6 +1112,7 @@ dtype: float64
     </tr>
     <tr>
       <th>441</th>
+      <td>2020-10-16 00:00:00</td>
       <td>9349.567742</td>
       <td>-1.2</td>
       <td>442</td>
@@ -1087,6 +1121,7 @@ dtype: float64
     </tr>
     <tr>
       <th>442</th>
+      <td>2020-11-15 12:00:00</td>
       <td>9804.350000</td>
       <td>-1.3</td>
       <td>443</td>
@@ -1095,6 +1130,7 @@ dtype: float64
     </tr>
     <tr>
       <th>443</th>
+      <td>2020-12-16 00:00:00</td>
       <td>10353.732258</td>
       <td>-1.2</td>
       <td>444</td>
@@ -1103,7 +1139,7 @@ dtype: float64
     </tr>
   </tbody>
 </table>
-<p>444 rows × 5 columns</p>
+<p>444 rows × 6 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -1141,6 +1177,7 @@ dtype: float64
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>Date</th>
       <th>Flow</th>
       <th>ENSO</th>
       <th>Mes</th>
@@ -1151,6 +1188,7 @@ dtype: float64
   <tbody>
     <tr>
       <th>0</th>
+      <td>1984-01-16 00:00:00</td>
       <td>7046.387097</td>
       <td>-0.6</td>
       <td>1</td>
@@ -1159,6 +1197,7 @@ dtype: float64
     </tr>
     <tr>
       <th>1</th>
+      <td>1984-02-15 00:00:00</td>
       <td>5769.344828</td>
       <td>-0.4</td>
       <td>2</td>
@@ -1167,6 +1206,7 @@ dtype: float64
     </tr>
     <tr>
       <th>2</th>
+      <td>1984-03-16 00:00:00</td>
       <td>5016.483871</td>
       <td>-0.3</td>
       <td>3</td>
@@ -1175,6 +1215,7 @@ dtype: float64
     </tr>
     <tr>
       <th>3</th>
+      <td>1984-04-15 12:00:00</td>
       <td>4613.266667</td>
       <td>-0.4</td>
       <td>4</td>
@@ -1183,6 +1224,7 @@ dtype: float64
     </tr>
     <tr>
       <th>4</th>
+      <td>1984-05-16 00:00:00</td>
       <td>6783.838710</td>
       <td>-0.5</td>
       <td>5</td>
@@ -1196,9 +1238,11 @@ dtype: float64
       <td>...</td>
       <td>...</td>
       <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
       <th>439</th>
+      <td>2020-08-16 00:00:00</td>
       <td>7277.535484</td>
       <td>-0.6</td>
       <td>440</td>
@@ -1207,6 +1251,7 @@ dtype: float64
     </tr>
     <tr>
       <th>440</th>
+      <td>2020-09-15 12:00:00</td>
       <td>8679.066667</td>
       <td>-0.9</td>
       <td>441</td>
@@ -1215,6 +1260,7 @@ dtype: float64
     </tr>
     <tr>
       <th>441</th>
+      <td>2020-10-16 00:00:00</td>
       <td>9349.567742</td>
       <td>-1.2</td>
       <td>442</td>
@@ -1223,6 +1269,7 @@ dtype: float64
     </tr>
     <tr>
       <th>442</th>
+      <td>2020-11-15 12:00:00</td>
       <td>9804.350000</td>
       <td>-1.3</td>
       <td>443</td>
@@ -1231,6 +1278,7 @@ dtype: float64
     </tr>
     <tr>
       <th>443</th>
+      <td>2020-12-16 00:00:00</td>
       <td>10353.732258</td>
       <td>-1.2</td>
       <td>444</td>
@@ -1239,7 +1287,7 @@ dtype: float64
     </tr>
   </tbody>
 </table>
-<p>444 rows × 5 columns</p>
+<p>444 rows × 6 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -1253,9 +1301,52 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/12a5bc06e7ee4b2950c6d6ba97babb19cf3189b4b32770a3e4856497edb18c97.png" src="_images/12a5bc06e7ee4b2950c6d6ba97babb19cf3189b4b32770a3e4856497edb18c97.png" />
+<img alt="_images/97c66b81fe252002e08f6f80c5c1d8ba2ce0653ac6c1887eda51507d5842c684.png" src="_images/97c66b81fe252002e08f6f80c5c1d8ba2ce0653ac6c1887eda51507d5842c684.png" />
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">kurtosis</span>
+<span class="n">num_cols</span> <span class="o">=</span> <span class="n">serie</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">font_scale</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">num_cols</span><span class="p">[:</span><span class="mi">3</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Column: &#39;</span><span class="p">,</span> <span class="n">col</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Skew:&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span> <span class="n">serie</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">skew</span><span class="p">(),</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Kurtosis: &#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span> <span class="n">serie</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">kurtosis</span><span class="p">(),</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">serie</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span> <span class="n">serie</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Column:  Flow
+Skew: 0.35
+Kurtosis:  -0.51
+</pre></div>
+</div>
+<img alt="_images/aeaa378844d51eddd8c8429be82f98674f3a23bc7b76474ed5cbe1ad0781a033.png" src="_images/aeaa378844d51eddd8c8429be82f98674f3a23bc7b76474ed5cbe1ad0781a033.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Column:  ENSO
+Skew: 0.43
+Kurtosis:  0.26
+</pre></div>
+</div>
+<img alt="_images/f515327ffdb6827e2a279f50b0a873ad82bcedd1ea9b81347f072e33f8c9b922.png" src="_images/f515327ffdb6827e2a279f50b0a873ad82bcedd1ea9b81347f072e33f8c9b922.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Column:  Mes
+Skew: 0.0
+Kurtosis:  -1.2
+</pre></div>
+</div>
+<img alt="_images/03b37c8723d047115bc3d07656dd2ad8ba0a52dd6173b142e423c439e22fdd31.png" src="_images/03b37c8723d047115bc3d07656dd2ad8ba0a52dd6173b142e423c439e22fdd31.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>Serie usada para modelos ARIMA</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">serie_ARIMA</span><span class="o">=</span> <span class="n">serie</span><span class="p">[[</span><span class="s1">&#39;Flow&#39;</span><span class="p">,</span> <span class="s1">&#39;Mes&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -1365,9 +1456,9 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/3670d78581114f2016259f76b8af6416e2995e598510eb2ee746d2cf91d2c38a.png" src="_images/3670d78581114f2016259f76b8af6416e2995e598510eb2ee746d2cf91d2c38a.png" />
-<img alt="_images/f0c733d44abc967e24fb4b07dd1d0e6945e8ae4e75465ec7eeef65c7c7f2c95d.png" src="_images/f0c733d44abc967e24fb4b07dd1d0e6945e8ae4e75465ec7eeef65c7c7f2c95d.png" />
-<img alt="_images/3670d78581114f2016259f76b8af6416e2995e598510eb2ee746d2cf91d2c38a.png" src="_images/3670d78581114f2016259f76b8af6416e2995e598510eb2ee746d2cf91d2c38a.png" />
+<img alt="_images/c161fef6aea5ccf5245a9ab91fd3f274a14204e63838b6ff6810099e41c0ecbd.png" src="_images/c161fef6aea5ccf5245a9ab91fd3f274a14204e63838b6ff6810099e41c0ecbd.png" />
+<img alt="_images/b277bdcccf13617a02f0f46414a589188ac1b68700f68f033011fa2ecff9a447.png" src="_images/b277bdcccf13617a02f0f46414a589188ac1b68700f68f033011fa2ecff9a447.png" />
+<img alt="_images/c161fef6aea5ccf5245a9ab91fd3f274a14204e63838b6ff6810099e41c0ecbd.png" src="_images/c161fef6aea5ccf5245a9ab91fd3f274a14204e63838b6ff6810099e41c0ecbd.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1490,6 +1581,30 @@ Los datos son estacionarios (Stationary)
         <span class="s1">&#39;R-squared (R^2)&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">{:.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r2</span><span class="p">),</span>
         <span class="s1">&#39;NSE (Nash-Sutcliffe Efficiency)&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">{:.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nse</span><span class="p">)</span>
     <span class="p">}</span>
+    
+    <span class="c1"># Calcular la línea de regresión (línea de mejor ajuste)</span>
+    <span class="n">coeff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">poly1d</span><span class="p">(</span><span class="n">coeff</span><span class="p">)</span>
+
+    <span class="c1"># Calcular el coeficiente de determinación (R²)</span>
+    <span class="n">r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+
+    <span class="c1"># Graficar los puntos en azul</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+    <span class="c1"># Graficar la línea de regresión en rojo</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">line</span><span class="p">(</span><span class="n">y_test</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$y = </span><span class="si">{</span><span class="n">coeff</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">x + </span><span class="si">{</span><span class="n">coeff</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">$</span><span class="se">\n</span><span class="s1">$R^2 = </span><span class="si">{</span><span class="n">r2</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Etiquetas y título</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Valores Reales&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">modelo</span><span class="si">}</span><span class="s1"> (m3/s)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Gráfico de Valores Reales vs. Valores Predichos</span><span class="se">\n</span><span class="s1">Modelo: </span><span class="si">{</span><span class="n">modelo</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+    <span class="c1"># Mostrar la leyenda</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+    <span class="c1"># Mostrar el gráfico</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
 
     <span class="c1"># Crear un DataFrame a partir del diccionario</span>
@@ -1625,24 +1740,24 @@ Los datos son estacionarios (Stationary)
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Performing stepwise search to minimize aic
- ARIMA(1,0,0)(0,0,0)[0]             : AIC=7865.329, Time=0.03 sec
- ARIMA(0,0,0)(0,0,0)[0]             : AIC=9208.012, Time=0.01 sec
- ARIMA(2,0,0)(0,0,0)[0]             : AIC=7777.791, Time=0.05 sec
- ARIMA(3,0,0)(0,0,0)[0]             : AIC=7662.598, Time=0.11 sec
- ARIMA(4,0,0)(0,0,0)[0]             : AIC=7641.101, Time=0.15 sec
- ARIMA(5,0,0)(0,0,0)[0]             : AIC=7639.764, Time=0.17 sec
- ARIMA(5,0,0)(0,0,0)[0] intercept   : AIC=7603.639, Time=0.17 sec
- ARIMA(4,0,0)(0,0,0)[0] intercept   : AIC=7601.648, Time=0.16 sec
- ARIMA(3,0,0)(0,0,0)[0] intercept   : AIC=7606.573, Time=0.11 sec
+ ARIMA(1,0,0)(0,0,0)[0]             : AIC=7865.329, Time=0.04 sec
+ ARIMA(0,0,0)(0,0,0)[0]             : AIC=9208.012, Time=0.02 sec
+ ARIMA(2,0,0)(0,0,0)[0]             : AIC=7777.791, Time=0.07 sec
+ ARIMA(3,0,0)(0,0,0)[0]             : AIC=7662.598, Time=0.09 sec
+ ARIMA(4,0,0)(0,0,0)[0]             : AIC=7641.101, Time=0.17 sec
+ ARIMA(5,0,0)(0,0,0)[0]             : AIC=7639.764, Time=0.20 sec
+ ARIMA(5,0,0)(0,0,0)[0] intercept   : AIC=7603.639, Time=0.19 sec
+ ARIMA(4,0,0)(0,0,0)[0] intercept   : AIC=7601.648, Time=0.14 sec
+ ARIMA(3,0,0)(0,0,0)[0] intercept   : AIC=7606.573, Time=0.10 sec
 
 Best model:  ARIMA(4,0,0)(0,0,0)[0] intercept
-Total fit time: 0.983 seconds
+Total fit time: 1.035 seconds
                                SARIMAX Results                                
 ==============================================================================
 Dep. Variable:                      y   No. Observations:                  444
 Model:               SARIMAX(4, 0, 0)   Log Likelihood               -3794.824
-Date:                Thu, 05 Oct 2023   AIC                           7601.648
-Time:                        10:16:54   BIC                           7626.223
+Date:                Fri, 06 Oct 2023   AIC                           7601.648
+Time:                        10:54:13   BIC                           7626.223
 Sample:                             0   HQIC                          7611.340
                                 - 444                                         
 Covariance Type:                  opg                                         
@@ -1664,7 +1779,7 @@ Prob(H) (two-sided):                  0.36   Kurtosis:                         2
 
 Warnings:
 [1] Covariance matrix calculated using the outer product of gradients (complex-step).
-[2] Covariance matrix is singular or near-singular, with condition number 6.38e+24. Standard errors may be unstable.
+[2] Covariance matrix is singular or near-singular, with condition number 7.9e+25. Standard errors may be unstable.
 </pre></div>
 </div>
 </div>
@@ -1703,8 +1818,8 @@ Warnings:
 ==============================================================================
 Dep. Variable:                      y   No. Observations:                  355
 Model:                 ARIMA(5, 0, 0)   Log Likelihood               -3036.744
-Date:                Thu, 05 Oct 2023   AIC                           6087.488
-Time:                        10:16:54   BIC                           6114.593
+Date:                Fri, 06 Oct 2023   AIC                           6087.488
+Time:                        10:54:13   BIC                           6114.593
 Sample:                             0   HQIC                          6098.271
                                 - 355                                         
 Covariance Type:                  opg                                         
@@ -1729,15 +1844,15 @@ Warnings:
 [1] Covariance matrix calculated using the outer product of gradients (complex-step).
 </pre></div>
 </div>
-<img alt="_images/217540d5a4bafeb30ddebadd3890bee7b9425df5abb85dd30185da6cdbed6046.png" src="_images/217540d5a4bafeb30ddebadd3890bee7b9425df5abb85dd30185da6cdbed6046.png" />
-<img alt="_images/ad294a67df226f2ad6dd372eec1c4dcbb89dadcf62d6dc43c5f96a665179ebf8.png" src="_images/ad294a67df226f2ad6dd372eec1c4dcbb89dadcf62d6dc43c5f96a665179ebf8.png" />
+<img alt="_images/f31e4b4bdd4d9cd2f740e938b1314877dbe6f44b8f52cf5f35c45e7164751f58.png" src="_images/f31e4b4bdd4d9cd2f740e938b1314877dbe6f44b8f52cf5f35c45e7164751f58.png" />
+<img alt="_images/40b275be5ab7b6ff7ad259be0a8f514495f803d11332f2eb1ded52a92eaab0d6.png" src="_images/40b275be5ab7b6ff7ad259be0a8f514495f803d11332f2eb1ded52a92eaab0d6.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 0
 count   355.000000
 mean     -5.996724
 std    1254.328712
 min   -3866.216294
 25%    -843.690613
-50%      66.530668
+50%      66.530667
 75%     869.953976
 max    3390.829384
 </pre></div>
@@ -1754,11 +1869,11 @@ max    3390.829384
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/756711ba4744829146d143c87fdaa50419232ddad520633164fcae47150bdfd0.png" src="_images/756711ba4744829146d143c87fdaa50419232ddad520633164fcae47150bdfd0.png" />
+<img alt="_images/224e30e2d3b4a170f9f349031e080dccb6bde77972cec020fc87ac378bbccb6d.png" src="_images/224e30e2d3b4a170f9f349031e080dccb6bde77972cec020fc87ac378bbccb6d.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test RMSE: 1216.840
 </pre></div>
 </div>
-<img alt="_images/b8904c93257b476953542307ec3534d7198f9dd0d54884cbb59ce71ef8717640.png" src="_images/b8904c93257b476953542307ec3534d7198f9dd0d54884cbb59ce71ef8717640.png" />
+<img alt="_images/2beaaa6d25c43147a6ba4568337aa3c9d080c2c73a53602ceb5a11b6be6886c2.png" src="_images/2beaaa6d25c43147a6ba4568337aa3c9d080c2c73a53602ceb5a11b6be6886c2.png" />
 </div>
 </div>
 <section id="metricas-del-modelo">
@@ -1766,12 +1881,13 @@ max    3390.829384
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nueva_fila</span> <span class="o">=</span> <span class="n">metricas</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions_AR</span><span class="p">,</span> <span class="s1">&#39;AR&#39;</span><span class="p">)</span>
-<span class="n">df_resultados</span> <span class="o">=</span> <span class="n">df_resultados</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nueva_fila</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_resultados</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_resultados</span><span class="p">,</span> <span class="n">nueva_fila</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df_resultados</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<img alt="_images/6e9e4703550a77ab40a70613d57b6b54c2a114726a9f11081c7232d1735a6f0e.png" src="_images/6e9e4703550a77ab40a70613d57b6b54c2a114726a9f11081c7232d1735a6f0e.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Modelo      MAE  RRMSE R-squared (R^2) NSE (Nash-Sutcliffe Efficiency)
 0     AR  968.170  0.188           0.697                           0.697
 </pre></div>
@@ -1805,72 +1921,71 @@ max    3390.829384
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Performing stepwise search to minimize aic
- ARIMA(1,0,1)(0,0,0)[0]             : AIC=7727.800, Time=0.08 sec
+ ARIMA(1,0,1)(0,0,0)[0]             : AIC=7727.800, Time=0.07 sec
  ARIMA(0,0,0)(0,0,0)[0]             : AIC=9208.012, Time=0.01 sec
  ARIMA(1,0,0)(0,0,0)[0]             : AIC=7865.329, Time=0.02 sec
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(0,0,1)(0,0,0)[0]             : AIC=inf, Time=0.13 sec
- ARIMA(2,0,1)(0,0,0)[0]             : AIC=7724.921, Time=0.21 sec
+ ARIMA(0,0,1)(0,0,0)[0]             : AIC=inf, Time=0.10 sec
+ ARIMA(2,0,1)(0,0,0)[0]             : AIC=7724.921, Time=0.18 sec
  ARIMA(2,0,0)(0,0,0)[0]             : AIC=7777.791, Time=0.04 sec
  ARIMA(3,0,1)(0,0,0)[0]             : AIC=7640.387, Time=0.31 sec
- ARIMA(3,0,0)(0,0,0)[0]             : AIC=7662.598, Time=0.10 sec
- ARIMA(4,0,1)(0,0,0)[0]             : AIC=7641.410, Time=0.23 sec
- ARIMA(3,0,2)(0,0,0)[0]             : AIC=7605.115, Time=0.57 sec
- ARIMA(2,0,2)(0,0,0)[0]             : AIC=inf, Time=0.45 sec
- ARIMA(4,0,2)(0,0,0)[0]             : AIC=inf, Time=0.61 sec
- ARIMA(3,0,3)(0,0,0)[0]             : AIC=7555.287, Time=0.65 sec
- ARIMA(2,0,3)(0,0,0)[0]             : AIC=inf, Time=0.45 sec
- ARIMA(4,0,3)(0,0,0)[0]             : AIC=7557.978, Time=0.66 sec
- ARIMA(3,0,4)(0,0,0)[0]             : AIC=7560.305, Time=0.76 sec
- ARIMA(2,0,4)(0,0,0)[0]             : AIC=inf, Time=0.49 sec
- ARIMA(4,0,4)(0,0,0)[0]             : AIC=7525.067, Time=0.86 sec
- ARIMA(5,0,4)(0,0,0)[0]             : AIC=inf, Time=0.94 sec
- ARIMA(4,0,5)(0,0,0)[0]             : AIC=7516.864, Time=0.91 sec
- ARIMA(3,0,5)(0,0,0)[0]             : AIC=7557.170, Time=0.85 sec
- ARIMA(5,0,5)(0,0,0)[0]             : AIC=inf, Time=0.93 sec
- ARIMA(4,0,5)(0,0,0)[0] intercept   : AIC=7476.983, Time=1.09 sec
- ARIMA(3,0,5)(0,0,0)[0] intercept   : AIC=7516.835, Time=1.02 sec
- ARIMA(4,0,4)(0,0,0)[0] intercept   : AIC=7513.376, Time=0.84 sec
- ARIMA(5,0,5)(0,0,0)[0] intercept   : AIC=7490.558, Time=1.09 sec
- ARIMA(3,0,4)(0,0,0)[0] intercept   : AIC=7503.054, Time=0.75 sec
- ARIMA(5,0,4)(0,0,0)[0] intercept   : AIC=7500.733, Time=0.94 sec
+ ARIMA(3,0,0)(0,0,0)[0]             : AIC=7662.598, Time=0.07 sec
+ ARIMA(4,0,1)(0,0,0)[0]             : AIC=7641.410, Time=0.24 sec
+ ARIMA(3,0,2)(0,0,0)[0]             : AIC=7605.158, Time=0.60 sec
+ ARIMA(2,0,2)(0,0,0)[0]             : AIC=inf, Time=0.78 sec
+ ARIMA(4,0,2)(0,0,0)[0]             : AIC=inf, Time=0.66 sec
+ ARIMA(3,0,3)(0,0,0)[0]             : AIC=7555.284, Time=0.72 sec
+ ARIMA(2,0,3)(0,0,0)[0]             : AIC=inf, Time=0.56 sec
+ ARIMA(4,0,3)(0,0,0)[0]             : AIC=7557.907, Time=0.74 sec
+ ARIMA(3,0,4)(0,0,0)[0]             : AIC=7560.306, Time=0.90 sec
+ ARIMA(2,0,4)(0,0,0)[0]             : AIC=inf, Time=0.56 sec
+ ARIMA(4,0,4)(0,0,0)[0]             : AIC=7525.732, Time=1.03 sec
+ ARIMA(5,0,4)(0,0,0)[0]             : AIC=7525.104, Time=1.29 sec
+ ARIMA(5,0,3)(0,0,0)[0]             : AIC=7620.838, Time=1.14 sec
+ ARIMA(5,0,5)(0,0,0)[0]             : AIC=inf, Time=1.54 sec
+ ARIMA(4,0,5)(0,0,0)[0]             : AIC=7516.928, Time=1.26 sec
+ ARIMA(3,0,5)(0,0,0)[0]             : AIC=7554.974, Time=1.28 sec
+ ARIMA(4,0,5)(0,0,0)[0] intercept   : AIC=7476.994, Time=1.60 sec
+ ARIMA(3,0,5)(0,0,0)[0] intercept   : AIC=7514.302, Time=1.46 sec
+ ARIMA(4,0,4)(0,0,0)[0] intercept   : AIC=7513.373, Time=1.18 sec
+ ARIMA(5,0,5)(0,0,0)[0] intercept   : AIC=7490.559, Time=1.77 sec
+ ARIMA(3,0,4)(0,0,0)[0] intercept   : AIC=7502.789, Time=1.05 sec
+ ARIMA(5,0,4)(0,0,0)[0] intercept   : AIC=7500.611, Time=1.40 sec
 
 Best model:  ARIMA(4,0,5)(0,0,0)[0] intercept
-Total fit time: 16.015 seconds
+Total fit time: 22.552 seconds
                                SARIMAX Results                                
 ==============================================================================
 Dep. Variable:                      y   No. Observations:                  444
-Model:               SARIMAX(4, 0, 5)   Log Likelihood               -3727.491
-Date:                Thu, 05 Oct 2023   AIC                           7476.983
-Time:                        10:17:38   BIC                           7522.037
-Sample:                             0   HQIC                          7494.750
+Model:               SARIMAX(4, 0, 5)   Log Likelihood               -3727.497
+Date:                Fri, 06 Oct 2023   AIC                           7476.994
+Time:                        10:55:00   BIC                           7522.048
+Sample:                             0   HQIC                          7494.761
                                 - 444                                         
 Covariance Type:                  opg                                         
 ==============================================================================
                  coef    std err          z      P&gt;|z|      [0.025      0.975]
 ------------------------------------------------------------------------------
-intercept   1859.5711    233.498      7.964      0.000    1401.923    2317.219
-ar.L1          2.4910      0.074     33.777      0.000       2.346       2.636
-ar.L2         -3.2331      0.129    -24.972      0.000      -3.487      -2.979
-ar.L3          2.2327      0.129     17.255      0.000       1.979       2.486
-ar.L4         -0.7437      0.058    -12.851      0.000      -0.857      -0.630
-ma.L1         -1.3539      0.087    -15.565      0.000      -1.524      -1.183
-ma.L2          1.2756      0.100     12.777      0.000       1.080       1.471
-ma.L3          0.0241      0.125      0.192      0.848      -0.222       0.270
-ma.L4         -0.3567      0.086     -4.150      0.000      -0.525      -0.188
-ma.L5          0.3415      0.063      5.433      0.000       0.218       0.465
-sigma2      1.163e+06      0.063   1.85e+07      0.000    1.16e+06    1.16e+06
+intercept   1859.5711    235.166      7.907      0.000    1398.654    2320.488
+ar.L1          2.4884      0.075     33.390      0.000       2.342       2.635
+ar.L2         -3.2278      0.131    -24.683      0.000      -3.484      -2.972
+ar.L3          2.2276      0.131     17.046      0.000       1.971       2.484
+ar.L4         -0.7410      0.058    -12.695      0.000      -0.855      -0.627
+ma.L1         -1.3509      0.088    -15.429      0.000      -1.522      -1.179
+ma.L2          1.2730      0.100     12.746      0.000       1.077       1.469
+ma.L3          0.0251      0.126      0.199      0.842      -0.221       0.271
+ma.L4         -0.3552      0.086     -4.141      0.000      -0.523      -0.187
+ma.L5          0.3409      0.063      5.424      0.000       0.218       0.464
+sigma2      1.163e+06      0.064   1.82e+07      0.000    1.16e+06    1.16e+06
 ===================================================================================
-Ljung-Box (L1) (Q):                   2.26   Jarque-Bera (JB):                 1.41
-Prob(Q):                              0.13   Prob(JB):                         0.49
+Ljung-Box (L1) (Q):                   2.22   Jarque-Bera (JB):                 1.43
+Prob(Q):                              0.14   Prob(JB):                         0.49
 Heteroskedasticity (H):               1.38   Skew:                            -0.10
 Prob(H) (two-sided):                  0.05   Kurtosis:                         3.19
 ===================================================================================
 
 Warnings:
 [1] Covariance matrix calculated using the outer product of gradients (complex-step).
-[2] Covariance matrix is singular or near-singular, with condition number 5.88e+22. Standard errors may be unstable.
+[2] Covariance matrix is singular or near-singular, with condition number 2.02e+23. Standard errors may be unstable.
 </pre></div>
 </div>
 </div>
@@ -1905,49 +2020,49 @@ Warnings:
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                               SARIMAX Results                                
 ==============================================================================
 Dep. Variable:                      y   No. Observations:                  355
-Model:                 ARIMA(4, 0, 5)   Log Likelihood               -2994.444
-Date:                Thu, 05 Oct 2023   AIC                           6010.888
-Time:                        10:17:39   BIC                           6053.481
-Sample:                             0   HQIC                          6027.833
+Model:                 ARIMA(4, 0, 5)   Log Likelihood               -2995.997
+Date:                Fri, 06 Oct 2023   AIC                           6013.995
+Time:                        10:55:01   BIC                           6056.588
+Sample:                             0   HQIC                          6030.939
                                 - 355                                         
 Covariance Type:                  opg                                         
 ==============================================================================
                  coef    std err          z      P&gt;|z|      [0.025      0.975]
 ------------------------------------------------------------------------------
-const       7413.0299    331.599     22.355      0.000    6763.108    8062.952
-ar.L1          0.7041      0.056     12.573      0.000       0.594       0.814
-ar.L2         -0.0188      0.043     -0.435      0.664      -0.104       0.066
-ar.L3         -0.9781      0.043    -22.733      0.000      -1.062      -0.894
-ar.L4          0.6790      0.055     12.444      0.000       0.572       0.786
-ma.L1          0.5900      0.072      8.204      0.000       0.449       0.731
-ma.L2          0.1366      0.067      2.048      0.041       0.006       0.267
-ma.L3          0.9641      0.028     34.923      0.000       0.910       1.018
-ma.L4          0.6016      0.067      8.924      0.000       0.469       0.734
-ma.L5          0.1746      0.066      2.645      0.008       0.045       0.304
-sigma2      1.099e+06      0.126   8.74e+06      0.000     1.1e+06     1.1e+06
+const       7413.0299    348.775     21.254      0.000    6729.444    8096.616
+ar.L1          0.7306      0.074      9.913      0.000       0.586       0.875
+ar.L2         -0.0220      0.099     -0.222      0.824      -0.216       0.172
+ar.L3         -0.9722      0.098     -9.877      0.000      -1.165      -0.779
+ar.L4          0.6983      0.066     10.628      0.000       0.570       0.827
+ma.L1          0.5641      0.085      6.632      0.000       0.397       0.731
+ma.L2          0.1309      0.070      1.866      0.062      -0.007       0.268
+ma.L3          0.9487      0.035     26.765      0.000       0.879       1.018
+ma.L4          0.5737      0.068      8.450      0.000       0.441       0.707
+ma.L5          0.1726      0.063      2.728      0.006       0.049       0.297
+sigma2      1.099e+06      0.192   5.74e+06      0.000     1.1e+06     1.1e+06
 ===================================================================================
-Ljung-Box (L1) (Q):                   0.02   Jarque-Bera (JB):                 2.99
-Prob(Q):                              0.89   Prob(JB):                         0.22
-Heteroskedasticity (H):               1.23   Skew:                            -0.22
-Prob(H) (two-sided):                  0.26   Kurtosis:                         3.04
+Ljung-Box (L1) (Q):                   0.04   Jarque-Bera (JB):                 4.27
+Prob(Q):                              0.85   Prob(JB):                         0.12
+Heteroskedasticity (H):               1.23   Skew:                            -0.27
+Prob(H) (two-sided):                  0.27   Kurtosis:                         3.04
 ===================================================================================
 
 Warnings:
 [1] Covariance matrix calculated using the outer product of gradients (complex-step).
-[2] Covariance matrix is singular or near-singular, with condition number 2.58e+23. Standard errors may be unstable.
+[2] Covariance matrix is singular or near-singular, with condition number 6.63e+21. Standard errors may be unstable.
 </pre></div>
 </div>
-<img alt="_images/2bfb4206212f98ec651edd23253aa158e189facdaf4b2fd4417e46ddafbd83ff.png" src="_images/2bfb4206212f98ec651edd23253aa158e189facdaf4b2fd4417e46ddafbd83ff.png" />
-<img alt="_images/42016d7dd40d0f230435a50eea99c4ae37f4b908fa721ebeab34eab40a4aa088.png" src="_images/42016d7dd40d0f230435a50eea99c4ae37f4b908fa721ebeab34eab40a4aa088.png" />
+<img alt="_images/92a1aa5810307ae27113e4c33970955a927dd645b658eac115c9457a5b858dc9.png" src="_images/92a1aa5810307ae27113e4c33970955a927dd645b658eac115c9457a5b858dc9.png" />
+<img alt="_images/19f6d6db065abc980af15ac7c485b2e0d4d2c31591392756c4a2163462d458db.png" src="_images/19f6d6db065abc980af15ac7c485b2e0d4d2c31591392756c4a2163462d458db.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 0
 count   355.000000
-mean     -4.287279
-std    1111.009218
-min   -3393.343477
-25%    -750.142151
-50%      96.921767
-75%     712.506416
-max    2951.812142
+mean     -4.248366
+std    1115.165675
+min   -3397.589457
+25%    -729.395565
+50%      99.649280
+75%     738.218897
+max    2916.631266
 </pre></div>
 </div>
 </div>
@@ -2049,11 +2164,11 @@ max    2951.812142
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/448ec07752cc39372fd2b445458a909e34086014e4000ac64300fc1f0b510c0c.png" src="_images/448ec07752cc39372fd2b445458a909e34086014e4000ac64300fc1f0b510c0c.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test RMSE: 1090.249
+<img alt="_images/ccebb2bb96c51ce3c44dbf6d1c9091518e88eb4191e99922b1532b3e3967fa32.png" src="_images/ccebb2bb96c51ce3c44dbf6d1c9091518e88eb4191e99922b1532b3e3967fa32.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test RMSE: 1099.972
 </pre></div>
 </div>
-<img alt="_images/75db35ee14c1818a399bdb31a3a516e0fad9f0a156dbddad4e920501d6324102.png" src="_images/75db35ee14c1818a399bdb31a3a516e0fad9f0a156dbddad4e920501d6324102.png" />
+<img alt="_images/e139327df1bbf324bc795e5887167c6c9f3e27aaceed62a9028fbcef61c3697b.png" src="_images/e139327df1bbf324bc795e5887167c6c9f3e27aaceed62a9028fbcef61c3697b.png" />
 </div>
 </div>
 <section id="id1">
@@ -2061,15 +2176,16 @@ max    2951.812142
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nueva_fila</span> <span class="o">=</span> <span class="n">metricas</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions_ARMA</span><span class="p">,</span> <span class="s1">&#39;ARMA&#39;</span><span class="p">)</span>
-<span class="n">df_resultados</span> <span class="o">=</span> <span class="n">df_resultados</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nueva_fila</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_resultados</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_resultados</span><span class="p">,</span> <span class="n">nueva_fila</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df_resultados</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<img alt="_images/f81e16f5643a4d169fb739d51d427f785faf7f12cab812214b2877459070f152.png" src="_images/f81e16f5643a4d169fb739d51d427f785faf7f12cab812214b2877459070f152.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Modelo      MAE  RRMSE R-squared (R^2) NSE (Nash-Sutcliffe Efficiency)
 0     AR  968.170  0.188           0.697                           0.697
-1   ARMA  848.461  0.169           0.757                           0.757
+1   ARMA  864.345  0.170           0.753                           0.753
 </pre></div>
 </div>
 </div>
@@ -2100,11 +2216,11 @@ max    2951.812142
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GridSearchCV(cv=5,
-             estimator=Pipeline(steps=[(&#39;minmaxscaler&#39;, MinMaxScaler()),
-                                       (&#39;ridge&#39;, Ridge())]),
+<div class="output text_html"><style>#sk-container-id-1 {color: black;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GridSearchCV(cv=5,
+             estimator=Pipeline(steps=[(&#x27;minmaxscaler&#x27;, MinMaxScaler()),
+                                       (&#x27;ridge&#x27;, Ridge())]),
              n_jobs=-1,
-             param_grid={&#39;ridge__alpha&#39;: array([ 0.1       ,  0.10476158,  0.10974988,  0.1149757 ,  0.12045035,
+             param_grid={&#x27;ridge__alpha&#x27;: array([ 0.1       ,  0.10476158,  0.10974988,  0.1149757 ,  0.12045035,
         0.12618569,  0.13219411,  0.13848864,  0.14508288,  0.15199111,
         0.15922828,  0.16681005,  0.17475284,  0.18307383,  0.19179103,
         0.2009233 ,  0.21049041,  0.22051307,  0.23101297,  0.24201283...
@@ -2115,10 +2231,22 @@ max    2951.812142
         5.21400829,  5.46227722,  5.72236766,  5.9948425 ,  6.28029144,
         6.57933225,  6.8926121 ,  7.22080902,  7.56463328,  7.92482898,
         8.30217568,  8.69749003,  9.11162756,  9.54548457, 10.        ])},
-             scoring=&#39;r2&#39;)
-</pre></div>
-</div>
-</div>
+             scoring=&#x27;r2&#x27;)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" ><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">GridSearchCV</label><div class="sk-toggleable__content"><pre>GridSearchCV(cv=5,
+             estimator=Pipeline(steps=[(&#x27;minmaxscaler&#x27;, MinMaxScaler()),
+                                       (&#x27;ridge&#x27;, Ridge())]),
+             n_jobs=-1,
+             param_grid={&#x27;ridge__alpha&#x27;: array([ 0.1       ,  0.10476158,  0.10974988,  0.1149757 ,  0.12045035,
+        0.12618569,  0.13219411,  0.13848864,  0.14508288,  0.15199111,
+        0.15922828,  0.16681005,  0.17475284,  0.18307383,  0.19179103,
+        0.2009233 ,  0.21049041,  0.22051307,  0.23101297,  0.24201283...
+        2.05651231,  2.15443469,  2.25701972,  2.36448941,  2.47707636,
+        2.59502421,  2.71858824,  2.84803587,  2.98364724,  3.12571585,
+        3.27454916,  3.43046929,  3.59381366,  3.76493581,  3.94420606,
+        4.1320124 ,  4.32876128,  4.53487851,  4.75081016,  4.97702356,
+        5.21400829,  5.46227722,  5.72236766,  5.9948425 ,  6.28029144,
+        6.57933225,  6.8926121 ,  7.22080902,  7.56463328,  7.92482898,
+        8.30217568,  8.69749003,  9.11162756,  9.54548457, 10.        ])},
+             scoring=&#x27;r2&#x27;)</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" ><label for="sk-estimator-id-2" class="sk-toggleable__label sk-toggleable__label-arrow">estimator: Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;minmaxscaler&#x27;, MinMaxScaler()), (&#x27;ridge&#x27;, Ridge())])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" ><label for="sk-estimator-id-3" class="sk-toggleable__label sk-toggleable__label-arrow">MinMaxScaler</label><div class="sk-toggleable__content"><pre>MinMaxScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" ><label for="sk-estimator-id-4" class="sk-toggleable__label sk-toggleable__label-arrow">Ridge</label><div class="sk-toggleable__content"><pre>Ridge()</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2154,15 +2282,16 @@ Test-set score: 0.59
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nueva_fila</span> <span class="o">=</span> <span class="n">metricas</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="s1">&#39;Ridge&#39;</span><span class="p">)</span>
-<span class="n">df_resultados</span> <span class="o">=</span> <span class="n">df_resultados</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nueva_fila</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_resultados</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_resultados</span><span class="p">,</span> <span class="n">nueva_fila</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df_resultados</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<img alt="_images/4714ed104df42a4e2d23e65f1fc08037d8d4fa2edc605f13c221d6a114c6a22d.png" src="_images/4714ed104df42a4e2d23e65f1fc08037d8d4fa2edc605f13c221d6a114c6a22d.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Modelo       MAE  RRMSE R-squared (R^2) NSE (Nash-Sutcliffe Efficiency)
 0     AR   968.170  0.188           0.697                           0.697
-1   ARMA   848.461  0.169           0.757                           0.757
+1   ARMA   864.345  0.170           0.753                           0.753
 2  Ridge  1131.050  0.220           0.587                           0.587
 </pre></div>
 </div>
@@ -2193,11 +2322,11 @@ Test-set score: 0.59
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GridSearchCV(cv=5,
-             estimator=Pipeline(steps=[(&#39;minmaxscaler&#39;, MinMaxScaler()),
-                                       (&#39;lasso&#39;, Lasso())]),
+<div class="output text_html"><style>#sk-container-id-2 {color: black;}#sk-container-id-2 pre{padding: 0;}#sk-container-id-2 div.sk-toggleable {background-color: white;}#sk-container-id-2 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-2 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-2 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-2 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-2 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-2 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-2 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-2 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-2 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-2 div.sk-item {position: relative;z-index: 1;}#sk-container-id-2 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-2 div.sk-item::before, #sk-container-id-2 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-2 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-2 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-2 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-2 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-2 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-2 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-2 div.sk-label-container {text-align: center;}#sk-container-id-2 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-2 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GridSearchCV(cv=5,
+             estimator=Pipeline(steps=[(&#x27;minmaxscaler&#x27;, MinMaxScaler()),
+                                       (&#x27;lasso&#x27;, Lasso())]),
              n_jobs=-1,
-             param_grid={&#39;lasso__alpha&#39;: array([ 0.1       ,  0.10476158,  0.10974988,  0.1149757 ,  0.12045035,
+             param_grid={&#x27;lasso__alpha&#x27;: array([ 0.1       ,  0.10476158,  0.10974988,  0.1149757 ,  0.12045035,
         0.12618569,  0.13219411,  0.13848864,  0.14508288,  0.15199111,
         0.15922828,  0.16681005,  0.17475284,  0.18307383,  0.19179103,
         0.2009233 ,  0.21049041,  0.22051307,  0.23101297,  0.24201283...
@@ -2208,10 +2337,22 @@ Test-set score: 0.59
         5.21400829,  5.46227722,  5.72236766,  5.9948425 ,  6.28029144,
         6.57933225,  6.8926121 ,  7.22080902,  7.56463328,  7.92482898,
         8.30217568,  8.69749003,  9.11162756,  9.54548457, 10.        ])},
-             scoring=&#39;r2&#39;)
-</pre></div>
-</div>
-</div>
+             scoring=&#x27;r2&#x27;)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox" ><label for="sk-estimator-id-5" class="sk-toggleable__label sk-toggleable__label-arrow">GridSearchCV</label><div class="sk-toggleable__content"><pre>GridSearchCV(cv=5,
+             estimator=Pipeline(steps=[(&#x27;minmaxscaler&#x27;, MinMaxScaler()),
+                                       (&#x27;lasso&#x27;, Lasso())]),
+             n_jobs=-1,
+             param_grid={&#x27;lasso__alpha&#x27;: array([ 0.1       ,  0.10476158,  0.10974988,  0.1149757 ,  0.12045035,
+        0.12618569,  0.13219411,  0.13848864,  0.14508288,  0.15199111,
+        0.15922828,  0.16681005,  0.17475284,  0.18307383,  0.19179103,
+        0.2009233 ,  0.21049041,  0.22051307,  0.23101297,  0.24201283...
+        2.05651231,  2.15443469,  2.25701972,  2.36448941,  2.47707636,
+        2.59502421,  2.71858824,  2.84803587,  2.98364724,  3.12571585,
+        3.27454916,  3.43046929,  3.59381366,  3.76493581,  3.94420606,
+        4.1320124 ,  4.32876128,  4.53487851,  4.75081016,  4.97702356,
+        5.21400829,  5.46227722,  5.72236766,  5.9948425 ,  6.28029144,
+        6.57933225,  6.8926121 ,  7.22080902,  7.56463328,  7.92482898,
+        8.30217568,  8.69749003,  9.11162756,  9.54548457, 10.        ])},
+             scoring=&#x27;r2&#x27;)</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox" ><label for="sk-estimator-id-6" class="sk-toggleable__label sk-toggleable__label-arrow">estimator: Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;minmaxscaler&#x27;, MinMaxScaler()), (&#x27;lasso&#x27;, Lasso())])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox" ><label for="sk-estimator-id-7" class="sk-toggleable__label sk-toggleable__label-arrow">MinMaxScaler</label><div class="sk-toggleable__content"><pre>MinMaxScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-8" type="checkbox" ><label for="sk-estimator-id-8" class="sk-toggleable__label sk-toggleable__label-arrow">Lasso</label><div class="sk-toggleable__content"><pre>Lasso()</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2247,15 +2388,16 @@ Test-set score: 0.59
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nueva_fila</span> <span class="o">=</span> <span class="n">metricas</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="s1">&#39;Lasso&#39;</span><span class="p">)</span>
-<span class="n">df_resultados</span> <span class="o">=</span> <span class="n">df_resultados</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nueva_fila</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_resultados</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_resultados</span><span class="p">,</span> <span class="n">nueva_fila</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df_resultados</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<img alt="_images/1f85249943c40f42d4ceb95b3d68b0421130fa67f125b2ca9604d1b1b2344c7c.png" src="_images/1f85249943c40f42d4ceb95b3d68b0421130fa67f125b2ca9604d1b1b2344c7c.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Modelo       MAE  RRMSE R-squared (R^2) NSE (Nash-Sutcliffe Efficiency)
 0     AR   968.170  0.188           0.697                           0.697
-1   ARMA   848.461  0.169           0.757                           0.757
+1   ARMA   864.345  0.170           0.753                           0.753
 2  Ridge  1131.050  0.220           0.587                           0.587
 3  Lasso  1130.720  0.220           0.586                           0.586
 </pre></div>
@@ -2289,20 +2431,28 @@ Test-set score: 0.59
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GridSearchCV(cv=5,
-             estimator=Pipeline(steps=[(&#39;standardscaler&#39;, StandardScaler()),
-                                       (&#39;randomforestregressor&#39;,
+<div class="output text_html"><style>#sk-container-id-3 {color: black;}#sk-container-id-3 pre{padding: 0;}#sk-container-id-3 div.sk-toggleable {background-color: white;}#sk-container-id-3 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-3 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-3 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-3 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-3 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-3 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-3 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-3 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-3 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-3 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-3 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-3 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-3 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-3 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-3 div.sk-item {position: relative;z-index: 1;}#sk-container-id-3 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-3 div.sk-item::before, #sk-container-id-3 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-3 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-3 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-3 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-3 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-3 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-3 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-3 div.sk-label-container {text-align: center;}#sk-container-id-3 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-3 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-3" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GridSearchCV(cv=5,
+             estimator=Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
+                                       (&#x27;randomforestregressor&#x27;,
                                         RandomForestRegressor())]),
              n_jobs=-1,
-             param_grid={&#39;randomforestregressor__max_depth&#39;: [2, 3, 4],
-                         &#39;randomforestregressor__max_leaf_nodes&#39;: [2, 4, 6, 8],
-                         &#39;randomforestregressor__min_samples_split&#39;: [2, 5, 10,
+             param_grid={&#x27;randomforestregressor__max_depth&#x27;: [2, 3, 4],
+                         &#x27;randomforestregressor__max_leaf_nodes&#x27;: [2, 4, 6, 8],
+                         &#x27;randomforestregressor__min_samples_split&#x27;: [2, 5, 10,
                                                                       15],
-                         &#39;randomforestregressor__n_estimators&#39;: [400]},
-             scoring=&#39;r2&#39;)
-</pre></div>
-</div>
-</div>
+                         &#x27;randomforestregressor__n_estimators&#x27;: [400]},
+             scoring=&#x27;r2&#x27;)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-9" type="checkbox" ><label for="sk-estimator-id-9" class="sk-toggleable__label sk-toggleable__label-arrow">GridSearchCV</label><div class="sk-toggleable__content"><pre>GridSearchCV(cv=5,
+             estimator=Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
+                                       (&#x27;randomforestregressor&#x27;,
+                                        RandomForestRegressor())]),
+             n_jobs=-1,
+             param_grid={&#x27;randomforestregressor__max_depth&#x27;: [2, 3, 4],
+                         &#x27;randomforestregressor__max_leaf_nodes&#x27;: [2, 4, 6, 8],
+                         &#x27;randomforestregressor__min_samples_split&#x27;: [2, 5, 10,
+                                                                      15],
+                         &#x27;randomforestregressor__n_estimators&#x27;: [400]},
+             scoring=&#x27;r2&#x27;)</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-10" type="checkbox" ><label for="sk-estimator-id-10" class="sk-toggleable__label sk-toggleable__label-arrow">estimator: Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
+                (&#x27;randomforestregressor&#x27;, RandomForestRegressor())])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-11" type="checkbox" ><label for="sk-estimator-id-11" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-12" type="checkbox" ><label for="sk-estimator-id-12" class="sk-toggleable__label sk-toggleable__label-arrow">RandomForestRegressor</label><div class="sk-toggleable__content"><pre>RandomForestRegressor()</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2314,7 +2464,7 @@ Test-set score: 0.59
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best estimator:
 Pipeline(steps=[(&#39;standardscaler&#39;, StandardScaler()),
                 (&#39;randomforestregressor&#39;,
-                 RandomForestRegressor(max_depth=3, max_leaf_nodes=8,
+                 RandomForestRegressor(max_depth=4, max_leaf_nodes=8,
                                        min_samples_split=15,
                                        n_estimators=400))])
 </pre></div>
@@ -2329,8 +2479,8 @@ Pipeline(steps=[(&#39;standardscaler&#39;, StandardScaler()),
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training-set score: 0.68
-Test-set score: 0.53
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training-set score: 0.69
+Test-set score: 0.54
 </pre></div>
 </div>
 </div>
@@ -2360,7 +2510,7 @@ Test-set score: 0.53
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c3352b4e6de7584afcf696e9e642bf0eee1e3f97cedb27e62fbb5859d4ce4ade.png" src="_images/c3352b4e6de7584afcf696e9e642bf0eee1e3f97cedb27e62fbb5859d4ce4ade.png" />
+<img alt="_images/a01c3a81387937dc5a12081db0319b82ee04df94425390fd9019a79a8e741ab2.png" src="_images/a01c3a81387937dc5a12081db0319b82ee04df94425390fd9019a79a8e741ab2.png" />
 </div>
 </div>
 <section id="id4">
@@ -2368,18 +2518,19 @@ Test-set score: 0.53
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nueva_fila</span> <span class="o">=</span> <span class="n">metricas</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="s1">&#39;RF&#39;</span><span class="p">)</span>
-<span class="n">df_resultados</span> <span class="o">=</span> <span class="n">df_resultados</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nueva_fila</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_resultados</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_resultados</span><span class="p">,</span> <span class="n">nueva_fila</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df_resultados</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<img alt="_images/3e891687787944cd637af637d613fcf558d5abcde7ee724680ae61d64bc7f292.png" src="_images/3e891687787944cd637af637d613fcf558d5abcde7ee724680ae61d64bc7f292.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Modelo       MAE  RRMSE R-squared (R^2) NSE (Nash-Sutcliffe Efficiency)
 0     AR   968.170  0.188           0.697                           0.697
-1   ARMA   848.461  0.169           0.757                           0.757
+1   ARMA   864.345  0.170           0.753                           0.753
 2  Ridge  1131.050  0.220           0.587                           0.587
 3  Lasso  1130.720  0.220           0.586                           0.586
-4     RF  1167.635  0.233           0.534                           0.534
+4     RF  1174.032  0.233           0.536                           0.536
 </pre></div>
 </div>
 </div>
@@ -2419,16 +2570,20 @@ Test-set score: 0.53
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GridSearchCV(cv=5,
-             estimator=Pipeline(steps=[(&#39;standardscaler&#39;, StandardScaler()),
-                                       (&#39;kneighborsregressor&#39;,
+<div class="output text_html"><style>#sk-container-id-4 {color: black;}#sk-container-id-4 pre{padding: 0;}#sk-container-id-4 div.sk-toggleable {background-color: white;}#sk-container-id-4 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-4 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-4 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-4 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-4 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-4 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-4 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-4 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-4 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-4 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-4 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-4 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-4 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-4 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-4 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-4 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-4 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-4 div.sk-item {position: relative;z-index: 1;}#sk-container-id-4 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-4 div.sk-item::before, #sk-container-id-4 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-4 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-4 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-4 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-4 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-4 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-4 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-4 div.sk-label-container {text-align: center;}#sk-container-id-4 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-4 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-4" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GridSearchCV(cv=5,
+             estimator=Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
+                                       (&#x27;kneighborsregressor&#x27;,
                                         KNeighborsRegressor())]),
-             param_grid={&#39;kneighborsregressor__n_neighbors&#39;: [1, 2, 4, 6, 8, 10,
+             param_grid={&#x27;kneighborsregressor__n_neighbors&#x27;: [1, 2, 4, 6, 8, 10,
                                                               15, 20, 30, 40]},
-             scoring=&#39;r2&#39;)
-</pre></div>
-</div>
-</div>
+             scoring=&#x27;r2&#x27;)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-13" type="checkbox" ><label for="sk-estimator-id-13" class="sk-toggleable__label sk-toggleable__label-arrow">GridSearchCV</label><div class="sk-toggleable__content"><pre>GridSearchCV(cv=5,
+             estimator=Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
+                                       (&#x27;kneighborsregressor&#x27;,
+                                        KNeighborsRegressor())]),
+             param_grid={&#x27;kneighborsregressor__n_neighbors&#x27;: [1, 2, 4, 6, 8, 10,
+                                                              15, 20, 30, 40]},
+             scoring=&#x27;r2&#x27;)</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-14" type="checkbox" ><label for="sk-estimator-id-14" class="sk-toggleable__label sk-toggleable__label-arrow">estimator: Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
+                (&#x27;kneighborsregressor&#x27;, KNeighborsRegressor())])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-15" type="checkbox" ><label for="sk-estimator-id-15" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-16" type="checkbox" ><label for="sk-estimator-id-16" class="sk-toggleable__label sk-toggleable__label-arrow">KNeighborsRegressor</label><div class="sk-toggleable__content"><pre>KNeighborsRegressor()</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2470,18 +2625,19 @@ Test-set score: 0.53
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nueva_fila</span> <span class="o">=</span> <span class="n">metricas</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="s1">&#39;k-NN&#39;</span><span class="p">)</span>
-<span class="n">df_resultados</span> <span class="o">=</span> <span class="n">df_resultados</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nueva_fila</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_resultados</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_resultados</span><span class="p">,</span> <span class="n">nueva_fila</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df_resultados</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<img alt="_images/5fc19e05afa88735a9995bb85668ff4a11e48ffb247dfe48633494de182d1207.png" src="_images/5fc19e05afa88735a9995bb85668ff4a11e48ffb247dfe48633494de182d1207.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Modelo       MAE  RRMSE R-squared (R^2) NSE (Nash-Sutcliffe Efficiency)
 0     AR   968.170  0.188           0.697                           0.697
-1   ARMA   848.461  0.169           0.757                           0.757
+1   ARMA   864.345  0.170           0.753                           0.753
 2  Ridge  1131.050  0.220           0.587                           0.587
 3  Lasso  1130.720  0.220           0.586                           0.586
-4     RF  1167.635  0.233           0.534                           0.534
+4     RF  1174.032  0.233           0.536                           0.536
 5   k-NN  1174.654  0.234           0.531                           0.531
 </pre></div>
 </div>
@@ -2519,17 +2675,21 @@ Test-set score: 0.53
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GridSearchCV(cv=5,
-             estimator=Pipeline(steps=[(&#39;minmaxscaler&#39;, MinMaxScaler()),
-                                       (&#39;svr&#39;, SVR())]),
+<div class="output text_html"><style>#sk-container-id-5 {color: black;}#sk-container-id-5 pre{padding: 0;}#sk-container-id-5 div.sk-toggleable {background-color: white;}#sk-container-id-5 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-5 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-5 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-5 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-5 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-5 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-5 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-5 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-5 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-5 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-5 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-5 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-5 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-5 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-5 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-5 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-5 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-5 div.sk-item {position: relative;z-index: 1;}#sk-container-id-5 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-5 div.sk-item::before, #sk-container-id-5 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-5 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-5 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-5 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-5 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-5 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-5 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-5 div.sk-label-container {text-align: center;}#sk-container-id-5 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-5 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-5" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GridSearchCV(cv=5,
+             estimator=Pipeline(steps=[(&#x27;minmaxscaler&#x27;, MinMaxScaler()),
+                                       (&#x27;svr&#x27;, SVR())]),
              n_jobs=-1,
-             param_grid={&#39;svr__C&#39;: [0.001, 0.01, 0.1, 1, 10, 100],
-                         &#39;svr__epsilon&#39;: [0.001, 0.01, 0.1, 0.2, 0.5, 1],
-                         &#39;svr__kernel&#39;: [&#39;linear&#39;, &#39;rbf&#39;]},
-             scoring=&#39;r2&#39;)
-</pre></div>
-</div>
-</div>
+             param_grid={&#x27;svr__C&#x27;: [0.001, 0.01, 0.1, 1, 10, 100],
+                         &#x27;svr__epsilon&#x27;: [0.001, 0.01, 0.1, 0.2, 0.5, 1],
+                         &#x27;svr__kernel&#x27;: [&#x27;linear&#x27;, &#x27;rbf&#x27;]},
+             scoring=&#x27;r2&#x27;)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-17" type="checkbox" ><label for="sk-estimator-id-17" class="sk-toggleable__label sk-toggleable__label-arrow">GridSearchCV</label><div class="sk-toggleable__content"><pre>GridSearchCV(cv=5,
+             estimator=Pipeline(steps=[(&#x27;minmaxscaler&#x27;, MinMaxScaler()),
+                                       (&#x27;svr&#x27;, SVR())]),
+             n_jobs=-1,
+             param_grid={&#x27;svr__C&#x27;: [0.001, 0.01, 0.1, 1, 10, 100],
+                         &#x27;svr__epsilon&#x27;: [0.001, 0.01, 0.1, 0.2, 0.5, 1],
+                         &#x27;svr__kernel&#x27;: [&#x27;linear&#x27;, &#x27;rbf&#x27;]},
+             scoring=&#x27;r2&#x27;)</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-18" type="checkbox" ><label for="sk-estimator-id-18" class="sk-toggleable__label sk-toggleable__label-arrow">estimator: Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;minmaxscaler&#x27;, MinMaxScaler()), (&#x27;svr&#x27;, SVR())])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-19" type="checkbox" ><label for="sk-estimator-id-19" class="sk-toggleable__label sk-toggleable__label-arrow">MinMaxScaler</label><div class="sk-toggleable__content"><pre>MinMaxScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-20" type="checkbox" ><label for="sk-estimator-id-20" class="sk-toggleable__label sk-toggleable__label-arrow">SVR</label><div class="sk-toggleable__content"><pre>SVR()</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2557,18 +2717,19 @@ Pipeline(steps=[(&#39;minmaxscaler&#39;, MinMaxScaler()),
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nueva_fila</span> <span class="o">=</span> <span class="n">metricas</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="s1">&#39;SVR&#39;</span><span class="p">)</span>
-<span class="n">df_resultados</span> <span class="o">=</span> <span class="n">df_resultados</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nueva_fila</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_resultados</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_resultados</span><span class="p">,</span> <span class="n">nueva_fila</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df_resultados</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<img alt="_images/30283cb0471a9a68b6f1e94a21a7b728cfaa916e77da9c6e9493bd352d106c83.png" src="_images/30283cb0471a9a68b6f1e94a21a7b728cfaa916e77da9c6e9493bd352d106c83.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Modelo       MAE  RRMSE R-squared (R^2) NSE (Nash-Sutcliffe Efficiency)
 0     AR   968.170  0.188           0.697                           0.697
-1   ARMA   848.461  0.169           0.757                           0.757
+1   ARMA   864.345  0.170           0.753                           0.753
 2  Ridge  1131.050  0.220           0.587                           0.587
 3  Lasso  1130.720  0.220           0.586                           0.586
-4     RF  1167.635  0.233           0.534                           0.534
+4     RF  1174.032  0.233           0.536                           0.536
 5   k-NN  1174.654  0.234           0.531                           0.531
 6    SVR  1303.934  0.251           0.461                           0.461
 </pre></div>
@@ -2647,57 +2808,45 @@ Pipeline(steps=[(&#39;minmaxscaler&#39;, MinMaxScaler()),
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1/200
-3/3 [==============================] - 1s 90ms/step - loss: 53324904.0000 - val_loss: 59611336.0000
+3/3 [==============================] - 2s 150ms/step - loss: 57964852.0000 - val_loss: 70134936.0000
 Epoch 2/200
-3/3 [==============================] - 0s 16ms/step - loss: 38760596.0000 - val_loss: 41228824.0000
+3/3 [==============================] - 0s 30ms/step - loss: 46705732.0000 - val_loss: 55251232.0000
 Epoch 3/200
-3/3 [==============================] - 0s 16ms/step - loss: 26598794.0000 - val_loss: 25545674.0000
+3/3 [==============================] - 0s 23ms/step - loss: 36563148.0000 - val_loss: 41784120.0000
 Epoch 4/200
-3/3 [==============================] - 0s 14ms/step - loss: 16390880.0000 - val_loss: 14446713.0000
+3/3 [==============================] - 0s 29ms/step - loss: 27543408.0000 - val_loss: 29423398.0000
 Epoch 5/200
-1/3 [=========&gt;....................] - ETA: 0s - loss: 10152254.0000
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3/3 [==============================] - 0s 19ms/step - loss: 9131818.0000 - val_loss: 6992348.0000
+3/3 [==============================] - 0s 23ms/step - loss: 19096458.0000 - val_loss: 18662474.0000
 Epoch 6/200
-3/3 [==============================] - 0s 15ms/step - loss: 4615741.5000 - val_loss: 3691878.7500
+3/3 [==============================] - 0s 20ms/step - loss: 11951692.0000 - val_loss: 10173708.0000
 Epoch 7/200
-3/3 [==============================] - 0s 17ms/step - loss: 2859785.7500 - val_loss: 4053361.2500
+3/3 [==============================] - 0s 20ms/step - loss: 6544433.5000 - val_loss: 4963120.5000
 Epoch 8/200
-3/3 [==============================] - 0s 22ms/step - loss: 3518352.5000 - val_loss: 5933273.0000
+3/3 [==============================] - 0s 20ms/step - loss: 3548418.2500 - val_loss: 3481793.2500
 Epoch 9/200
-3/3 [==============================] - 0s 15ms/step - loss: 4679192.5000 - val_loss: 6433238.0000
+3/3 [==============================] - 0s 21ms/step - loss: 2898412.2500 - val_loss: 4734066.0000
 Epoch 10/200
-3/3 [==============================] - 0s 12ms/step - loss: 4708230.0000 - val_loss: 5258169.0000
+3/3 [==============================] - 0s 21ms/step - loss: 3886893.5000 - val_loss: 6243251.0000
 Epoch 11/200
-3/3 [==============================] - 0s 13ms/step - loss: 3815677.2500 - val_loss: 3950197.7500
+3/3 [==============================] - 0s 19ms/step - loss: 4791928.5000 - val_loss: 6270128.0000
 Epoch 12/200
-3/3 [==============================] - 0s 12ms/step - loss: 3022596.5000 - val_loss: 3476601.2500
+3/3 [==============================] - 0s 22ms/step - loss: 4603166.0000 - val_loss: 5076217.0000
 Epoch 13/200
-3/3 [==============================] - 0s 12ms/step - loss: 2844106.2500 - val_loss: 3636474.2500
+3/3 [==============================] - 0s 24ms/step - loss: 3702987.2500 - val_loss: 3954375.2500
 Epoch 14/200
-3/3 [==============================] - 0s 12ms/step - loss: 2982204.5000 - val_loss: 3872306.5000
+3/3 [==============================] - 0s 29ms/step - loss: 3103630.2500 - val_loss: 3484771.2500
 Epoch 15/200
-3/3 [==============================] - 0s 13ms/step - loss: 3117923.5000 - val_loss: 3943697.2500
+3/3 [==============================] - 0s 24ms/step - loss: 2834885.0000 - val_loss: 3567054.7500
 Epoch 16/200
-3/3 [==============================] - 0s 12ms/step - loss: 3153707.2500 - val_loss: 3862094.7500
+3/3 [==============================] - 0s 23ms/step - loss: 2913641.0000 - val_loss: 3776703.5000
 Epoch 17/200
-3/3 [==============================] - 0s 12ms/step - loss: 3078042.0000 - val_loss: 3686197.5000
+3/3 [==============================] - 0s 27ms/step - loss: 3067681.0000 - val_loss: 3875375.7500
 Epoch 18/200
-3/3 [==============================] - 0s 12ms/step - loss: 2937711.7500 - val_loss: 3515402.7500
-Epoch 19/200
-3/3 [==============================] - 0s 12ms/step - loss: 2830353.5000 - val_loss: 3480643.2500
-Epoch 20/200
-3/3 [==============================] - 0s 12ms/step - loss: 2817594.7500 - val_loss: 3568972.7500
-Epoch 21/200
-3/3 [==============================] - 0s 11ms/step - loss: 2914554.5000 - val_loss: 3654358.2500
-Epoch 22/200
-3/3 [==============================] - 0s 12ms/step - loss: 2940130.7500 - val_loss: 3594241.7500
-WARNING:tensorflow:5 out of the last 13 calls to &lt;function Model.make_predict_function.&lt;locals&gt;.predict_function at 0x0000020DAD6B3C10&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has reduce_retracing=True option that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
-3/3 [==============================] - 0s 997us/step
+3/3 [==============================] - 0s 41ms/step - loss: 3104558.7500 - val_loss: 3779424.7500
+3/3 [==============================] - 0s 3ms/step
 </pre></div>
 </div>
-<img alt="_images/b54f4d6e064acc6c46eb7895df8e67215284873db23287301e0c51b084ea7185.png" src="_images/b54f4d6e064acc6c46eb7895df8e67215284873db23287301e0c51b084ea7185.png" />
+<img alt="_images/d8aafbeeac8031eaea6bd756fbb7fabb73c8d6155fb7d0589a67d6e9e1343f21.png" src="_images/d8aafbeeac8031eaea6bd756fbb7fabb73c8d6155fb7d0589a67d6e9e1343f21.png" />
 </div>
 </div>
 <section id="id7">
@@ -2705,21 +2854,22 @@ WARNING:tensorflow:5 out of the last 13 calls to &lt;function Model.make_predict
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nueva_fila</span> <span class="o">=</span> <span class="n">metricas</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="s1">&#39;MLP&#39;</span><span class="p">)</span>
-<span class="n">df_resultados</span> <span class="o">=</span> <span class="n">df_resultados</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nueva_fila</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_resultados</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_resultados</span><span class="p">,</span> <span class="n">nueva_fila</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df_resultados</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<img alt="_images/b307ece29176f0d72691a9a9821a849fd8693b8bd7d1b6cc20da83396c615990.png" src="_images/b307ece29176f0d72691a9a9821a849fd8693b8bd7d1b6cc20da83396c615990.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Modelo       MAE  RRMSE R-squared (R^2) NSE (Nash-Sutcliffe Efficiency)
 0     AR   968.170  0.188           0.697                           0.697
-1   ARMA   848.461  0.169           0.757                           0.757
+1   ARMA   864.345  0.170           0.753                           0.753
 2  Ridge  1131.050  0.220           0.587                           0.587
 3  Lasso  1130.720  0.220           0.586                           0.586
-4     RF  1167.635  0.233           0.534                           0.534
+4     RF  1174.032  0.233           0.536                           0.536
 5   k-NN  1174.654  0.234           0.531                           0.531
 6    SVR  1303.934  0.251           0.461                           0.461
-7    MLP  1237.249  0.238           0.514                           0.514
+7    MLP  1233.733  0.238           0.514                           0.514
 </pre></div>
 </div>
 </div>
@@ -2767,7 +2917,7 @@ WARNING:tensorflow:5 out of the last 13 calls to &lt;function Model.make_predict
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Caudal (m3/s)&#39;)
 </pre></div>
 </div>
-<img alt="_images/51fb150063e2439e53935555bcd0a13308ee7ab506797107b48cb7bda088c5d5.png" src="_images/51fb150063e2439e53935555bcd0a13308ee7ab506797107b48cb7bda088c5d5.png" />
+<img alt="_images/1cf6cfc3f89135ebfdfd1ea20ef78226bd45ea8205063e08195ca1e5bb61780c.png" src="_images/1cf6cfc3f89135ebfdfd1ea20ef78226bd45ea8205063e08195ca1e5bb61780c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2803,7 +2953,7 @@ WARNING:tensorflow:5 out of the last 13 calls to &lt;function Model.make_predict
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Caudal (m3/s)&#39;)
 </pre></div>
 </div>
-<img alt="_images/ec462b3acbc3d8c790af70f3303dce7a0d11be406b0359652c37dd93f5fbaa05.png" src="_images/ec462b3acbc3d8c790af70f3303dce7a0d11be406b0359652c37dd93f5fbaa05.png" />
+<img alt="_images/57441def8ed185769740a6518d4708d38b1ddf58e9dae8063d6879d5910f7a1d.png" src="_images/57441def8ed185769740a6518d4708d38b1ddf58e9dae8063d6879d5910f7a1d.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2820,20 +2970,28 @@ WARNING:tensorflow:5 out of the last 13 calls to &lt;function Model.make_predict
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GridSearchCV(cv=5,
-             estimator=Pipeline(steps=[(&#39;standardscaler&#39;, StandardScaler()),
-                                       (&#39;randomforestregressor&#39;,
+<div class="output text_html"><style>#sk-container-id-6 {color: black;}#sk-container-id-6 pre{padding: 0;}#sk-container-id-6 div.sk-toggleable {background-color: white;}#sk-container-id-6 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-6 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-6 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-6 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-6 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-6 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-6 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-6 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-6 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-6 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-6 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-6 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-6 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-6 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-6 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-6 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-6 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-6 div.sk-item {position: relative;z-index: 1;}#sk-container-id-6 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-6 div.sk-item::before, #sk-container-id-6 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-6 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-6 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-6 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-6 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-6 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-6 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-6 div.sk-label-container {text-align: center;}#sk-container-id-6 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-6 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-6" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GridSearchCV(cv=5,
+             estimator=Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
+                                       (&#x27;randomforestregressor&#x27;,
                                         RandomForestRegressor())]),
              n_jobs=-1,
-             param_grid={&#39;randomforestregressor__max_depth&#39;: [2, 3, 4],
-                         &#39;randomforestregressor__max_leaf_nodes&#39;: [2, 4, 6, 8],
-                         &#39;randomforestregressor__min_samples_split&#39;: [2, 5, 10,
+             param_grid={&#x27;randomforestregressor__max_depth&#x27;: [2, 3, 4],
+                         &#x27;randomforestregressor__max_leaf_nodes&#x27;: [2, 4, 6, 8],
+                         &#x27;randomforestregressor__min_samples_split&#x27;: [2, 5, 10,
                                                                       15],
-                         &#39;randomforestregressor__n_estimators&#39;: [400]},
-             scoring=&#39;r2&#39;)
-</pre></div>
-</div>
-</div>
+                         &#x27;randomforestregressor__n_estimators&#x27;: [400]},
+             scoring=&#x27;r2&#x27;)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-21" type="checkbox" ><label for="sk-estimator-id-21" class="sk-toggleable__label sk-toggleable__label-arrow">GridSearchCV</label><div class="sk-toggleable__content"><pre>GridSearchCV(cv=5,
+             estimator=Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
+                                       (&#x27;randomforestregressor&#x27;,
+                                        RandomForestRegressor())]),
+             n_jobs=-1,
+             param_grid={&#x27;randomforestregressor__max_depth&#x27;: [2, 3, 4],
+                         &#x27;randomforestregressor__max_leaf_nodes&#x27;: [2, 4, 6, 8],
+                         &#x27;randomforestregressor__min_samples_split&#x27;: [2, 5, 10,
+                                                                      15],
+                         &#x27;randomforestregressor__n_estimators&#x27;: [400]},
+             scoring=&#x27;r2&#x27;)</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-22" type="checkbox" ><label for="sk-estimator-id-22" class="sk-toggleable__label sk-toggleable__label-arrow">estimator: Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
+                (&#x27;randomforestregressor&#x27;, RandomForestRegressor())])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-23" type="checkbox" ><label for="sk-estimator-id-23" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-24" type="checkbox" ><label for="sk-estimator-id-24" class="sk-toggleable__label sk-toggleable__label-arrow">RandomForestRegressor</label><div class="sk-toggleable__content"><pre>RandomForestRegressor()</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2845,7 +3003,7 @@ WARNING:tensorflow:5 out of the last 13 calls to &lt;function Model.make_predict
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best estimator:
 Pipeline(steps=[(&#39;standardscaler&#39;, StandardScaler()),
                 (&#39;randomforestregressor&#39;,
-                 RandomForestRegressor(max_depth=2, max_leaf_nodes=8,
+                 RandomForestRegressor(max_depth=3, max_leaf_nodes=6,
                                        min_samples_split=15,
                                        n_estimators=400))])
 </pre></div>
@@ -2887,7 +3045,7 @@ Pipeline(steps=[(&#39;standardscaler&#39;, StandardScaler()),
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0746c30c764f13e57e3df27d6f4f025462e4bae19eaa1bcadbacdfb1b0c5b399.png" src="_images/0746c30c764f13e57e3df27d6f4f025462e4bae19eaa1bcadbacdfb1b0c5b399.png" />
+<img alt="_images/abcbe5295737efebc0f42a46fdd3ca1b86c4f3ad23d8ce70080768d50a954694.png" src="_images/abcbe5295737efebc0f42a46fdd3ca1b86c4f3ad23d8ce70080768d50a954694.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2898,7 +3056,7 @@ Pipeline(steps=[(&#39;standardscaler&#39;, StandardScaler()),
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training-set score: 0.10
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training-set score: 0.15
 Test-set score: 0.09
 </pre></div>
 </div>
@@ -2918,22 +3076,23 @@ Test-set score: 0.09
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nueva_fila</span> <span class="o">=</span> <span class="n">metricas</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">y_AR_RF</span><span class="p">,</span> <span class="s1">&#39;AR-RF&#39;</span><span class="p">)</span>
-<span class="n">df_resultados</span> <span class="o">=</span> <span class="n">df_resultados</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nueva_fila</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_resultados</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_resultados</span><span class="p">,</span> <span class="n">nueva_fila</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df_resultados</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<img alt="_images/c84288c4b735502b3336ad71a02e2248cb9178f601b079e25422ffbd93a6edc3.png" src="_images/c84288c4b735502b3336ad71a02e2248cb9178f601b079e25422ffbd93a6edc3.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Modelo       MAE  RRMSE R-squared (R^2) NSE (Nash-Sutcliffe Efficiency)
 0     AR   968.170  0.188           0.697                           0.697
-1   ARMA   848.461  0.169           0.757                           0.757
+1   ARMA   864.345  0.170           0.753                           0.753
 2  Ridge  1131.050  0.220           0.587                           0.587
 3  Lasso  1130.720  0.220           0.586                           0.586
-4     RF  1167.635  0.233           0.534                           0.534
+4     RF  1174.032  0.233           0.536                           0.536
 5   k-NN  1174.654  0.234           0.531                           0.531
 6    SVR  1303.934  0.251           0.461                           0.461
-7    MLP  1237.249  0.238           0.514                           0.514
-8  AR-RF   906.356  0.179           0.726                           0.726
+7    MLP  1233.733  0.238           0.514                           0.514
+8  AR-RF   898.113  0.178           0.729                           0.729
 </pre></div>
 </div>
 </div>
@@ -2967,7 +3126,7 @@ Test-set score: 0.09
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Caudal (m3/s)&#39;)
 </pre></div>
 </div>
-<img alt="_images/0d8c466783a49e9ab220e7d4979e25b79c4c68a534d953d87d4326afdc21f1c1.png" src="_images/0d8c466783a49e9ab220e7d4979e25b79c4c68a534d953d87d4326afdc21f1c1.png" />
+<img alt="_images/da3e615d9ae0469d3d41122cd81c24128f310419bd81aa05db44f8354b884d35.png" src="_images/da3e615d9ae0469d3d41122cd81c24128f310419bd81aa05db44f8354b884d35.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3003,7 +3162,7 @@ Test-set score: 0.09
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Caudal (m3/s)&#39;)
 </pre></div>
 </div>
-<img alt="_images/b35d1de8d5c6f06dda64759af987c39b9b65a961b9e85c9f60e66d37f39d141c.png" src="_images/b35d1de8d5c6f06dda64759af987c39b9b65a961b9e85c9f60e66d37f39d141c.png" />
+<img alt="_images/8bc52e82335bb4430240a610d5a41407bd6b8f78d815440daefca5caa7f30176.png" src="_images/8bc52e82335bb4430240a610d5a41407bd6b8f78d815440daefca5caa7f30176.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3020,20 +3179,28 @@ Test-set score: 0.09
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GridSearchCV(cv=5,
-             estimator=Pipeline(steps=[(&#39;standardscaler&#39;, StandardScaler()),
-                                       (&#39;randomforestregressor&#39;,
+<div class="output text_html"><style>#sk-container-id-7 {color: black;}#sk-container-id-7 pre{padding: 0;}#sk-container-id-7 div.sk-toggleable {background-color: white;}#sk-container-id-7 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-7 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-7 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-7 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-7 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-7 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-7 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-7 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-7 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-7 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-7 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-7 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-7 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-7 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-7 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-7 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-7 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-7 div.sk-item {position: relative;z-index: 1;}#sk-container-id-7 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-7 div.sk-item::before, #sk-container-id-7 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-7 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-7 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-7 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-7 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-7 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-7 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-7 div.sk-label-container {text-align: center;}#sk-container-id-7 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-7 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-7" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GridSearchCV(cv=5,
+             estimator=Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
+                                       (&#x27;randomforestregressor&#x27;,
                                         RandomForestRegressor())]),
              n_jobs=-1,
-             param_grid={&#39;randomforestregressor__max_depth&#39;: [2, 3, 4],
-                         &#39;randomforestregressor__max_leaf_nodes&#39;: [2, 4, 6, 8],
-                         &#39;randomforestregressor__min_samples_split&#39;: [2, 5, 10,
+             param_grid={&#x27;randomforestregressor__max_depth&#x27;: [2, 3, 4],
+                         &#x27;randomforestregressor__max_leaf_nodes&#x27;: [2, 4, 6, 8],
+                         &#x27;randomforestregressor__min_samples_split&#x27;: [2, 5, 10,
                                                                       15],
-                         &#39;randomforestregressor__n_estimators&#39;: [400]},
-             scoring=&#39;r2&#39;)
-</pre></div>
-</div>
-</div>
+                         &#x27;randomforestregressor__n_estimators&#x27;: [400]},
+             scoring=&#x27;r2&#x27;)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-25" type="checkbox" ><label for="sk-estimator-id-25" class="sk-toggleable__label sk-toggleable__label-arrow">GridSearchCV</label><div class="sk-toggleable__content"><pre>GridSearchCV(cv=5,
+             estimator=Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
+                                       (&#x27;randomforestregressor&#x27;,
+                                        RandomForestRegressor())]),
+             n_jobs=-1,
+             param_grid={&#x27;randomforestregressor__max_depth&#x27;: [2, 3, 4],
+                         &#x27;randomforestregressor__max_leaf_nodes&#x27;: [2, 4, 6, 8],
+                         &#x27;randomforestregressor__min_samples_split&#x27;: [2, 5, 10,
+                                                                      15],
+                         &#x27;randomforestregressor__n_estimators&#x27;: [400]},
+             scoring=&#x27;r2&#x27;)</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-26" type="checkbox" ><label for="sk-estimator-id-26" class="sk-toggleable__label sk-toggleable__label-arrow">estimator: Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
+                (&#x27;randomforestregressor&#x27;, RandomForestRegressor())])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-27" type="checkbox" ><label for="sk-estimator-id-27" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-28" type="checkbox" ><label for="sk-estimator-id-28" class="sk-toggleable__label sk-toggleable__label-arrow">RandomForestRegressor</label><div class="sk-toggleable__content"><pre>RandomForestRegressor()</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3069,7 +3236,7 @@ Pipeline(steps=[(&#39;standardscaler&#39;, StandardScaler()),
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/081e7e324fe1fd9e3ea8d868f4a764688343d4e82e26ce631307fadf4e30e982.png" src="_images/081e7e324fe1fd9e3ea8d868f4a764688343d4e82e26ce631307fadf4e30e982.png" />
+<img alt="_images/424b17d254ed6661db668f974ab3302e1d317b1338c2de508b3ccd237cc50084.png" src="_images/424b17d254ed6661db668f974ab3302e1d317b1338c2de508b3ccd237cc50084.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3098,23 +3265,24 @@ Test-set score: 0.07
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nueva_fila</span> <span class="o">=</span> <span class="n">metricas</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">y_ARMA_RF</span><span class="p">,</span> <span class="s1">&#39;ARMA-RF&#39;</span><span class="p">)</span>
-<span class="n">df_resultados</span> <span class="o">=</span> <span class="n">df_resultados</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nueva_fila</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_resultados</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_resultados</span><span class="p">,</span> <span class="n">nueva_fila</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df_resultados</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<img alt="_images/d389abf105d5fc81c08e0b6a58411f9825b0d87f872cd16aa4cea78495f954a0.png" src="_images/d389abf105d5fc81c08e0b6a58411f9825b0d87f872cd16aa4cea78495f954a0.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    Modelo       MAE  RRMSE R-squared (R^2) NSE (Nash-Sutcliffe Efficiency)
 0       AR   968.170  0.188           0.697                           0.697
-1     ARMA   848.461  0.169           0.757                           0.757
+1     ARMA   864.345  0.170           0.753                           0.753
 2    Ridge  1131.050  0.220           0.587                           0.587
 3    Lasso  1130.720  0.220           0.586                           0.586
-4       RF  1167.635  0.233           0.534                           0.534
+4       RF  1174.032  0.233           0.536                           0.536
 5     k-NN  1174.654  0.234           0.531                           0.531
 6      SVR  1303.934  0.251           0.461                           0.461
-7      MLP  1237.249  0.238           0.514                           0.514
-8    AR-RF   906.356  0.179           0.726                           0.726
-9  ARMA-RF   825.405  0.163           0.772                           0.772
+7      MLP  1233.733  0.238           0.514                           0.514
+8    AR-RF   898.113  0.178           0.729                           0.729
+9  ARMA-RF   831.742  0.164           0.770                           0.770
 </pre></div>
 </div>
 </div>
@@ -3140,7 +3308,7 @@ Test-set score: 0.07
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Caudal (m3/s)&#39;)
 </pre></div>
 </div>
-<img alt="_images/51fb150063e2439e53935555bcd0a13308ee7ab506797107b48cb7bda088c5d5.png" src="_images/51fb150063e2439e53935555bcd0a13308ee7ab506797107b48cb7bda088c5d5.png" />
+<img alt="_images/1cf6cfc3f89135ebfdfd1ea20ef78226bd45ea8205063e08195ca1e5bb61780c.png" src="_images/1cf6cfc3f89135ebfdfd1ea20ef78226bd45ea8205063e08195ca1e5bb61780c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3176,7 +3344,7 @@ Test-set score: 0.07
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Caudal (m3/s)&#39;)
 </pre></div>
 </div>
-<img alt="_images/c316479cc1d98e1dd45d11371ba822437140c477500ad092d15c43b2b23a15b5.png" src="_images/c316479cc1d98e1dd45d11371ba822437140c477500ad092d15c43b2b23a15b5.png" />
+<img alt="_images/ba0941e93ab7b635aa6ff484f85dfafa1114b78c775e7a2b034aa4205a2bd326.png" src="_images/ba0941e93ab7b635aa6ff484f85dfafa1114b78c775e7a2b034aa4205a2bd326.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3216,7 +3384,7 @@ Test-set score: 0.07
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/7aa0e8518628e13f1f72802d734275730586bc888a94aef150de9c6e27b80bee.png" src="_images/7aa0e8518628e13f1f72802d734275730586bc888a94aef150de9c6e27b80bee.png" />
+<img alt="_images/430e1afe5783c93d320942e90b0ec157bfc05ade200721c1cdf9b38f269ce362.png" src="_images/430e1afe5783c93d320942e90b0ec157bfc05ade200721c1cdf9b38f269ce362.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3238,24 +3406,25 @@ Test-set score: 0.07
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nueva_fila</span> <span class="o">=</span> <span class="n">metricas</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">y_AR_Ridge</span><span class="p">,</span> <span class="s1">&#39;AR-Ridge&#39;</span><span class="p">)</span>
-<span class="n">df_resultados</span> <span class="o">=</span> <span class="n">df_resultados</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nueva_fila</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_resultados</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_resultados</span><span class="p">,</span> <span class="n">nueva_fila</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df_resultados</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<img alt="_images/f497cb2fea4b00f9ee76a91f6b0811bd71567fdf385d0d948c916968217045c0.png" src="_images/f497cb2fea4b00f9ee76a91f6b0811bd71567fdf385d0d948c916968217045c0.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      Modelo       MAE  RRMSE R-squared (R^2) NSE (Nash-Sutcliffe Efficiency)
 0         AR   968.170  0.188           0.697                           0.697
-1       ARMA   848.461  0.169           0.757                           0.757
+1       ARMA   864.345  0.170           0.753                           0.753
 2      Ridge  1131.050  0.220           0.587                           0.587
 3      Lasso  1130.720  0.220           0.586                           0.586
-4         RF  1167.635  0.233           0.534                           0.534
+4         RF  1174.032  0.233           0.536                           0.536
 5       k-NN  1174.654  0.234           0.531                           0.531
 6        SVR  1303.934  0.251           0.461                           0.461
-7        MLP  1237.249  0.238           0.514                           0.514
-8      AR-RF   906.356  0.179           0.726                           0.726
-9    ARMA-RF   825.405  0.163           0.772                           0.772
-10  AR-Ridge   919.829  0.181           0.721                           0.721
+7        MLP  1233.733  0.238           0.514                           0.514
+8      AR-RF   898.113  0.178           0.729                           0.729
+9    ARMA-RF   831.742  0.164           0.770                           0.770
+10  AR-Ridge   920.030  0.181           0.721                           0.721
 </pre></div>
 </div>
 </div>
@@ -3281,7 +3450,7 @@ Test-set score: 0.07
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Caudal (m3/s)&#39;)
 </pre></div>
 </div>
-<img alt="_images/0d8c466783a49e9ab220e7d4979e25b79c4c68a534d953d87d4326afdc21f1c1.png" src="_images/0d8c466783a49e9ab220e7d4979e25b79c4c68a534d953d87d4326afdc21f1c1.png" />
+<img alt="_images/da3e615d9ae0469d3d41122cd81c24128f310419bd81aa05db44f8354b884d35.png" src="_images/da3e615d9ae0469d3d41122cd81c24128f310419bd81aa05db44f8354b884d35.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3337,7 +3506,7 @@ Test-set score: 0.07
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6a1da73b61e4b98717a0ed0f0242428ca3a4812f307f2f3e0e23d9a2fa647079.png" src="_images/6a1da73b61e4b98717a0ed0f0242428ca3a4812f307f2f3e0e23d9a2fa647079.png" />
+<img alt="_images/d97fe9fefefe3abbad41146383660a0ca985e904deead145175e5c0a2431e9f2.png" src="_images/d97fe9fefefe3abbad41146383660a0ca985e904deead145175e5c0a2431e9f2.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3359,39 +3528,40 @@ Test-set score: 0.07
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nueva_fila</span> <span class="o">=</span> <span class="n">metricas</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">y_ARMA_Ridge</span><span class="p">,</span> <span class="s1">&#39;ARMA-Ridge&#39;</span><span class="p">)</span>
-<span class="n">df_resultados</span> <span class="o">=</span> <span class="n">df_resultados</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nueva_fila</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_resultados</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_resultados</span><span class="p">,</span> <span class="n">nueva_fila</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df_resultados</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<img alt="_images/1a4bd4b82dbf35926edd5591aa3a15682937b86c9e7cb3383df59d6f176c07ea.png" src="_images/1a4bd4b82dbf35926edd5591aa3a15682937b86c9e7cb3383df59d6f176c07ea.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        Modelo       MAE  RRMSE R-squared (R^2)  \
 0           AR   968.170  0.188           0.697   
-1         ARMA   848.461  0.169           0.757   
+1         ARMA   864.345  0.170           0.753   
 2        Ridge  1131.050  0.220           0.587   
 3        Lasso  1130.720  0.220           0.586   
-4           RF  1167.635  0.233           0.534   
+4           RF  1174.032  0.233           0.536   
 5         k-NN  1174.654  0.234           0.531   
 6          SVR  1303.934  0.251           0.461   
-7          MLP  1237.249  0.238           0.514   
-8        AR-RF   906.356  0.179           0.726   
-9      ARMA-RF   825.405  0.163           0.772   
-10    AR-Ridge   919.829  0.181           0.721   
-11  ARMA-Ridge   829.085  0.164           0.770   
+7          MLP  1233.733  0.238           0.514   
+8        AR-RF   898.113  0.178           0.729   
+9      ARMA-RF   831.742  0.164           0.770   
+10    AR-Ridge   920.030  0.181           0.721   
+11  ARMA-Ridge   842.802  0.166           0.766   
 
    NSE (Nash-Sutcliffe Efficiency)  
 0                            0.697  
-1                            0.757  
+1                            0.753  
 2                            0.587  
 3                            0.586  
-4                            0.534  
+4                            0.536  
 5                            0.531  
 6                            0.461  
 7                            0.514  
-8                            0.726  
-9                            0.772  
+8                            0.729  
+9                            0.770  
 10                           0.721  
-11                           0.770  
+11                           0.766  
 </pre></div>
 </div>
 </div>
@@ -3447,10 +3617,10 @@ Test-set score: 0.07
     <tr>
       <th>1</th>
       <td>ARMA</td>
-      <td>848.461</td>
-      <td>0.169</td>
-      <td>0.757</td>
-      <td>0.757</td>
+      <td>864.345</td>
+      <td>0.170</td>
+      <td>0.753</td>
+      <td>0.753</td>
     </tr>
     <tr>
       <th>2</th>
@@ -3471,10 +3641,10 @@ Test-set score: 0.07
     <tr>
       <th>4</th>
       <td>RF</td>
-      <td>1167.635</td>
+      <td>1174.032</td>
       <td>0.233</td>
-      <td>0.534</td>
-      <td>0.534</td>
+      <td>0.536</td>
+      <td>0.536</td>
     </tr>
     <tr>
       <th>5</th>
@@ -3495,7 +3665,7 @@ Test-set score: 0.07
     <tr>
       <th>7</th>
       <td>MLP</td>
-      <td>1237.249</td>
+      <td>1233.733</td>
       <td>0.238</td>
       <td>0.514</td>
       <td>0.514</td>
@@ -3503,23 +3673,23 @@ Test-set score: 0.07
     <tr>
       <th>8</th>
       <td>AR-RF</td>
-      <td>906.356</td>
-      <td>0.179</td>
-      <td>0.726</td>
-      <td>0.726</td>
+      <td>898.113</td>
+      <td>0.178</td>
+      <td>0.729</td>
+      <td>0.729</td>
     </tr>
     <tr>
       <th>9</th>
       <td>ARMA-RF</td>
-      <td>825.405</td>
-      <td>0.163</td>
-      <td>0.772</td>
-      <td>0.772</td>
+      <td>831.742</td>
+      <td>0.164</td>
+      <td>0.770</td>
+      <td>0.770</td>
     </tr>
     <tr>
       <th>10</th>
       <td>AR-Ridge</td>
-      <td>919.829</td>
+      <td>920.030</td>
       <td>0.181</td>
       <td>0.721</td>
       <td>0.721</td>
@@ -3527,10 +3697,10 @@ Test-set score: 0.07
     <tr>
       <th>11</th>
       <td>ARMA-Ridge</td>
-      <td>829.085</td>
-      <td>0.164</td>
-      <td>0.770</td>
-      <td>0.770</td>
+      <td>842.802</td>
+      <td>0.166</td>
+      <td>0.766</td>
+      <td>0.766</td>
     </tr>
   </tbody>
 </table>
