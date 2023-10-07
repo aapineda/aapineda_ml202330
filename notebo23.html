@@ -1554,8 +1554,11 @@ Los datos son estacionarios (Stationary)
 <span class="c1"># Graficar y_train en azul</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;y_train&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
 
-<span class="c1"># Graficar y_test en rojo</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;y_test&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="c1"># Obtener el número de puntos en y_train</span>
+<span class="n">n_train</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Graficar y_test en rojo a continuación de y_train</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_train</span><span class="p">,</span> <span class="n">n_train</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">)),</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;y_test&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
 
 <span class="c1"># Etiquetas y título</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Índice de tiempo&#39;</span><span class="p">)</span>
@@ -1574,7 +1577,7 @@ Los datos son estacionarios (Stationary)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/24491dc9c132011a4a2bbfb7343d5af44fd5ae184ad7338c810179a7ecf94fe7.png" src="_images/24491dc9c132011a4a2bbfb7343d5af44fd5ae184ad7338c810179a7ecf94fe7.png" />
+<img alt="_images/5c9a0487715f5f5b07d6373cea5e899d115e3787bc14401014b75d8d025ab587.png" src="_images/5c9a0487715f5f5b07d6373cea5e899d115e3787bc14401014b75d8d025ab587.png" />
 </div>
 </div>
 </section>
