@@ -403,12 +403,12 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-hibrido">Modelo Hibrido</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-con-modelos-lineales">Random Forest con modelos lineales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-y-ridge-con-arima">Random Forest y Ridge con ARIMA.</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ar-rf">AR-RF</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Metricas del modelo</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ar-model">AR-MODEL</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ar-ridge">AR-RIDGE</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Metricas del modelo</a></li>
 </ul>
 </li>
@@ -416,7 +416,7 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Metricas del modelo</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arma-model">ARMA-MODEL</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arma-ridge">ARMA-RIDGE</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Metricas del modelo</a></li>
 </ul>
 </li>
@@ -439,7 +439,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="aplicacion">
 <h1>Aplicación<a class="headerlink" href="#aplicacion" title="Permalink to this heading">#</a></h1>
-<p><img alt="Alt text" src="_images/Rio_Magdalena_map.png" /></p>
+<p><img alt="Alt text" src="_images/Rio_Magdalena_map.png" /> Fuente: Wikipedia</p>
 <section id="mapa-de-flujo">
 <h2>Mapa de Flujo<a class="headerlink" href="#mapa-de-flujo" title="Permalink to this heading">#</a></h2>
 <ol class="arabic simple">
@@ -479,6 +479,8 @@ document.write(`
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="kn">from</span> <span class="nn">statsmodels.tsa.arima.model</span> <span class="kn">import</span> <span class="n">ARIMA</span>
 <span class="kn">from</span> <span class="nn">tensorflow</span> <span class="kn">import</span> <span class="n">keras</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">TimeSeriesSplit</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
 
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="kn">from</span> <span class="nn">statsmodels.tools.sm_exceptions</span> <span class="kn">import</span> <span class="n">ConvergenceWarning</span>
@@ -1016,8 +1018,14 @@ dtype: float64
 <img alt="_images/f77383667784ca415c7736ce275a32cfd7baf76441ead1336defa54fc21adf59.png" src="_images/f77383667784ca415c7736ce275a32cfd7baf76441ead1336defa54fc21adf59.png" />
 </div>
 </div>
+<ul class="simple">
+<li><p>Es evidente que existe una relación entre el ENSO y el Caudal, al aumentar este Indice se producen menores lluvias en Colombia y con ello menores caudales en el Rio. Ocurre lo mismo con el caso contrario.</p></li>
+</ul>
 <section id="lag-a-los-datos">
 <h4>Lag a los datos<a class="headerlink" href="#lag-a-los-datos" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Se introduce un retraso en los datos debido a la necesidad de predecir el caudal del próximo mes utilizando los datos del mes anterior. Esta estrategia se justifica debido a que no es posible conocer las características del mes que aún no ha ocurrido.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">serie</span><span class="p">[</span><span class="s1">&#39;Flow_lag&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">serie</span><span class="p">[</span><span class="s1">&#39;Flow&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -1174,6 +1182,9 @@ dtype: float64
 </div>
 </div>
 </div>
+<ul class="simple">
+<li><p>Finalmente queda la serie con el retraso de la siguiente forma.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">serie</span>
@@ -1367,6 +1378,11 @@ Kurtosis:  -1.2
 </div>
 </div>
 <ul class="simple">
+<li><p>Podemos observar que los meses tienen una distribución uniforme.</p></li>
+<li><p>El indice ENSO tienen un sesgo hacia la derecha con tendencia a los menores valores, y valores atipicos en la cola derecha.</p></li>
+<li><p>El caudal tiene una distribución sesgada hacia la izquierda tendiendo a que los caudales sean mas bajos que altos, no se detectan valores atipicos.</p></li>
+</ul>
+<ul class="simple">
 <li><p>Serie usada para modelos ARIMA</p></li>
 </ul>
 <div class="cell docutils container">
@@ -1529,6 +1545,9 @@ Los datos son estacionarios (Stationary)
 </div>
 </div>
 </div>
+<ul class="simple">
+<li><p>Es decir que podemos usar la serie directamente.</p></li>
+</ul>
 </section>
 <section id="datos-de-entrenamiento-y-prueba">
 <h3>Datos de Entrenamiento y Prueba<a class="headerlink" href="#datos-de-entrenamiento-y-prueba" title="Permalink to this heading">#</a></h3>
@@ -1602,6 +1621,9 @@ Los datos son estacionarios (Stationary)
 <img alt="_images/5c9a0487715f5f5b07d6373cea5e899d115e3787bc14401014b75d8d025ab587.png" src="_images/5c9a0487715f5f5b07d6373cea5e899d115e3787bc14401014b75d8d025ab587.png" />
 </div>
 </div>
+<ul class="simple">
+<li><p>Se dividen los datos en entrenamiento y test, este ultimo 20% de los datos no se usará en ningun calculo. Unicamente al final para evaluar los modelos.</p></li>
+</ul>
 </section>
 </section>
 <section id="metricas">
@@ -1767,6 +1789,7 @@ Los datos son estacionarios (Stationary)
 <p>Entre los modelos lineales se encuentran: autoregressive (AR), moving average (MA), and autoregressive moving average (ARMA)</p>
 <section id="ar">
 <h3>AR<a class="headerlink" href="#ar" title="Permalink to this heading">#</a></h3>
+<p>Un modelo AR, o modelo autorregresivo, es un modelo estadístico en el que la variable de interés se regresa a sí misma en un modelo de regresión lineal. En otras palabras, un modelo AR utiliza una serie de tiempo para predecir su propio futuro.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pmdarima</span> <span class="k">as</span> <span class="nn">pm</span>
@@ -1793,23 +1816,21 @@ Los datos son estacionarios (Stationary)
  ARIMA(1,0,0)(0,0,0)[0]             : AIC=7865.329, Time=0.02 sec
  ARIMA(0,0,0)(0,0,0)[0]             : AIC=9208.012, Time=0.01 sec
  ARIMA(2,0,0)(0,0,0)[0]             : AIC=7777.791, Time=0.06 sec
- ARIMA(3,0,0)(0,0,0)[0]             : AIC=7662.598, Time=0.10 sec
- ARIMA(4,0,0)(0,0,0)[0]             : AIC=7641.101, Time=0.17 sec
- ARIMA(5,0,0)(0,0,0)[0]             : AIC=7639.764, Time=0.17 sec
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ARIMA(5,0,0)(0,0,0)[0] intercept   : AIC=7603.639, Time=0.24 sec
- ARIMA(4,0,0)(0,0,0)[0] intercept   : AIC=7601.648, Time=0.13 sec
- ARIMA(3,0,0)(0,0,0)[0] intercept   : AIC=7606.573, Time=0.08 sec
+ ARIMA(3,0,0)(0,0,0)[0]             : AIC=7662.598, Time=0.12 sec
+ ARIMA(4,0,0)(0,0,0)[0]             : AIC=7641.101, Time=0.15 sec
+ ARIMA(5,0,0)(0,0,0)[0]             : AIC=7639.764, Time=0.23 sec
+ ARIMA(5,0,0)(0,0,0)[0] intercept   : AIC=7603.639, Time=0.21 sec
+ ARIMA(4,0,0)(0,0,0)[0] intercept   : AIC=7601.648, Time=0.15 sec
+ ARIMA(3,0,0)(0,0,0)[0] intercept   : AIC=7606.573, Time=0.10 sec
 
 Best model:  ARIMA(4,0,0)(0,0,0)[0] intercept
-Total fit time: 0.986 seconds
+Total fit time: 1.046 seconds
                                SARIMAX Results                                
 ==============================================================================
 Dep. Variable:                      y   No. Observations:                  444
 Model:               SARIMAX(4, 0, 0)   Log Likelihood               -3794.824
 Date:                Sat, 07 Oct 2023   AIC                           7601.648
-Time:                        05:50:21   BIC                           7626.223
+Time:                        12:37:34   BIC                           7626.223
 Sample:                             0   HQIC                          7611.340
                                 - 444                                         
 Covariance Type:                  opg                                         
@@ -1871,7 +1892,7 @@ Warnings:
 Dep. Variable:                      y   No. Observations:                  355
 Model:                 ARIMA(5, 0, 0)   Log Likelihood               -3036.744
 Date:                Sat, 07 Oct 2023   AIC                           6087.488
-Time:                        05:50:22   BIC                           6114.593
+Time:                        12:37:34   BIC                           6114.593
 Sample:                             0   HQIC                          6098.271
                                 - 355                                         
 Covariance Type:                  opg                                         
@@ -1907,6 +1928,36 @@ min   -3866.216294
 50%      66.530667
 75%     869.953976
 max    3390.829384
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Al observar los residuos vemos que no se observa ninguna tendencia y tienden a seguir una distribución normal con media 0.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Test de normalidad para los datos.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<span class="c1"># Realiza el test de normalidad de D&#39;Agostino y Pearson</span>
+<span class="n">resultado</span><span class="p">,</span> <span class="n">p_valor</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">normaltest</span><span class="p">(</span><span class="n">residuals</span><span class="p">)</span>
+
+<span class="c1"># Compara el valor p con un nivel de significancia alfa</span>
+<span class="n">alfa</span> <span class="o">=</span> <span class="mf">0.05</span>  <span class="c1"># Nivel de significancia</span>
+<span class="k">if</span> <span class="n">p_valor</span> <span class="o">&gt;</span> <span class="n">alfa</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Los datos parecen seguir una distribución normal (no se rechaza H0).&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Los datos no siguen una distribución normal (se rechaza H0).&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Los datos parecen seguir una distribución normal (no se rechaza H0).
 </pre></div>
 </div>
 </div>
@@ -1950,6 +2001,7 @@ max    3390.829384
 </section>
 <section id="arma">
 <h3>ARMA<a class="headerlink" href="#arma" title="Permalink to this heading">#</a></h3>
+<p>Un modelo ARMA, o modelo autorregresivo de media móvil, es un modelo estadístico que combina las propiedades de un modelo AR y un modelo MA. En otras palabras, un modelo ARMA utiliza una serie de tiempo para predecir su propio futuro, teniendo en cuenta tanto la dependencia de los valores pasados como la tendencia de los valores pasados.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pmdarima</span> <span class="k">as</span> <span class="nn">pm</span>
@@ -1973,44 +2025,44 @@ max    3390.829384
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Performing stepwise search to minimize aic
- ARIMA(1,0,1)(0,0,0)[0]             : AIC=7727.800, Time=0.08 sec
+ ARIMA(1,0,1)(0,0,0)[0]             : AIC=7727.800, Time=0.07 sec
  ARIMA(0,0,0)(0,0,0)[0]             : AIC=9208.012, Time=0.01 sec
  ARIMA(1,0,0)(0,0,0)[0]             : AIC=7865.329, Time=0.02 sec
- ARIMA(0,0,1)(0,0,0)[0]             : AIC=inf, Time=0.11 sec
+ ARIMA(0,0,1)(0,0,0)[0]             : AIC=inf, Time=0.12 sec
  ARIMA(2,0,1)(0,0,0)[0]             : AIC=7724.921, Time=0.20 sec
  ARIMA(2,0,0)(0,0,0)[0]             : AIC=7777.791, Time=0.05 sec
- ARIMA(3,0,1)(0,0,0)[0]             : AIC=7640.387, Time=0.42 sec
- ARIMA(3,0,0)(0,0,0)[0]             : AIC=7662.598, Time=0.09 sec
- ARIMA(4,0,1)(0,0,0)[0]             : AIC=7641.410, Time=0.28 sec
- ARIMA(3,0,2)(0,0,0)[0]             : AIC=7605.158, Time=0.70 sec
- ARIMA(2,0,2)(0,0,0)[0]             : AIC=inf, Time=0.76 sec
- ARIMA(4,0,2)(0,0,0)[0]             : AIC=inf, Time=0.75 sec
- ARIMA(3,0,3)(0,0,0)[0]             : AIC=7555.284, Time=0.80 sec
+ ARIMA(3,0,1)(0,0,0)[0]             : AIC=7640.387, Time=0.34 sec
+ ARIMA(3,0,0)(0,0,0)[0]             : AIC=7662.598, Time=0.08 sec
+ ARIMA(4,0,1)(0,0,0)[0]             : AIC=7641.410, Time=0.25 sec
+ ARIMA(3,0,2)(0,0,0)[0]             : AIC=7605.158, Time=0.71 sec
+ ARIMA(2,0,2)(0,0,0)[0]             : AIC=inf, Time=0.79 sec
+ ARIMA(4,0,2)(0,0,0)[0]             : AIC=inf, Time=0.89 sec
+ ARIMA(3,0,3)(0,0,0)[0]             : AIC=7555.284, Time=0.99 sec
  ARIMA(2,0,3)(0,0,0)[0]             : AIC=inf, Time=0.62 sec
- ARIMA(4,0,3)(0,0,0)[0]             : AIC=7557.907, Time=0.82 sec
- ARIMA(3,0,4)(0,0,0)[0]             : AIC=7560.306, Time=1.00 sec
- ARIMA(2,0,4)(0,0,0)[0]             : AIC=inf, Time=0.65 sec
- ARIMA(4,0,4)(0,0,0)[0]             : AIC=7525.732, Time=1.22 sec
- ARIMA(5,0,4)(0,0,0)[0]             : AIC=7525.104, Time=1.59 sec
- ARIMA(5,0,3)(0,0,0)[0]             : AIC=7620.838, Time=1.01 sec
- ARIMA(5,0,5)(0,0,0)[0]             : AIC=inf, Time=1.49 sec
- ARIMA(4,0,5)(0,0,0)[0]             : AIC=7516.928, Time=1.55 sec
- ARIMA(3,0,5)(0,0,0)[0]             : AIC=7554.974, Time=1.25 sec
- ARIMA(4,0,5)(0,0,0)[0] intercept   : AIC=7476.994, Time=1.80 sec
- ARIMA(3,0,5)(0,0,0)[0] intercept   : AIC=7514.302, Time=1.63 sec
- ARIMA(4,0,4)(0,0,0)[0] intercept   : AIC=7513.373, Time=1.26 sec
- ARIMA(5,0,5)(0,0,0)[0] intercept   : AIC=7490.559, Time=1.79 sec
- ARIMA(3,0,4)(0,0,0)[0] intercept   : AIC=7502.789, Time=1.06 sec
- ARIMA(5,0,4)(0,0,0)[0] intercept   : AIC=7500.611, Time=1.55 sec
+ ARIMA(4,0,3)(0,0,0)[0]             : AIC=7557.907, Time=0.83 sec
+ ARIMA(3,0,4)(0,0,0)[0]             : AIC=7560.306, Time=0.96 sec
+ ARIMA(2,0,4)(0,0,0)[0]             : AIC=inf, Time=0.63 sec
+ ARIMA(4,0,4)(0,0,0)[0]             : AIC=7525.732, Time=1.11 sec
+ ARIMA(5,0,4)(0,0,0)[0]             : AIC=7525.104, Time=1.55 sec
+ ARIMA(5,0,3)(0,0,0)[0]             : AIC=7620.838, Time=1.16 sec
+ ARIMA(5,0,5)(0,0,0)[0]             : AIC=inf, Time=1.83 sec
+ ARIMA(4,0,5)(0,0,0)[0]             : AIC=7516.928, Time=1.53 sec
+ ARIMA(3,0,5)(0,0,0)[0]             : AIC=7554.974, Time=1.27 sec
+ ARIMA(4,0,5)(0,0,0)[0] intercept   : AIC=7476.994, Time=2.09 sec
+ ARIMA(3,0,5)(0,0,0)[0] intercept   : AIC=7514.302, Time=1.95 sec
+ ARIMA(4,0,4)(0,0,0)[0] intercept   : AIC=7513.373, Time=1.49 sec
+ ARIMA(5,0,5)(0,0,0)[0] intercept   : AIC=7490.559, Time=1.70 sec
+ ARIMA(3,0,4)(0,0,0)[0] intercept   : AIC=7502.789, Time=1.05 sec
+ ARIMA(5,0,4)(0,0,0)[0] intercept   : AIC=7500.611, Time=1.52 sec
 
 Best model:  ARIMA(4,0,5)(0,0,0)[0] intercept
-Total fit time: 24.595 seconds
+Total fit time: 25.835 seconds
                                SARIMAX Results                                
 ==============================================================================
 Dep. Variable:                      y   No. Observations:                  444
 Model:               SARIMAX(4, 0, 5)   Log Likelihood               -3727.497
 Date:                Sat, 07 Oct 2023   AIC                           7476.994
-Time:                        05:51:13   BIC                           7522.048
+Time:                        12:38:28   BIC                           7522.048
 Sample:                             0   HQIC                          7494.761
                                 - 444                                         
 Covariance Type:                  opg                                         
@@ -2074,7 +2126,7 @@ Warnings:
 Dep. Variable:                      y   No. Observations:                  355
 Model:                 ARIMA(4, 0, 5)   Log Likelihood               -2995.997
 Date:                Sat, 07 Oct 2023   AIC                           6013.995
-Time:                        05:51:15   BIC                           6056.588
+Time:                        12:38:29   BIC                           6056.588
 Sample:                             0   HQIC                          6030.939
                                 - 355                                         
 Covariance Type:                  opg                                         
@@ -2115,6 +2167,36 @@ min   -3397.589457
 50%      99.649280
 75%     738.218897
 max    2916.631266
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Al observar los residuos vemos que no se observa ninguna tendencia y tienden a seguir una distribución normal con media 0.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Test de normalidad para los datos.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<span class="c1"># Realiza el test de normalidad de D&#39;Agostino y Pearson</span>
+<span class="n">resultado</span><span class="p">,</span> <span class="n">p_valor</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">normaltest</span><span class="p">(</span><span class="n">residuals</span><span class="p">)</span>
+
+<span class="c1"># Compara el valor p con un nivel de significancia alfa</span>
+<span class="n">alfa</span> <span class="o">=</span> <span class="mf">0.05</span>  <span class="c1"># Nivel de significancia</span>
+<span class="k">if</span> <span class="n">p_valor</span> <span class="o">&gt;</span> <span class="n">alfa</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Los datos parecen seguir una distribución normal (no se rechaza H0).&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Los datos no siguen una distribución normal (se rechaza H0).&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Los datos parecen seguir una distribución normal (no se rechaza H0).
 </pre></div>
 </div>
 </div>
@@ -2247,6 +2329,7 @@ max    2916.631266
 </section>
 <section id="ridge">
 <h2>Ridge<a class="headerlink" href="#ridge" title="Permalink to this heading">#</a></h2>
+<p>El modelo Ridge, o regresión Ridge, es un modelo de regresión lineal que utiliza la regularización Ridge para reducir el sobreajuste. La regularización Ridge se añade al modelo de regresión lineal añadiendo una penalización a los coeficientes del modelo. Esta penalización ayuda a evitar que los coeficientes se vuelvan demasiado grandes, lo que puede conducir a un sobreajuste del modelo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Ridge</span>
@@ -2268,7 +2351,7 @@ max    2916.631266
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-container-id-32 {color: black;}#sk-container-id-32 pre{padding: 0;}#sk-container-id-32 div.sk-toggleable {background-color: white;}#sk-container-id-32 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-32 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-32 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-32 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-32 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-32 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-32 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-32 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-32 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-32 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-32 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-32 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-32 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-32 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-32 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-32 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-32 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-32 div.sk-item {position: relative;z-index: 1;}#sk-container-id-32 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-32 div.sk-item::before, #sk-container-id-32 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-32 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-32 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-32 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-32 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-32 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-32 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-32 div.sk-label-container {text-align: center;}#sk-container-id-32 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-32 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-32" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GridSearchCV(cv=5,
+<div class="output text_html"><style>#sk-container-id-1 {color: black;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GridSearchCV(cv=5,
              estimator=Pipeline(steps=[(&#x27;minmaxscaler&#x27;, MinMaxScaler()),
                                        (&#x27;ridge&#x27;, Ridge())]),
              n_jobs=-1,
@@ -2283,7 +2366,7 @@ max    2916.631266
         5.21400829,  5.46227722,  5.72236766,  5.9948425 ,  6.28029144,
         6.57933225,  6.8926121 ,  7.22080902,  7.56463328,  7.92482898,
         8.30217568,  8.69749003,  9.11162756,  9.54548457, 10.        ])},
-             scoring=&#x27;r2&#x27;)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-125" type="checkbox" ><label for="sk-estimator-id-125" class="sk-toggleable__label sk-toggleable__label-arrow">GridSearchCV</label><div class="sk-toggleable__content"><pre>GridSearchCV(cv=5,
+             scoring=&#x27;r2&#x27;)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" ><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">GridSearchCV</label><div class="sk-toggleable__content"><pre>GridSearchCV(cv=5,
              estimator=Pipeline(steps=[(&#x27;minmaxscaler&#x27;, MinMaxScaler()),
                                        (&#x27;ridge&#x27;, Ridge())]),
              n_jobs=-1,
@@ -2298,7 +2381,7 @@ max    2916.631266
         5.21400829,  5.46227722,  5.72236766,  5.9948425 ,  6.28029144,
         6.57933225,  6.8926121 ,  7.22080902,  7.56463328,  7.92482898,
         8.30217568,  8.69749003,  9.11162756,  9.54548457, 10.        ])},
-             scoring=&#x27;r2&#x27;)</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-126" type="checkbox" ><label for="sk-estimator-id-126" class="sk-toggleable__label sk-toggleable__label-arrow">estimator: Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;minmaxscaler&#x27;, MinMaxScaler()), (&#x27;ridge&#x27;, Ridge())])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-127" type="checkbox" ><label for="sk-estimator-id-127" class="sk-toggleable__label sk-toggleable__label-arrow">MinMaxScaler</label><div class="sk-toggleable__content"><pre>MinMaxScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-128" type="checkbox" ><label for="sk-estimator-id-128" class="sk-toggleable__label sk-toggleable__label-arrow">Ridge</label><div class="sk-toggleable__content"><pre>Ridge()</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+             scoring=&#x27;r2&#x27;)</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" ><label for="sk-estimator-id-2" class="sk-toggleable__label sk-toggleable__label-arrow">estimator: Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;minmaxscaler&#x27;, MinMaxScaler()), (&#x27;ridge&#x27;, Ridge())])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" ><label for="sk-estimator-id-3" class="sk-toggleable__label sk-toggleable__label-arrow">MinMaxScaler</label><div class="sk-toggleable__content"><pre>MinMaxScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" ><label for="sk-estimator-id-4" class="sk-toggleable__label sk-toggleable__label-arrow">Ridge</label><div class="sk-toggleable__content"><pre>Ridge()</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2353,6 +2436,7 @@ Test-set score: 0.59
 </section>
 <section id="lasso">
 <h2>Lasso<a class="headerlink" href="#lasso" title="Permalink to this heading">#</a></h2>
+<p>El modelo Lasso, o regresión Lasso, es un modelo de regresión lineal que utiliza la regularización Lasso para reducir el sobreajuste. La regularización Lasso se añade al modelo de regresión lineal añadiendo una penalización a los coeficientes del modelo. Esta penalización ayuda a evitar que los coeficientes se vuelvan demasiado grandes, lo que puede conducir a un sobreajuste del modelo, a diferencia de Ridge esta penalizacion puede llevar a que los coeficientes sean 0.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Lasso</span>
@@ -2374,7 +2458,7 @@ Test-set score: 0.59
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-container-id-33 {color: black;}#sk-container-id-33 pre{padding: 0;}#sk-container-id-33 div.sk-toggleable {background-color: white;}#sk-container-id-33 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-33 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-33 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-33 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-33 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-33 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-33 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-33 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-33 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-33 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-33 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-33 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-33 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-33 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-33 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-33 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-33 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-33 div.sk-item {position: relative;z-index: 1;}#sk-container-id-33 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-33 div.sk-item::before, #sk-container-id-33 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-33 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-33 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-33 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-33 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-33 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-33 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-33 div.sk-label-container {text-align: center;}#sk-container-id-33 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-33 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-33" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GridSearchCV(cv=5,
+<div class="output text_html"><style>#sk-container-id-2 {color: black;}#sk-container-id-2 pre{padding: 0;}#sk-container-id-2 div.sk-toggleable {background-color: white;}#sk-container-id-2 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-2 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-2 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-2 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-2 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-2 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-2 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-2 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-2 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-2 div.sk-item {position: relative;z-index: 1;}#sk-container-id-2 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-2 div.sk-item::before, #sk-container-id-2 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-2 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-2 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-2 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-2 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-2 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-2 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-2 div.sk-label-container {text-align: center;}#sk-container-id-2 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-2 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GridSearchCV(cv=5,
              estimator=Pipeline(steps=[(&#x27;minmaxscaler&#x27;, MinMaxScaler()),
                                        (&#x27;lasso&#x27;, Lasso())]),
              n_jobs=-1,
@@ -2389,7 +2473,7 @@ Test-set score: 0.59
         5.21400829,  5.46227722,  5.72236766,  5.9948425 ,  6.28029144,
         6.57933225,  6.8926121 ,  7.22080902,  7.56463328,  7.92482898,
         8.30217568,  8.69749003,  9.11162756,  9.54548457, 10.        ])},
-             scoring=&#x27;r2&#x27;)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-129" type="checkbox" ><label for="sk-estimator-id-129" class="sk-toggleable__label sk-toggleable__label-arrow">GridSearchCV</label><div class="sk-toggleable__content"><pre>GridSearchCV(cv=5,
+             scoring=&#x27;r2&#x27;)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox" ><label for="sk-estimator-id-5" class="sk-toggleable__label sk-toggleable__label-arrow">GridSearchCV</label><div class="sk-toggleable__content"><pre>GridSearchCV(cv=5,
              estimator=Pipeline(steps=[(&#x27;minmaxscaler&#x27;, MinMaxScaler()),
                                        (&#x27;lasso&#x27;, Lasso())]),
              n_jobs=-1,
@@ -2404,7 +2488,7 @@ Test-set score: 0.59
         5.21400829,  5.46227722,  5.72236766,  5.9948425 ,  6.28029144,
         6.57933225,  6.8926121 ,  7.22080902,  7.56463328,  7.92482898,
         8.30217568,  8.69749003,  9.11162756,  9.54548457, 10.        ])},
-             scoring=&#x27;r2&#x27;)</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-130" type="checkbox" ><label for="sk-estimator-id-130" class="sk-toggleable__label sk-toggleable__label-arrow">estimator: Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;minmaxscaler&#x27;, MinMaxScaler()), (&#x27;lasso&#x27;, Lasso())])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-131" type="checkbox" ><label for="sk-estimator-id-131" class="sk-toggleable__label sk-toggleable__label-arrow">MinMaxScaler</label><div class="sk-toggleable__content"><pre>MinMaxScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-132" type="checkbox" ><label for="sk-estimator-id-132" class="sk-toggleable__label sk-toggleable__label-arrow">Lasso</label><div class="sk-toggleable__content"><pre>Lasso()</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+             scoring=&#x27;r2&#x27;)</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox" ><label for="sk-estimator-id-6" class="sk-toggleable__label sk-toggleable__label-arrow">estimator: Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;minmaxscaler&#x27;, MinMaxScaler()), (&#x27;lasso&#x27;, Lasso())])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox" ><label for="sk-estimator-id-7" class="sk-toggleable__label sk-toggleable__label-arrow">MinMaxScaler</label><div class="sk-toggleable__content"><pre>MinMaxScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-8" type="checkbox" ><label for="sk-estimator-id-8" class="sk-toggleable__label sk-toggleable__label-arrow">Lasso</label><div class="sk-toggleable__content"><pre>Lasso()</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2460,10 +2544,12 @@ Test-set score: 0.59
 </section>
 <section id="random-forest">
 <h2>Random Forest<a class="headerlink" href="#random-forest" title="Permalink to this heading">#</a></h2>
+<p>Random Forest es un algoritmo de aprendizaje automático supervisado que combina los resultados de un conjunto de árboles de decisión para obtener un resultado único. Este modelo es muy eficaz para problemas de clasificación y regresión, y es menos propenso al sobreajuste que los árboles de decisión individuales.
+Para construir un modelo Random Forest, se crea un conjunto de árboles de decisión. Cada árbol se construye a partir de una muestra aleatoria del conjunto de datos de entrenamiento. Además, cada árbol solo utiliza un subconjunto aleatorio de las variables independientes.
+El resultado final del modelo Random Forest es el voto mayoritario de los árboles de decisión.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 </div>
@@ -2483,7 +2569,7 @@ Test-set score: 0.59
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-container-id-34 {color: black;}#sk-container-id-34 pre{padding: 0;}#sk-container-id-34 div.sk-toggleable {background-color: white;}#sk-container-id-34 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-34 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-34 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-34 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-34 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-34 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-34 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-34 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-34 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-34 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-34 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-34 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-34 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-34 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-34 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-34 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-34 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-34 div.sk-item {position: relative;z-index: 1;}#sk-container-id-34 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-34 div.sk-item::before, #sk-container-id-34 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-34 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-34 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-34 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-34 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-34 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-34 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-34 div.sk-label-container {text-align: center;}#sk-container-id-34 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-34 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-34" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GridSearchCV(cv=5,
+<div class="output text_html"><style>#sk-container-id-3 {color: black;}#sk-container-id-3 pre{padding: 0;}#sk-container-id-3 div.sk-toggleable {background-color: white;}#sk-container-id-3 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-3 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-3 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-3 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-3 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-3 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-3 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-3 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-3 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-3 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-3 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-3 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-3 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-3 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-3 div.sk-item {position: relative;z-index: 1;}#sk-container-id-3 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-3 div.sk-item::before, #sk-container-id-3 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-3 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-3 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-3 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-3 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-3 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-3 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-3 div.sk-label-container {text-align: center;}#sk-container-id-3 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-3 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-3" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GridSearchCV(cv=5,
              estimator=Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
                                        (&#x27;randomforestregressor&#x27;,
                                         RandomForestRegressor())]),
@@ -2493,7 +2579,7 @@ Test-set score: 0.59
                          &#x27;randomforestregressor__min_samples_split&#x27;: [2, 5, 10,
                                                                       15],
                          &#x27;randomforestregressor__n_estimators&#x27;: [400]},
-             scoring=&#x27;r2&#x27;)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-133" type="checkbox" ><label for="sk-estimator-id-133" class="sk-toggleable__label sk-toggleable__label-arrow">GridSearchCV</label><div class="sk-toggleable__content"><pre>GridSearchCV(cv=5,
+             scoring=&#x27;r2&#x27;)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-9" type="checkbox" ><label for="sk-estimator-id-9" class="sk-toggleable__label sk-toggleable__label-arrow">GridSearchCV</label><div class="sk-toggleable__content"><pre>GridSearchCV(cv=5,
              estimator=Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
                                        (&#x27;randomforestregressor&#x27;,
                                         RandomForestRegressor())]),
@@ -2503,8 +2589,8 @@ Test-set score: 0.59
                          &#x27;randomforestregressor__min_samples_split&#x27;: [2, 5, 10,
                                                                       15],
                          &#x27;randomforestregressor__n_estimators&#x27;: [400]},
-             scoring=&#x27;r2&#x27;)</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-134" type="checkbox" ><label for="sk-estimator-id-134" class="sk-toggleable__label sk-toggleable__label-arrow">estimator: Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
-                (&#x27;randomforestregressor&#x27;, RandomForestRegressor())])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-135" type="checkbox" ><label for="sk-estimator-id-135" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-136" type="checkbox" ><label for="sk-estimator-id-136" class="sk-toggleable__label sk-toggleable__label-arrow">RandomForestRegressor</label><div class="sk-toggleable__content"><pre>RandomForestRegressor()</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+             scoring=&#x27;r2&#x27;)</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-10" type="checkbox" ><label for="sk-estimator-id-10" class="sk-toggleable__label sk-toggleable__label-arrow">estimator: Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
+                (&#x27;randomforestregressor&#x27;, RandomForestRegressor())])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-11" type="checkbox" ><label for="sk-estimator-id-11" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-12" type="checkbox" ><label for="sk-estimator-id-12" class="sk-toggleable__label sk-toggleable__label-arrow">RandomForestRegressor</label><div class="sk-toggleable__content"><pre>RandomForestRegressor()</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2517,7 +2603,6 @@ Test-set score: 0.59
 Pipeline(steps=[(&#39;standardscaler&#39;, StandardScaler()),
                 (&#39;randomforestregressor&#39;,
                  RandomForestRegressor(max_depth=3, max_leaf_nodes=8,
-                                       min_samples_split=15,
                                        n_estimators=400))])
 </pre></div>
 </div>
@@ -2532,7 +2617,7 @@ Pipeline(steps=[(&#39;standardscaler&#39;, StandardScaler()),
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training-set score: 0.68
-Test-set score: 0.54
+Test-set score: 0.53
 </pre></div>
 </div>
 </div>
@@ -2562,7 +2647,7 @@ Test-set score: 0.54
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/37fea10e7c3c13a501f2b0c92f4ef2a89c75b5288a73549c5543e07d421f55f8.png" src="_images/37fea10e7c3c13a501f2b0c92f4ef2a89c75b5288a73549c5543e07d421f55f8.png" />
+<img alt="_images/924fc8608729a4fa9aaafea81fd422af054f4e33e977d15fe2d1e3497071f581.png" src="_images/924fc8608729a4fa9aaafea81fd422af054f4e33e977d15fe2d1e3497071f581.png" />
 </div>
 </div>
 <section id="id4">
@@ -2576,13 +2661,13 @@ Test-set score: 0.54
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/9fdffa214cc78914d4e69fb6379a6b443df42626468389913fb0ebd3682560ec.png" src="_images/9fdffa214cc78914d4e69fb6379a6b443df42626468389913fb0ebd3682560ec.png" />
+<img alt="_images/16b4e8ea9aa4eaffe7c2e79997a09e6795801a167dd3c39daba24550c708a105.png" src="_images/16b4e8ea9aa4eaffe7c2e79997a09e6795801a167dd3c39daba24550c708a105.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Modelo       MAE  RRMSE R-squared (R^2) NSE (Nash-Sutcliffe Efficiency)
 0     AR   968.170  0.188           0.697                           0.697
 1   ARMA   864.345  0.170           0.753                           0.753
 2  Ridge  1131.050  0.220           0.587                           0.587
 3  Lasso  1130.720  0.220           0.586                           0.586
-4     RF  1164.948  0.233           0.535                           0.535
+4     RF  1164.900  0.234           0.533                           0.533
 </pre></div>
 </div>
 </div>
@@ -2591,6 +2676,7 @@ Test-set score: 0.54
 </section>
 <section id="k-nn-regresor">
 <h2>k-NN regresor<a class="headerlink" href="#k-nn-regresor" title="Permalink to this heading">#</a></h2>
+<p>El K-NN regresor es un algoritmo de aprendizaje automático supervisado que se utiliza para problemas de regresión. Este algoritmo predice un valor para una nueva instancia calculando el promedio de los valores de las K instancias más similares en el conjunto de datos de entrenamiento.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">make_pipeline</span>
@@ -2622,20 +2708,20 @@ Test-set score: 0.54
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-container-id-35 {color: black;}#sk-container-id-35 pre{padding: 0;}#sk-container-id-35 div.sk-toggleable {background-color: white;}#sk-container-id-35 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-35 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-35 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-35 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-35 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-35 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-35 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-35 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-35 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-35 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-35 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-35 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-35 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-35 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-35 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-35 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-35 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-35 div.sk-item {position: relative;z-index: 1;}#sk-container-id-35 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-35 div.sk-item::before, #sk-container-id-35 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-35 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-35 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-35 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-35 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-35 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-35 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-35 div.sk-label-container {text-align: center;}#sk-container-id-35 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-35 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-35" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GridSearchCV(cv=5,
+<div class="output text_html"><style>#sk-container-id-4 {color: black;}#sk-container-id-4 pre{padding: 0;}#sk-container-id-4 div.sk-toggleable {background-color: white;}#sk-container-id-4 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-4 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-4 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-4 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-4 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-4 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-4 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-4 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-4 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-4 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-4 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-4 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-4 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-4 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-4 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-4 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-4 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-4 div.sk-item {position: relative;z-index: 1;}#sk-container-id-4 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-4 div.sk-item::before, #sk-container-id-4 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-4 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-4 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-4 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-4 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-4 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-4 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-4 div.sk-label-container {text-align: center;}#sk-container-id-4 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-4 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-4" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GridSearchCV(cv=5,
              estimator=Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
                                        (&#x27;kneighborsregressor&#x27;,
                                         KNeighborsRegressor())]),
              param_grid={&#x27;kneighborsregressor__n_neighbors&#x27;: [1, 2, 4, 6, 8, 10,
                                                               15, 20, 30, 40]},
-             scoring=&#x27;r2&#x27;)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-137" type="checkbox" ><label for="sk-estimator-id-137" class="sk-toggleable__label sk-toggleable__label-arrow">GridSearchCV</label><div class="sk-toggleable__content"><pre>GridSearchCV(cv=5,
+             scoring=&#x27;r2&#x27;)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-13" type="checkbox" ><label for="sk-estimator-id-13" class="sk-toggleable__label sk-toggleable__label-arrow">GridSearchCV</label><div class="sk-toggleable__content"><pre>GridSearchCV(cv=5,
              estimator=Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
                                        (&#x27;kneighborsregressor&#x27;,
                                         KNeighborsRegressor())]),
              param_grid={&#x27;kneighborsregressor__n_neighbors&#x27;: [1, 2, 4, 6, 8, 10,
                                                               15, 20, 30, 40]},
-             scoring=&#x27;r2&#x27;)</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-138" type="checkbox" ><label for="sk-estimator-id-138" class="sk-toggleable__label sk-toggleable__label-arrow">estimator: Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
-                (&#x27;kneighborsregressor&#x27;, KNeighborsRegressor())])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-139" type="checkbox" ><label for="sk-estimator-id-139" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-140" type="checkbox" ><label for="sk-estimator-id-140" class="sk-toggleable__label sk-toggleable__label-arrow">KNeighborsRegressor</label><div class="sk-toggleable__content"><pre>KNeighborsRegressor()</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+             scoring=&#x27;r2&#x27;)</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-14" type="checkbox" ><label for="sk-estimator-id-14" class="sk-toggleable__label sk-toggleable__label-arrow">estimator: Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
+                (&#x27;kneighborsregressor&#x27;, KNeighborsRegressor())])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-15" type="checkbox" ><label for="sk-estimator-id-15" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-16" type="checkbox" ><label for="sk-estimator-id-16" class="sk-toggleable__label sk-toggleable__label-arrow">KNeighborsRegressor</label><div class="sk-toggleable__content"><pre>KNeighborsRegressor()</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2689,7 +2775,7 @@ Test-set score: 0.53
 1   ARMA   864.345  0.170           0.753                           0.753
 2  Ridge  1131.050  0.220           0.587                           0.587
 3  Lasso  1130.720  0.220           0.586                           0.586
-4     RF  1164.948  0.233           0.535                           0.535
+4     RF  1164.900  0.234           0.533                           0.533
 5   k-NN  1174.654  0.234           0.531                           0.531
 </pre></div>
 </div>
@@ -2699,6 +2785,7 @@ Test-set score: 0.53
 </section>
 <section id="svr">
 <h2>SVR<a class="headerlink" href="#svr" title="Permalink to this heading">#</a></h2>
+<p>El modelo SVR, o soporte vectorial para regresión, es un algoritmo de aprendizaje automático supervisado que se utiliza para problemas de regresión. El modelo SVR funciona creando un hiperplano que separa los datos de entrenamiento en dos clases. El hiperplano se elige de modo que minimice el margen de error entre los datos de entrenamiento y el hiperplano.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVR</span>
@@ -2727,7 +2814,7 @@ Test-set score: 0.53
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-container-id-36 {color: black;}#sk-container-id-36 pre{padding: 0;}#sk-container-id-36 div.sk-toggleable {background-color: white;}#sk-container-id-36 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-36 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-36 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-36 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-36 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-36 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-36 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-36 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-36 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-36 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-36 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-36 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-36 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-36 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-36 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-36 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-36 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-36 div.sk-item {position: relative;z-index: 1;}#sk-container-id-36 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-36 div.sk-item::before, #sk-container-id-36 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-36 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-36 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-36 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-36 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-36 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-36 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-36 div.sk-label-container {text-align: center;}#sk-container-id-36 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-36 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-36" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GridSearchCV(cv=5,
+<div class="output text_html"><style>#sk-container-id-5 {color: black;}#sk-container-id-5 pre{padding: 0;}#sk-container-id-5 div.sk-toggleable {background-color: white;}#sk-container-id-5 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-5 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-5 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-5 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-5 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-5 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-5 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-5 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-5 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-5 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-5 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-5 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-5 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-5 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-5 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-5 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-5 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-5 div.sk-item {position: relative;z-index: 1;}#sk-container-id-5 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-5 div.sk-item::before, #sk-container-id-5 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-5 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-5 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-5 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-5 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-5 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-5 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-5 div.sk-label-container {text-align: center;}#sk-container-id-5 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-5 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-5" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GridSearchCV(cv=5,
              estimator=Pipeline(steps=[(&#x27;minmaxscaler&#x27;, MinMaxScaler()),
                                        (&#x27;svr&#x27;, SVR())]),
              n_jobs=-1,
@@ -2735,7 +2822,7 @@ Test-set score: 0.53
                          &#x27;svr__epsilon&#x27;: [1e-05, 0.0001, 0.001, 0.01, 0.1, 0.2,
                                           0.5, 1],
                          &#x27;svr__kernel&#x27;: [&#x27;linear&#x27;, &#x27;rbf&#x27;]},
-             scoring=&#x27;r2&#x27;)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-141" type="checkbox" ><label for="sk-estimator-id-141" class="sk-toggleable__label sk-toggleable__label-arrow">GridSearchCV</label><div class="sk-toggleable__content"><pre>GridSearchCV(cv=5,
+             scoring=&#x27;r2&#x27;)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-17" type="checkbox" ><label for="sk-estimator-id-17" class="sk-toggleable__label sk-toggleable__label-arrow">GridSearchCV</label><div class="sk-toggleable__content"><pre>GridSearchCV(cv=5,
              estimator=Pipeline(steps=[(&#x27;minmaxscaler&#x27;, MinMaxScaler()),
                                        (&#x27;svr&#x27;, SVR())]),
              n_jobs=-1,
@@ -2743,7 +2830,7 @@ Test-set score: 0.53
                          &#x27;svr__epsilon&#x27;: [1e-05, 0.0001, 0.001, 0.01, 0.1, 0.2,
                                           0.5, 1],
                          &#x27;svr__kernel&#x27;: [&#x27;linear&#x27;, &#x27;rbf&#x27;]},
-             scoring=&#x27;r2&#x27;)</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-142" type="checkbox" ><label for="sk-estimator-id-142" class="sk-toggleable__label sk-toggleable__label-arrow">estimator: Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;minmaxscaler&#x27;, MinMaxScaler()), (&#x27;svr&#x27;, SVR())])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-143" type="checkbox" ><label for="sk-estimator-id-143" class="sk-toggleable__label sk-toggleable__label-arrow">MinMaxScaler</label><div class="sk-toggleable__content"><pre>MinMaxScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-144" type="checkbox" ><label for="sk-estimator-id-144" class="sk-toggleable__label sk-toggleable__label-arrow">SVR</label><div class="sk-toggleable__content"><pre>SVR()</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+             scoring=&#x27;r2&#x27;)</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-18" type="checkbox" ><label for="sk-estimator-id-18" class="sk-toggleable__label sk-toggleable__label-arrow">estimator: Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;minmaxscaler&#x27;, MinMaxScaler()), (&#x27;svr&#x27;, SVR())])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-19" type="checkbox" ><label for="sk-estimator-id-19" class="sk-toggleable__label sk-toggleable__label-arrow">MinMaxScaler</label><div class="sk-toggleable__content"><pre>MinMaxScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-20" type="checkbox" ><label for="sk-estimator-id-20" class="sk-toggleable__label sk-toggleable__label-arrow">SVR</label><div class="sk-toggleable__content"><pre>SVR()</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2783,7 +2870,7 @@ Pipeline(steps=[(&#39;minmaxscaler&#39;, MinMaxScaler()),
 1   ARMA   864.345  0.170           0.753                           0.753
 2  Ridge  1131.050  0.220           0.587                           0.587
 3  Lasso  1130.720  0.220           0.586                           0.586
-4     RF  1164.948  0.233           0.535                           0.535
+4     RF  1164.900  0.234           0.533                           0.533
 5   k-NN  1174.654  0.234           0.531                           0.531
 6    SVR  1113.386  0.220           0.586                           0.586
 </pre></div>
@@ -2794,6 +2881,8 @@ Pipeline(steps=[(&#39;minmaxscaler&#39;, MinMaxScaler()),
 </section>
 <section id="redes-neuronales">
 <h2>Redes Neuronales<a class="headerlink" href="#redes-neuronales" title="Permalink to this heading">#</a></h2>
+<p>Un modelo de redes neuronales aprende a realizar una tarea mediante un proceso de entrenamiento. Durante el entrenamiento, el modelo se presenta con un conjunto de datos de entrenamiento, que contiene ejemplos de la tarea que se desea realizar. El modelo utiliza estos datos para aprender las relaciones entre las variables de entrada y la variable de salida.
+Una vez que el modelo está entrenado, se puede utilizar para predecir la variable de salida para nuevas instancias.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
@@ -2862,66 +2951,103 @@ Pipeline(steps=[(&#39;minmaxscaler&#39;, MinMaxScaler()),
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1/200
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3/3 [==============================] - 1s 89ms/step - loss: 42791604.0000 - val_loss: 46834724.0000
+3/3 [==============================] - 3s 174ms/step - loss: 57178276.0000 - val_loss: 68514584.0000
 Epoch 2/200
-3/3 [==============================] - 0s 21ms/step - loss: 30364918.0000 - val_loss: 30404640.0000
+3/3 [==============================] - 0s 22ms/step - loss: 45673308.0000 - val_loss: 53911180.0000
 Epoch 3/200
-3/3 [==============================] - 0s 24ms/step - loss: 19508344.0000 - val_loss: 17307824.0000
+3/3 [==============================] - 0s 24ms/step - loss: 35904916.0000 - val_loss: 41637792.0000
 Epoch 4/200
-3/3 [==============================] - 0s 27ms/step - loss: 10814954.0000 - val_loss: 8145768.5000
+3/3 [==============================] - 0s 28ms/step - loss: 27533456.0000 - val_loss: 30706550.0000
 Epoch 5/200
-3/3 [==============================] - 0s 28ms/step - loss: 5145690.5000 - val_loss: 3836257.7500
+3/3 [==============================] - 0s 35ms/step - loss: 20217630.0000 - val_loss: 20899954.0000
 Epoch 6/200
-3/3 [==============================] - 0s 22ms/step - loss: 3032644.5000 - val_loss: 4018757.5000
+3/3 [==============================] - 0s 50ms/step - loss: 13563188.0000 - val_loss: 12725755.0000
 Epoch 7/200
-3/3 [==============================] - 0s 21ms/step - loss: 3450322.0000 - val_loss: 5878961.5000
+3/3 [==============================] - 0s 46ms/step - loss: 8263422.0000 - val_loss: 6801464.0000
 Epoch 8/200
-3/3 [==============================] - 0s 29ms/step - loss: 4653126.0000 - val_loss: 6429401.0000
+3/3 [==============================] - 0s 27ms/step - loss: 4566356.5000 - val_loss: 3809454.0000
 Epoch 9/200
-3/3 [==============================] - 0s 27ms/step - loss: 4745808.5000 - val_loss: 5355186.0000
+3/3 [==============================] - 0s 25ms/step - loss: 2998695.2500 - val_loss: 3759489.7500
 Epoch 10/200
-3/3 [==============================] - 0s 24ms/step - loss: 3949634.2500 - val_loss: 4121681.2500
+3/3 [==============================] - 0s 22ms/step - loss: 3223228.2500 - val_loss: 5025993.5000
 Epoch 11/200
-3/3 [==============================] - 0s 24ms/step - loss: 3161064.0000 - val_loss: 3523623.0000
+3/3 [==============================] - 0s 21ms/step - loss: 4001545.0000 - val_loss: 5581096.5000
 Epoch 12/200
-3/3 [==============================] - 0s 23ms/step - loss: 2871345.2500 - val_loss: 3526351.0000
+3/3 [==============================] - 0s 20ms/step - loss: 4217320.5000 - val_loss: 5004629.5000
 Epoch 13/200
-3/3 [==============================] - 0s 22ms/step - loss: 2893116.0000 - val_loss: 3707758.5000
+3/3 [==============================] - 0s 20ms/step - loss: 3719845.2500 - val_loss: 4060674.2500
 Epoch 14/200
-3/3 [==============================] - 0s 23ms/step - loss: 3018394.2500 - val_loss: 3790826.7500
+3/3 [==============================] - 0s 24ms/step - loss: 3112382.7500 - val_loss: 3537788.0000
 Epoch 15/200
-3/3 [==============================] - 0s 22ms/step - loss: 3043741.0000 - val_loss: 3702472.5000
+3/3 [==============================] - 0s 25ms/step - loss: 2873877.7500 - val_loss: 3507691.0000
 Epoch 16/200
-3/3 [==============================] - 0s 21ms/step - loss: 2965309.7500 - val_loss: 3545356.7500
+3/3 [==============================] - 0s 20ms/step - loss: 2865454.5000 - val_loss: 3674385.2500
 Epoch 17/200
-3/3 [==============================] - 0s 32ms/step - loss: 2853660.5000 - val_loss: 3473435.5000
+3/3 [==============================] - 0s 21ms/step - loss: 2987722.2500 - val_loss: 3784303.2500
 Epoch 18/200
-3/3 [==============================] - 0s 22ms/step - loss: 2823648.5000 - val_loss: 3541890.7500
+3/3 [==============================] - 0s 20ms/step - loss: 3045027.7500 - val_loss: 3745658.2500
 Epoch 19/200
-3/3 [==============================] - 0s 21ms/step - loss: 2903644.2500 - val_loss: 3613959.7500
+3/3 [==============================] - 0s 24ms/step - loss: 3002496.0000 - val_loss: 3620814.7500
 Epoch 20/200
-3/3 [==============================] - 0s 20ms/step - loss: 2915098.7500 - val_loss: 3557235.0000
+3/3 [==============================] - 0s 25ms/step - loss: 2920880.7500 - val_loss: 3512599.7500
 Epoch 21/200
-3/3 [==============================] - 0s 28ms/step - loss: 2874503.7500 - val_loss: 3502958.7500
+3/3 [==============================] - 0s 25ms/step - loss: 2838609.2500 - val_loss: 3474274.7500
 Epoch 22/200
-3/3 [==============================] - 0s 26ms/step - loss: 2837975.0000 - val_loss: 3473729.0000
+3/3 [==============================] - 0s 23ms/step - loss: 2830213.2500 - val_loss: 3485059.0000
 Epoch 23/200
-3/3 [==============================] - 0s 22ms/step - loss: 2822903.5000 - val_loss: 3480304.5000
+3/3 [==============================] - 0s 23ms/step - loss: 2834930.5000 - val_loss: 3500278.2500
 Epoch 24/200
-3/3 [==============================] - 0s 25ms/step - loss: 2834718.7500 - val_loss: 3501127.2500
+3/3 [==============================] - 0s 24ms/step - loss: 2843505.7500 - val_loss: 3498413.0000
 Epoch 25/200
-3/3 [==============================] - 0s 25ms/step - loss: 2854004.2500 - val_loss: 3517694.7500
+3/3 [==============================] - 0s 27ms/step - loss: 2839767.2500 - val_loss: 3490934.7500
 Epoch 26/200
-3/3 [==============================] - 0s 22ms/step - loss: 2858291.7500 - val_loss: 3508125.7500
+3/3 [==============================] - 0s 32ms/step - loss: 2834234.0000 - val_loss: 3478118.2500
 Epoch 27/200
-3/3 [==============================] - 0s 26ms/step - loss: 2843618.2500 - val_loss: 3478978.2500
-WARNING:tensorflow:5 out of the last 13 calls to &lt;function Model.make_predict_function.&lt;locals&gt;.predict_function at 0x0000019D3EAC2820&gt; triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has reduce_retracing=True option that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
-3/3 [==============================] - 0s 3ms/step
+3/3 [==============================] - 0s 26ms/step - loss: 2831908.5000 - val_loss: 3473216.7500
+Epoch 28/200
+3/3 [==============================] - 0s 23ms/step - loss: 2825072.2500 - val_loss: 3473912.2500
+Epoch 29/200
+3/3 [==============================] - 0s 26ms/step - loss: 2827103.0000 - val_loss: 3474249.7500
+Epoch 30/200
+3/3 [==============================] - 0s 27ms/step - loss: 2827088.2500 - val_loss: 3473237.0000
+Epoch 31/200
+3/3 [==============================] - 0s 24ms/step - loss: 2826365.0000 - val_loss: 3476348.7500
+Epoch 32/200
+3/3 [==============================] - 0s 24ms/step - loss: 2826123.0000 - val_loss: 3480573.5000
+Epoch 33/200
+3/3 [==============================] - 0s 27ms/step - loss: 2829799.7500 - val_loss: 3486370.7500
+Epoch 34/200
+3/3 [==============================] - 0s 27ms/step - loss: 2833844.7500 - val_loss: 3487059.7500
+Epoch 35/200
+3/3 [==============================] - 0s 26ms/step - loss: 2833024.7500 - val_loss: 3483693.5000
+Epoch 36/200
+3/3 [==============================] - 0s 26ms/step - loss: 2830560.0000 - val_loss: 3477864.0000
+Epoch 37/200
+3/3 [==============================] - 0s 29ms/step - loss: 2827806.7500 - val_loss: 3473195.2500
+Epoch 38/200
+3/3 [==============================] - 0s 29ms/step - loss: 2825172.2500 - val_loss: 3475741.5000
+Epoch 39/200
+3/3 [==============================] - 0s 31ms/step - loss: 2828960.5000 - val_loss: 3479248.7500
+Epoch 40/200
+3/3 [==============================] - 0s 26ms/step - loss: 2829259.0000 - val_loss: 3475226.0000
+Epoch 41/200
+3/3 [==============================] - 0s 23ms/step - loss: 2823897.7500 - val_loss: 3473465.2500
+Epoch 42/200
+3/3 [==============================] - 0s 25ms/step - loss: 2825390.2500 - val_loss: 3476629.2500
+Epoch 43/200
+3/3 [==============================] - 0s 37ms/step - loss: 2826708.7500 - val_loss: 3476043.0000
+Epoch 44/200
+3/3 [==============================] - 0s 35ms/step - loss: 2827381.5000 - val_loss: 3476471.2500
+Epoch 45/200
+3/3 [==============================] - 0s 34ms/step - loss: 2827853.0000 - val_loss: 3476818.5000
+Epoch 46/200
+3/3 [==============================] - 0s 30ms/step - loss: 2827194.5000 - val_loss: 3477400.0000
+Epoch 47/200
+3/3 [==============================] - 0s 40ms/step - loss: 2828678.5000 - val_loss: 3483216.2500
+3/3 [==============================] - 0s 2ms/step
 </pre></div>
 </div>
-<img alt="_images/0a81cfd55c97bc33a2ce8161cd51404503dd595ca5429c52ff38fa40c55a0829.png" src="_images/0a81cfd55c97bc33a2ce8161cd51404503dd595ca5429c52ff38fa40c55a0829.png" />
+<img alt="_images/80649a14318cfba8d75a488574ac5457220998c9ad70b9edac7da9240d3512a6.png" src="_images/80649a14318cfba8d75a488574ac5457220998c9ad70b9edac7da9240d3512a6.png" />
 </div>
 </div>
 <section id="id7">
@@ -2935,16 +3061,16 @@ WARNING:tensorflow:5 out of the last 13 calls to &lt;function Model.make_predict
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/200baf115d7c111f2d727d855b6c34a1548000abaad3b551cb5be1ea36208f77.png" src="_images/200baf115d7c111f2d727d855b6c34a1548000abaad3b551cb5be1ea36208f77.png" />
+<img alt="_images/9f790b17135878bc9b19c03fb0e8b978ce17e1e56efc3747bdc34fb8969d757b.png" src="_images/9f790b17135878bc9b19c03fb0e8b978ce17e1e56efc3747bdc34fb8969d757b.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Modelo       MAE  RRMSE R-squared (R^2) NSE (Nash-Sutcliffe Efficiency)
 0     AR   968.170  0.188           0.697                           0.697
 1   ARMA   864.345  0.170           0.753                           0.753
 2  Ridge  1131.050  0.220           0.587                           0.587
 3  Lasso  1130.720  0.220           0.586                           0.586
-4     RF  1164.948  0.233           0.535                           0.535
+4     RF  1164.900  0.234           0.533                           0.533
 5   k-NN  1174.654  0.234           0.531                           0.531
 6    SVR  1113.386  0.220           0.586                           0.586
-7    MLP  1241.818  0.239           0.514                           0.514
+7    MLP  1243.122  0.239           0.514                           0.514
 </pre></div>
 </div>
 </div>
@@ -2953,9 +3079,9 @@ WARNING:tensorflow:5 out of the last 13 calls to &lt;function Model.make_predict
 </section>
 <section id="modelo-hibrido">
 <h2>Modelo Hibrido<a class="headerlink" href="#modelo-hibrido" title="Permalink to this heading">#</a></h2>
-<section id="random-forest-con-modelos-lineales">
-<h3>Random Forest con modelos lineales<a class="headerlink" href="#random-forest-con-modelos-lineales" title="Permalink to this heading">#</a></h3>
-<p>Entre los modelos lineales se encuentran: autoregressive (AR), moving average (MA), and autoregressive moving average (ARMA)</p>
+<section id="random-forest-y-ridge-con-arima">
+<h3>Random Forest y Ridge con ARIMA.<a class="headerlink" href="#random-forest-y-ridge-con-arima" title="Permalink to this heading">#</a></h3>
+<p>Entre los modelos lineales se encuentran: autoregressive (AR) y autoregressive moving average (ARMA)</p>
 <p>Para medir el rendimiento de todos los modelos desarrollados de manera cualitativa, los valores de RRMSE (Error Cuadrático Medio Raíz Relativo) se categorizaron de la siguiente manera:</p>
 <ul class="simple">
 <li><p>Excelente: 0% &lt; RRMSE &lt; 10%</p></li>
@@ -2966,6 +3092,7 @@ WARNING:tensorflow:5 out of the last 13 calls to &lt;function Model.make_predict
 </section>
 <section id="ar-rf">
 <h3>AR-RF<a class="headerlink" href="#ar-rf" title="Permalink to this heading">#</a></h3>
+<p>El modelo AR-RF es un modelo de aprendizaje automático híbrido que combina un modelo de autorregresión (AR) con un modelo de bosque aleatorio (RF). Este modelo se utiliza para problemas de regresión, y es eficaz para capturar la dependencia temporal de los datos y para reducir el sobreajuste, el RF captura las tendencias no lineales del modelo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_order</span> <span class="o">=</span> <span class="n">orden_ar</span>
@@ -3060,7 +3187,7 @@ WARNING:tensorflow:5 out of the last 13 calls to &lt;function Model.make_predict
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-container-id-37 {color: black;}#sk-container-id-37 pre{padding: 0;}#sk-container-id-37 div.sk-toggleable {background-color: white;}#sk-container-id-37 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-37 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-37 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-37 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-37 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-37 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-37 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-37 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-37 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-37 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-37 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-37 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-37 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-37 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-37 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-37 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-37 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-37 div.sk-item {position: relative;z-index: 1;}#sk-container-id-37 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-37 div.sk-item::before, #sk-container-id-37 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-37 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-37 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-37 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-37 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-37 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-37 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-37 div.sk-label-container {text-align: center;}#sk-container-id-37 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-37 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-37" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GridSearchCV(cv=5,
+<div class="output text_html"><style>#sk-container-id-6 {color: black;}#sk-container-id-6 pre{padding: 0;}#sk-container-id-6 div.sk-toggleable {background-color: white;}#sk-container-id-6 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-6 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-6 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-6 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-6 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-6 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-6 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-6 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-6 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-6 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-6 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-6 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-6 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-6 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-6 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-6 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-6 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-6 div.sk-item {position: relative;z-index: 1;}#sk-container-id-6 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-6 div.sk-item::before, #sk-container-id-6 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-6 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-6 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-6 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-6 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-6 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-6 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-6 div.sk-label-container {text-align: center;}#sk-container-id-6 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-6 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-6" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GridSearchCV(cv=5,
              estimator=Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
                                        (&#x27;randomforestregressor&#x27;,
                                         RandomForestRegressor())]),
@@ -3070,7 +3197,7 @@ WARNING:tensorflow:5 out of the last 13 calls to &lt;function Model.make_predict
                          &#x27;randomforestregressor__min_samples_split&#x27;: [2, 5, 10,
                                                                       15],
                          &#x27;randomforestregressor__n_estimators&#x27;: [400]},
-             scoring=&#x27;r2&#x27;)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-145" type="checkbox" ><label for="sk-estimator-id-145" class="sk-toggleable__label sk-toggleable__label-arrow">GridSearchCV</label><div class="sk-toggleable__content"><pre>GridSearchCV(cv=5,
+             scoring=&#x27;r2&#x27;)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-21" type="checkbox" ><label for="sk-estimator-id-21" class="sk-toggleable__label sk-toggleable__label-arrow">GridSearchCV</label><div class="sk-toggleable__content"><pre>GridSearchCV(cv=5,
              estimator=Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
                                        (&#x27;randomforestregressor&#x27;,
                                         RandomForestRegressor())]),
@@ -3080,8 +3207,8 @@ WARNING:tensorflow:5 out of the last 13 calls to &lt;function Model.make_predict
                          &#x27;randomforestregressor__min_samples_split&#x27;: [2, 5, 10,
                                                                       15],
                          &#x27;randomforestregressor__n_estimators&#x27;: [400]},
-             scoring=&#x27;r2&#x27;)</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-146" type="checkbox" ><label for="sk-estimator-id-146" class="sk-toggleable__label sk-toggleable__label-arrow">estimator: Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
-                (&#x27;randomforestregressor&#x27;, RandomForestRegressor())])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-147" type="checkbox" ><label for="sk-estimator-id-147" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-148" type="checkbox" ><label for="sk-estimator-id-148" class="sk-toggleable__label sk-toggleable__label-arrow">RandomForestRegressor</label><div class="sk-toggleable__content"><pre>RandomForestRegressor()</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+             scoring=&#x27;r2&#x27;)</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-22" type="checkbox" ><label for="sk-estimator-id-22" class="sk-toggleable__label sk-toggleable__label-arrow">estimator: Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
+                (&#x27;randomforestregressor&#x27;, RandomForestRegressor())])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-23" type="checkbox" ><label for="sk-estimator-id-23" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-24" type="checkbox" ><label for="sk-estimator-id-24" class="sk-toggleable__label sk-toggleable__label-arrow">RandomForestRegressor</label><div class="sk-toggleable__content"><pre>RandomForestRegressor()</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3093,7 +3220,7 @@ WARNING:tensorflow:5 out of the last 13 calls to &lt;function Model.make_predict
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best estimator:
 Pipeline(steps=[(&#39;standardscaler&#39;, StandardScaler()),
                 (&#39;randomforestregressor&#39;,
-                 RandomForestRegressor(max_depth=2, max_leaf_nodes=6,
+                 RandomForestRegressor(max_depth=2, max_leaf_nodes=4,
                                        min_samples_split=15,
                                        n_estimators=400))])
 </pre></div>
@@ -3135,9 +3262,12 @@ Pipeline(steps=[(&#39;standardscaler&#39;, StandardScaler()),
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6da57f709966cd1e9cd754ca2cfab0582db94a4b92bd8dd4d6b0465703b9f289.png" src="_images/6da57f709966cd1e9cd754ca2cfab0582db94a4b92bd8dd4d6b0465703b9f289.png" />
+<img alt="_images/cec0eeb0a7c84eee962d549e98a9fd1661f6d65650059b7240a76af02e8c7315.png" src="_images/cec0eeb0a7c84eee962d549e98a9fd1661f6d65650059b7240a76af02e8c7315.png" />
 </div>
 </div>
+<ul class="simple">
+<li><p>Observamos que no puede seguir a todos los residuos. Sin embargo, logra capturar algunos comportamientos.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Training-set score: </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">RF_e</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">residuales_train_extra</span><span class="p">,</span> <span class="n">residuals_train</span><span class="p">)))</span>
@@ -3146,8 +3276,8 @@ Pipeline(steps=[(&#39;standardscaler&#39;, StandardScaler()),
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training-set score: 0.11
-Test-set score: 0.09
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training-set score: 0.10
+Test-set score: 0.08
 </pre></div>
 </div>
 </div>
@@ -3172,25 +3302,26 @@ Test-set score: 0.09
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c3175bb64cd2a09ee95ff28b01eb1459eb666bd6816cfb42c5f5f501cf49022c.png" src="_images/c3175bb64cd2a09ee95ff28b01eb1459eb666bd6816cfb42c5f5f501cf49022c.png" />
+<img alt="_images/b591784b88ab63d16497cd239cc3e939b141145f1e4a781508f1415909399905.png" src="_images/b591784b88ab63d16497cd239cc3e939b141145f1e4a781508f1415909399905.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Modelo       MAE  RRMSE R-squared (R^2) NSE (Nash-Sutcliffe Efficiency)
 0     AR   968.170  0.188           0.697                           0.697
 1   ARMA   864.345  0.170           0.753                           0.753
 2  Ridge  1131.050  0.220           0.587                           0.587
 3  Lasso  1130.720  0.220           0.586                           0.586
-4     RF  1164.948  0.233           0.535                           0.535
+4     RF  1164.900  0.234           0.533                           0.533
 5   k-NN  1174.654  0.234           0.531                           0.531
 6    SVR  1113.386  0.220           0.586                           0.586
-7    MLP  1241.818  0.239           0.514                           0.514
-8  AR-RF   906.107  0.179           0.726                           0.726
+7    MLP  1243.122  0.239           0.514                           0.514
+8  AR-RF   907.511  0.179           0.725                           0.725
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 </section>
-<section id="ar-model">
-<h3>AR-MODEL<a class="headerlink" href="#ar-model" title="Permalink to this heading">#</a></h3>
+<section id="ar-ridge">
+<h3>AR-RIDGE<a class="headerlink" href="#ar-ridge" title="Permalink to this heading">#</a></h3>
+<p>El modelo AR-Ridge es un modelo de aprendizaje automático híbrido que combina un modelo de autorregresión (AR) con un modelo de regresión Ridge. Este modelo se utiliza para problemas de regresión, y es eficaz para capturar la dependencia temporal de los datos y para reducir el sobreajuste. El modelo Ridge se aplica a los residuos del modelo AR.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -3233,13 +3364,6 @@ Test-set score: 0.09
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#metricas(residuales_AR, y_pred_ridge)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_AR_Ridge</span> <span class="o">=</span> <span class="n">predictions_AR</span> <span class="o">+</span> <span class="n">y_pred_ridge</span>
 </pre></div>
 </div>
@@ -3262,11 +3386,11 @@ Test-set score: 0.09
 1      ARMA   864.345  0.170           0.753                           0.753
 2     Ridge  1131.050  0.220           0.587                           0.587
 3     Lasso  1130.720  0.220           0.586                           0.586
-4        RF  1164.948  0.233           0.535                           0.535
+4        RF  1164.900  0.234           0.533                           0.533
 5      k-NN  1174.654  0.234           0.531                           0.531
 6       SVR  1113.386  0.220           0.586                           0.586
-7       MLP  1241.818  0.239           0.514                           0.514
-8     AR-RF   906.107  0.179           0.726                           0.726
+7       MLP  1243.122  0.239           0.514                           0.514
+8     AR-RF   907.511  0.179           0.725                           0.725
 9  AR-Ridge   921.063  0.181           0.721                           0.721
 </pre></div>
 </div>
@@ -3276,6 +3400,8 @@ Test-set score: 0.09
 </section>
 <section id="arma-rf">
 <h3>ARMA-RF<a class="headerlink" href="#arma-rf" title="Permalink to this heading">#</a></h3>
+<p>El modelo ARMA-RF es un modelo de aprendizaje automático que se utiliza para predecir series temporales. Es una combinación de un modelo ARMA (Autoregressive Moving Average) y un modelo Random Forest.
+El modelo ARMA se utiliza para modelar la tendencia y la variación de una serie temporal. El modelo Random Forest se utiliza para modelar los residuos obtenidos.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_order</span> <span class="o">=</span> <span class="n">orden_arma</span>
@@ -3357,7 +3483,7 @@ Test-set score: 0.09
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-container-id-38 {color: black;}#sk-container-id-38 pre{padding: 0;}#sk-container-id-38 div.sk-toggleable {background-color: white;}#sk-container-id-38 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-38 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-38 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-38 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-38 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-38 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-38 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-38 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-38 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-38 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-38 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-38 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-38 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-38 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-38 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-38 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-38 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-38 div.sk-item {position: relative;z-index: 1;}#sk-container-id-38 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-38 div.sk-item::before, #sk-container-id-38 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-38 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-38 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-38 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-38 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-38 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-38 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-38 div.sk-label-container {text-align: center;}#sk-container-id-38 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-38 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-38" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GridSearchCV(cv=5,
+<div class="output text_html"><style>#sk-container-id-7 {color: black;}#sk-container-id-7 pre{padding: 0;}#sk-container-id-7 div.sk-toggleable {background-color: white;}#sk-container-id-7 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-7 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-7 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-7 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-7 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-7 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-7 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-7 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-7 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-7 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-7 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-7 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-7 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-7 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-7 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-7 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-7 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-7 div.sk-item {position: relative;z-index: 1;}#sk-container-id-7 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-7 div.sk-item::before, #sk-container-id-7 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-7 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-7 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-7 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-7 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-7 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-7 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-7 div.sk-label-container {text-align: center;}#sk-container-id-7 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-7 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-7" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GridSearchCV(cv=5,
              estimator=Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
                                        (&#x27;randomforestregressor&#x27;,
                                         RandomForestRegressor())]),
@@ -3367,7 +3493,7 @@ Test-set score: 0.09
                          &#x27;randomforestregressor__min_samples_split&#x27;: [2, 5, 10,
                                                                       15],
                          &#x27;randomforestregressor__n_estimators&#x27;: [400]},
-             scoring=&#x27;r2&#x27;)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-149" type="checkbox" ><label for="sk-estimator-id-149" class="sk-toggleable__label sk-toggleable__label-arrow">GridSearchCV</label><div class="sk-toggleable__content"><pre>GridSearchCV(cv=5,
+             scoring=&#x27;r2&#x27;)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-25" type="checkbox" ><label for="sk-estimator-id-25" class="sk-toggleable__label sk-toggleable__label-arrow">GridSearchCV</label><div class="sk-toggleable__content"><pre>GridSearchCV(cv=5,
              estimator=Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
                                        (&#x27;randomforestregressor&#x27;,
                                         RandomForestRegressor())]),
@@ -3377,8 +3503,8 @@ Test-set score: 0.09
                          &#x27;randomforestregressor__min_samples_split&#x27;: [2, 5, 10,
                                                                       15],
                          &#x27;randomforestregressor__n_estimators&#x27;: [400]},
-             scoring=&#x27;r2&#x27;)</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-150" type="checkbox" ><label for="sk-estimator-id-150" class="sk-toggleable__label sk-toggleable__label-arrow">estimator: Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
-                (&#x27;randomforestregressor&#x27;, RandomForestRegressor())])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-151" type="checkbox" ><label for="sk-estimator-id-151" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-152" type="checkbox" ><label for="sk-estimator-id-152" class="sk-toggleable__label sk-toggleable__label-arrow">RandomForestRegressor</label><div class="sk-toggleable__content"><pre>RandomForestRegressor()</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+             scoring=&#x27;r2&#x27;)</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-26" type="checkbox" ><label for="sk-estimator-id-26" class="sk-toggleable__label sk-toggleable__label-arrow">estimator: Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;standardscaler&#x27;, StandardScaler()),
+                (&#x27;randomforestregressor&#x27;, RandomForestRegressor())])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-27" type="checkbox" ><label for="sk-estimator-id-27" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-28" type="checkbox" ><label for="sk-estimator-id-28" class="sk-toggleable__label sk-toggleable__label-arrow">RandomForestRegressor</label><div class="sk-toggleable__content"><pre>RandomForestRegressor()</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3390,7 +3516,7 @@ Test-set score: 0.09
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best estimator:
 Pipeline(steps=[(&#39;standardscaler&#39;, StandardScaler()),
                 (&#39;randomforestregressor&#39;,
-                 RandomForestRegressor(max_depth=2, max_leaf_nodes=8,
+                 RandomForestRegressor(max_depth=2, max_leaf_nodes=4,
                                        n_estimators=400))])
 </pre></div>
 </div>
@@ -3413,9 +3539,12 @@ Pipeline(steps=[(&#39;standardscaler&#39;, StandardScaler()),
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/77b2e6554fbca08011e987bf29e3595270e25428566e548a686ff3e8b569ec77.png" src="_images/77b2e6554fbca08011e987bf29e3595270e25428566e548a686ff3e8b569ec77.png" />
+<img alt="_images/2ecf4abf475c42ce5220349c3c799533ab0edf60c934a7d6c017575d4a1bac58.png" src="_images/2ecf4abf475c42ce5220349c3c799533ab0edf60c934a7d6c017575d4a1bac58.png" />
 </div>
 </div>
+<ul class="simple">
+<li><p>Al igual que los modelos anteriores no logra seguir todo el comportamiento de los residuos.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Training-set score: </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">RF_e</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">residuales_train_extra</span><span class="p">,</span> <span class="n">residuals_train</span><span class="p">)))</span>
@@ -3448,27 +3577,28 @@ Test-set score: 0.07
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/333f0aa816c291458deab4f9b474df3e19be1eddd6f40d200ff4032a9e68e367.png" src="_images/333f0aa816c291458deab4f9b474df3e19be1eddd6f40d200ff4032a9e68e367.png" />
+<img alt="_images/1a3daf841b3b4afcf156623db7f0e9263691d50d62c05cb11d3fc93eb0ab23e9.png" src="_images/1a3daf841b3b4afcf156623db7f0e9263691d50d62c05cb11d3fc93eb0ab23e9.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      Modelo       MAE  RRMSE R-squared (R^2) NSE (Nash-Sutcliffe Efficiency)
 0         AR   968.170  0.188           0.697                           0.697
 1       ARMA   864.345  0.170           0.753                           0.753
 2      Ridge  1131.050  0.220           0.587                           0.587
 3      Lasso  1130.720  0.220           0.586                           0.586
-4         RF  1164.948  0.233           0.535                           0.535
+4         RF  1164.900  0.234           0.533                           0.533
 5       k-NN  1174.654  0.234           0.531                           0.531
 6        SVR  1113.386  0.220           0.586                           0.586
-7        MLP  1241.818  0.239           0.514                           0.514
-8      AR-RF   906.107  0.179           0.726                           0.726
+7        MLP  1243.122  0.239           0.514                           0.514
+8      AR-RF   907.511  0.179           0.725                           0.725
 9   AR-Ridge   921.063  0.181           0.721                           0.721
-10   ARMA-RF   831.521  0.164           0.770                           0.770
+10   ARMA-RF   831.368  0.164           0.770                           0.770
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 </section>
-<section id="arma-model">
-<h3>ARMA-MODEL<a class="headerlink" href="#arma-model" title="Permalink to this heading">#</a></h3>
+<section id="arma-ridge">
+<h3>ARMA-RIDGE<a class="headerlink" href="#arma-ridge" title="Permalink to this heading">#</a></h3>
+<p>El modelo ARMA-Ridge es un modelo de regresión que combina las propiedades de un modelo autoregresivo-media móvil (ARMA) con la regularización Ridge. El modelo ARMA predice un valor futuro basado en valores pasados, así como en la media móvil de los valores pasados. La regularización Ridge reduce el sesgo del modelo, y ayuda a predecir los residuos.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -3509,13 +3639,9 @@ Test-set score: 0.07
 <img alt="_images/83516f00ff944c98e16081a03524310b43eb73622299c8a95f283a9961961827.png" src="_images/83516f00ff944c98e16081a03524310b43eb73622299c8a95f283a9961961827.png" />
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#metricas(residuales_ARMA, y_pred_ridge)</span>
-</pre></div>
-</div>
-</div>
-</div>
+<ul class="simple">
+<li><p>Al igual que los modelos anteriores no logra seguir todo el comportamiento de los residuos.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_ARMA_Ridge</span> <span class="o">=</span> <span class="n">predictions_ARMA</span> <span class="o">+</span> <span class="n">y_pred_ridge</span>
@@ -3540,13 +3666,13 @@ Test-set score: 0.07
 1         ARMA   864.345  0.170           0.753   
 2        Ridge  1131.050  0.220           0.587   
 3        Lasso  1130.720  0.220           0.586   
-4           RF  1164.948  0.233           0.535   
+4           RF  1164.900  0.234           0.533   
 5         k-NN  1174.654  0.234           0.531   
 6          SVR  1113.386  0.220           0.586   
-7          MLP  1241.818  0.239           0.514   
-8        AR-RF   906.107  0.179           0.726   
+7          MLP  1243.122  0.239           0.514   
+8        AR-RF   907.511  0.179           0.725   
 9     AR-Ridge   921.063  0.181           0.721   
-10     ARMA-RF   831.521  0.164           0.770   
+10     ARMA-RF   831.368  0.164           0.770   
 11  ARMA-Ridge   843.062  0.166           0.766   
 
    NSE (Nash-Sutcliffe Efficiency)  
@@ -3554,11 +3680,11 @@ Test-set score: 0.07
 1                            0.753  
 2                            0.587  
 3                            0.586  
-4                            0.535  
+4                            0.533  
 5                            0.531  
 6                            0.586  
 7                            0.514  
-8                            0.726  
+8                            0.725  
 9                            0.721  
 10                           0.770  
 11                           0.766  
@@ -3641,10 +3767,10 @@ Test-set score: 0.07
     <tr>
       <th>4</th>
       <td>RF</td>
-      <td>1164.948</td>
-      <td>0.233</td>
-      <td>0.535</td>
-      <td>0.535</td>
+      <td>1164.900</td>
+      <td>0.234</td>
+      <td>0.533</td>
+      <td>0.533</td>
     </tr>
     <tr>
       <th>5</th>
@@ -3665,7 +3791,7 @@ Test-set score: 0.07
     <tr>
       <th>7</th>
       <td>MLP</td>
-      <td>1241.818</td>
+      <td>1243.122</td>
       <td>0.239</td>
       <td>0.514</td>
       <td>0.514</td>
@@ -3673,10 +3799,10 @@ Test-set score: 0.07
     <tr>
       <th>8</th>
       <td>AR-RF</td>
-      <td>906.107</td>
+      <td>907.511</td>
       <td>0.179</td>
-      <td>0.726</td>
-      <td>0.726</td>
+      <td>0.725</td>
+      <td>0.725</td>
     </tr>
     <tr>
       <th>9</th>
@@ -3689,7 +3815,7 @@ Test-set score: 0.07
     <tr>
       <th>10</th>
       <td>ARMA-RF</td>
-      <td>831.521</td>
+      <td>831.368</td>
       <td>0.164</td>
       <td>0.770</td>
       <td>0.770</td>
@@ -3706,6 +3832,53 @@ Test-set score: 0.07
 </table>
 </div></div></div>
 </div>
+<p>En resumen, los modelos que combinan componentes autorregresivos con random forests (“ARMA-RF” y “ARMA-Ridge”) parecen ser los más prometedores para la predicción del caudal, mientras que otros modelos como “AR” y “ARMA” también ofrecen resultados competitivos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
+
+
+
+<span class="c1"># Obtén los valores de R^2 del DataFrame</span>
+<span class="n">R2_modelo1</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">df_resultados</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;R-squared (R^2)&#39;</span><span class="p">])</span>
+<span class="n">R2_modelo2</span>  <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">df_resultados</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;R-squared (R^2)&#39;</span><span class="p">])</span>
+
+
+<span class="c1"># Tamaño de la muestra (número de observaciones) para cada modelo</span>
+<span class="n">n_modelo1</span> <span class="o">=</span> <span class="n">n_modelo2</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">test</span><span class="p">)</span> 
+
+<span class="c1"># Grados de libertad para la prueba t</span>
+<span class="n">grados_libertad</span> <span class="o">=</span> <span class="n">n_modelo1</span> <span class="o">+</span> <span class="n">n_modelo2</span> <span class="o">-</span> <span class="mi">2</span>
+
+<span class="c1"># Estadística de prueba t</span>
+<span class="n">diferencia_R2</span> <span class="o">=</span> <span class="n">R2_modelo1</span> <span class="o">-</span> <span class="n">R2_modelo2</span>
+<span class="n">error_estandar</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">n_modelo1</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">n_modelo2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)))</span>
+<span class="n">t_statistic</span> <span class="o">=</span> <span class="n">diferencia_R2</span> <span class="o">/</span> <span class="p">(</span><span class="n">error_estandar</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">n_modelo1</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">n_modelo2</span><span class="p">))</span>
+
+<span class="c1"># Valor p de dos colas</span>
+<span class="n">p_value</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">t_statistic</span><span class="p">),</span> <span class="n">df</span><span class="o">=</span><span class="n">grados_libertad</span><span class="p">))</span>
+
+<span class="c1"># Nivel de significancia</span>
+<span class="n">alfa</span> <span class="o">=</span> <span class="mf">0.05</span>  <span class="c1"># Puedes ajustar el nivel de significancia</span>
+
+<span class="c1"># Compara el valor p con el nivel de significancia alfa para tomar una decisión</span>
+<span class="k">if</span> <span class="n">p_value</span> <span class="o">&lt;</span> <span class="n">alfa</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rechazar H0: Los R^2 de los modelos son significativamente diferentes.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No rechazar H0: No hay suficiente evidencia para decir que los R^2 de los modelos difieren significativamente.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No rechazar H0: No hay suficiente evidencia para decir que los R^2 de los modelos difieren significativamente.
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>En consecuencia, los resultados indican que no hay evidencia sólida que respalde la superioridad del modelo híbrido en comparación con las alternativas. Por lo tanto, se sugiere en las recomendaciones para investigaciones futuras la exploración de diferentes configuraciones y modelos de machine learning, ajustando sus hiperparámetros para lograr un mejor ajuste a los residuos.</p></li>
+</ul>
 </section>
 
     <script type="text/x-thebe-config">
@@ -3817,12 +3990,12 @@ Test-set score: 0.07
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-hibrido">Modelo Hibrido</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-con-modelos-lineales">Random Forest con modelos lineales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-y-ridge-con-arima">Random Forest y Ridge con ARIMA.</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ar-rf">AR-RF</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Metricas del modelo</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ar-model">AR-MODEL</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ar-ridge">AR-RIDGE</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Metricas del modelo</a></li>
 </ul>
 </li>
@@ -3830,7 +4003,7 @@ Test-set score: 0.07
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Metricas del modelo</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arma-model">ARMA-MODEL</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arma-ridge">ARMA-RIDGE</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Metricas del modelo</a></li>
 </ul>
 </li>

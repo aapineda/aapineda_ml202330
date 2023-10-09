@@ -354,7 +354,13 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen"><strong>Resumen</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologia"><em>Metodología</em></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologia"><em>Metodología</em></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-hibrido-ar-rf-autoregressive-random-forest">Modelo Híbrido AR-RF (Autoregressive Random Forest)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-hibrido-arma-rf-autoregressive-moving-average-random-forest">Modelo Híbrido ARMA-RF (Autoregressive Moving Average Random Forest)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-hibrido-ar-ridge-autoregressive-ridge-regression">Modelo Híbrido AR-Ridge (Autoregressive Ridge Regression)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-hibrido-arma-ridge-autoregressive-moving-average-ridge-regression">Modelo Híbrido ARMA-Ridge (Autoregressive Moving Average Ridge Regression)</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados-y-discusion">Resultados y Discusión</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados-experimentales">Resultados experimentales</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion">Interpretación</a></li>
@@ -376,7 +382,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="river-flow-forecasting-a-hybrid-approach-integrating-machine-learning-and-arima">
 <h1>River Flow Forecasting: A Hybrid Approach Integrating Machine Learning and ARIMA<a class="headerlink" href="#river-flow-forecasting-a-hybrid-approach-integrating-machine-learning-and-arima" title="Permalink to this heading">#</a></h1>
-<p><img alt="Alt text" src="_images/1024px-Rio_Magdalena_Delta_landsat.jpg" /></p>
+<p><img alt="Alt text" src="_images/1024px-Rio_Magdalena_Delta_landsat.jpg" /> Fuente: Wikipedia</p>
 <section id="resumen">
 <h2><strong>Resumen</strong><a class="headerlink" href="#resumen" title="Permalink to this heading">#</a></h2>
 <p>La precisa estimación del caudal del río Magdalena en la estación de Calamar, Bolívar, es esencial para la gestión de recursos hídricos y la reducción de riesgos de inundaciones en esta región.
@@ -396,23 +402,22 @@ Los resultados de este estudio sugieren que la combinación de enfoques híbrido
 <li><p>Muestra: La muestra se seleccionó considerando el tiempo y el espacio, incluyendo datos diarios recopilados a lo largo de los años 1984 hasta el 2020.</p></li>
 </ul>
 <p><em>Zona de estudio</em>
-El río Magdalena es el río más grande de Colombia y uno de los ríos más importantes de América del Sur. Fluye desde el sur de Colombia hacia el norte y desemboca en el mar Caribe. La zona de Calamar, que mencionas, está ubicada en el departamento de Bolívar, cerca de la costa caribeña de Colombia.</p>
-<p>Aquí tienes algunas características generales de la zona de Calamar en el río Magdalena:</p>
+El río Magdalena es el río más grande de Colombia y uno de los ríos más importantes de América del Sur. Fluye desde el sur de Colombia hacia el norte y desemboca en el mar Caribe. La zona de Calamar, está ubicada en el departamento de Bolívar, cerca de la costa caribeña de Colombia.</p>
 <p>Ubicación: Calamar es un municipio que se encuentra en la región del sur de Bolívar, cerca de la desembocadura del río Magdalena en el mar Caribe. Está situado en la parte baja del río Magdalena. Por lo que es la zona de medición mas cercana al puerto de Barranquilla.</p>
 <p>Importancia económica: La zona de Calamar, al igual que muchas otras áreas a lo largo del río Magdalena, tiene importancia económica debido a la navegación fluvial. El río Magdalena es una vía importante para el transporte de mercancías y carga en Colombia.<br><br><br></p>
 <p><em>Variables:</em>
 Se definió un diccionario de características que incluyó las siguientes variables:</p>
 <ul class="simple">
-<li><p>Caudal del río Magdalena (variable objetivo). El caudal se puede definir como la cantidad de agua que lleva una corriente o que fluye de un manantial o fuente.</p></li>
-<li><p>Variables meteorológicas adicionales: INDICE ENSO. El índice ENSO es una medida de las fluctuaciones de las temperaturas del océano en la parte central y oriental del Pacífico ecuatorial. Se utiliza para clasificar los eventos de El Niño y La Niña, que son fenómenos naturales que tienen un impacto significativo en el clima global.</p></li>
+<li><p>Caudal del río Magdalena (variable objetivo). El caudal se puede definir como la cantidad de agua que lleva una corriente en una unidad de tiempo. Esta información se obtuvo del IDEAM.</p></li>
+<li><p>Variables meteorológicas adicionales: INDICE ENSO. El índice ENSO es una medida de las fluctuaciones de las temperaturas del océano en la parte central y oriental del Pacífico ecuatorial. Se utiliza para clasificar los eventos de El Niño y La Niña, que son fenómenos naturales que tienen un impacto significativo en el clima global. El indice se obtuvo de la NOAA.</p></li>
 <li><p>Fechas y marcas temporales para el análisis de series temporales. Días en los que se tomaron las mediciones utilizadas e este estudio.<br><br><br></p></li>
 </ul>
 <p><em>Técnicas:</em>
 Se emplearon diversas técnicas para la estimación del caudal del río Magdalena, que se dividieron en dos categorías principales:</p>
 <p><em>a. Modelos de Series Temporales:</em></p>
 <ul class="simple">
-<li><p>Modelos AR (Autoregresivos). Los modelos AR son modelos estadísticos que predicen los valores futuros de una serie temporal basándose en los valores pasados. Se basan en la idea de que los valores actuales de una serie temporal están relacionados con los valores pasados.</p></li>
-<li><p>Modelos ARMA (Autoregresivos de Promedio Móvil). Los modelos ARMA son modelos estadísticos que combinan los modelos AR y los modelos MA. Se basan en la idea de que los valores actuales de una serie temporal están relacionados con los valores pasados y con los errores aleatorios pasados.|</p></li>
+<li><p>Modelos AR (Autoregresivos). Los modelos AR son modelos estadísticos que predicen los valores futuros de una serie temporal basándose en los valores pasados. bajo el arguemneto que los valores actuales de una serie temporal están relacionados con los valores pasados.</p></li>
+<li><p>Modelos ARMA (Autoregresivos de Promedio Móvil). Los modelos ARMA son modelos estadísticos que combinan los modelos AR y los modelos MA. Se basan en la idea de que los valores actuales de una serie temporal están relacionados con los valores pasados y con los errores aleatorios pasados.</p></li>
 </ul>
 <p><em>b. Modelos de Aprendizaje Automático:</em></p>
 <ul class="simple">
@@ -420,8 +425,43 @@ Se emplearon diversas técnicas para la estimación del caudal del río Magdalen
 Los bosques aleatorios se construyen seleccionando de forma aleatoria un subconjunto de datos de entrenamiento para cada árbol de decisión. Esto ayuda a reducir la dependencia de los árboles de decisión individuales y a mejorar la precisión del modelo.
 Los bosques aleatorios son un modelo versátil que se puede utilizar para una variedad de aplicaciones. Son especialmente útiles para problemas de clasificación con un número grande de clases.</p></li>
 </ul>
-<p>Además, se aplicaron modelos híbridos que combinaron enfoques de series temporales y aprendizaje automático, como RF-AR y Ridge-AR.</p>
-<p>RF-AR (Random Forest Autoregressive) y Ridge-AR son dos modelos híbridos de pronóstico de series temporales que combinan modelos de aprendizaje automático con modelos de series temporales tradicionales. Los modelos RF-AR utilizan un bosque aleatorio para aprender las dependencias no lineales en los datos de la serie temporal. Un bosque aleatorio es un conjunto de árboles de decisión, cada uno de los cuales está entrenado en un subconjunto aleatorio de los datos de entrenamiento. Una vez que el bosque aleatorio ha sido entrenado, se puede utilizar para predecir los valores futuros de la serie temporal.<br><br><br></p>
+<p>Además, se aplicaron modelos híbridos que combinaron enfoques de series temporales y aprendizaje automático, como RF-AR y Ridge-AR. <br><br><br></p>
+<section id="modelo-hibrido-ar-rf-autoregressive-random-forest">
+<h3>Modelo Híbrido AR-RF (Autoregressive Random Forest)<a class="headerlink" href="#modelo-hibrido-ar-rf-autoregressive-random-forest" title="Permalink to this heading">#</a></h3>
+<p>El modelo AR-RF combina un enfoque de series temporales autoregresivas (AR) con el poder de Random Forest (RF) en el aprendizaje automático. En este enfoque:</p>
+<ul class="simple">
+<li><p>Los modelos AR se utilizan para capturar tendencias lineales en los datos históricos de caudales del río Magdalena.</p></li>
+<li><p>Random Forest (RF) se utiliza para aprender las dependencias no lineales en los datos de la serie temporal. RF consiste en un conjunto de árboles de decisión, cada uno entrenado en un subconjunto aleatorio de los datos de entrenamiento.</p></li>
+<li><p>La combinación de AR y RF permite aprovechar las fortalezas de ambos enfoques, lo que puede conducir a una mejora en las métricas de rendimiento, como R2 y RMSE, en la predicción del caudal mensual.</p></li>
+</ul>
+</section>
+<section id="modelo-hibrido-arma-rf-autoregressive-moving-average-random-forest">
+<h3>Modelo Híbrido ARMA-RF (Autoregressive Moving Average Random Forest)<a class="headerlink" href="#modelo-hibrido-arma-rf-autoregressive-moving-average-random-forest" title="Permalink to this heading">#</a></h3>
+<p>El modelo ARMA-RF combina un enfoque de series temporales ARMA con Random Forest (RF). En este enfoque:</p>
+<ul class="simple">
+<li><p>Los modelos ARMA se utilizan para capturar las tendencias y las correlaciones entre las observaciones en los datos de caudales del río Magdalena.</p></li>
+<li><p>Random Forest (RF) se emplea para aprender las dependencias no lineales en los datos.</p></li>
+<li><p>La combinación de ARMA y RF tiene como objetivo aprovechar tanto las relaciones lineales como las no lineales en los datos, lo que puede resultar en una mejor capacidad de predicción del caudal mensual.</p></li>
+</ul>
+</section>
+<section id="modelo-hibrido-ar-ridge-autoregressive-ridge-regression">
+<h3>Modelo Híbrido AR-Ridge (Autoregressive Ridge Regression)<a class="headerlink" href="#modelo-hibrido-ar-ridge-autoregressive-ridge-regression" title="Permalink to this heading">#</a></h3>
+<p>El modelo AR-Ridge combina un enfoque de series temporales autoregresivas (AR) con la regresión Ridge. En este enfoque:</p>
+<ul class="simple">
+<li><p>Los modelos AR se utilizan para modelar las tendencias lineales en los datos históricos de caudales del río Magdalena.</p></li>
+<li><p>La regresión Ridge se utiliza para controlar la multicolinealidad y reducir el sobreajuste en los modelos lineales.</p></li>
+<li><p>La combinación de AR y Ridge tiene como objetivo mejorar la precisión de las predicciones al mitigar los problemas de multicolinealidad y sobreajuste en los modelos AR.</p></li>
+</ul>
+</section>
+<section id="modelo-hibrido-arma-ridge-autoregressive-moving-average-ridge-regression">
+<h3>Modelo Híbrido ARMA-Ridge (Autoregressive Moving Average Ridge Regression)<a class="headerlink" href="#modelo-hibrido-arma-ridge-autoregressive-moving-average-ridge-regression" title="Permalink to this heading">#</a></h3>
+<p>El modelo ARMA-Ridge combina un enfoque de series temporales ARMA con la regresión Ridge. En este enfoque:</p>
+<ul class="simple">
+<li><p>Los modelos ARMA se emplean para modelar las tendencias y las correlaciones en los datos de caudales del río Magdalena.</p></li>
+<li><p>La regresión Ridge se utiliza para controlar la multicolinealidad y reducir el sobreajuste en los modelos lineales.</p></li>
+<li><p>La combinación de ARMA y Ridge tiene como objetivo capturar tanto las relaciones lineales como las no lineales en los datos, al tiempo que aborda problemas comunes en la modelización de series temporales, como la multicolinealidad y el sobreajuste.</p></li>
+</ul>
+<p>Estos modelos híbridos fueron evaluados para determinar su eficacia en la estimación del caudal mensual del río Magdalena, y sus resultados se presentan al final del capitulo de Aplicación en términos de métricas de rendimiento como R2 y RRMSE.<br><br><br></p>
 <p><em>Diseño General:</em>
 El estudio siguió un diseño de investigación observacional retrospectiva. Este tipo de investigación se caracteriza por: Los datos se recopilan después de que se hayan producido los eventos de interés. Los investigadores no tienen control sobre la asignación de los participantes a los grupos de tratamiento o control. Los investigadores no pueden manipular las variables independientes.
 Para este estudio, se recopilaron datos históricos de caudales del río Magdalena en la estación de Calamar, Bolívar, así como datos del indice ENSO obtenidos de la NOAA entre los años 1984-2020. Estos datos retrospectivos se analizaron para desarrollar modelos de estimación del caudal del río.<br><br><br></p>
@@ -434,17 +474,18 @@ La validez del estudio se abordó de la siguiente manera:</p>
 </ul>
 <p>Este enfoque metodológico riguroso garantiza la calidad y la confiabilidad de los resultados del estudio de estimación del caudal del río Magdalena en la estación de Calamar, Bolívar, y sienta las bases para la mejora de la gestión de recursos hídricos en esta región.<br><br><br></p>
 </section>
+</section>
 <section id="resultados-y-discusion">
 <h2>Resultados y Discusión<a class="headerlink" href="#resultados-y-discusion" title="Permalink to this heading">#</a></h2>
 <section id="resultados-experimentales">
 <h3>Resultados experimentales<a class="headerlink" href="#resultados-experimentales" title="Permalink to this heading">#</a></h3>
-<p>En este estudio, se investigó el desempeño de modelos lineales AR y ARMA en combinación con modelos de machine learning, específicamente Random Forest (RF) y Multi-layer Perceptron (Ridge). Los modelos se evaluaron por separado y luego se emparejaron para analizar su impacto en las métricas R2 y RRMSE, que son indicadores clave de rendimiento en la predicción.
-Los valores métricos de evaluación calculados para los modelos independientes RF y MARS en Tabriz y Zahedan. Las estaciones se dan en las Tablas 5 y 6, respectivamente. Los modelos independientes MARS y RF tuvieron un desempeño regular en la estimación del caudal mensual según el criterio de clasificación RRMSE (20%&lt;RRMSE&lt;30%). En total, se desarrollaron y evaluaron seis modelos híbridos: es decir, AR-RF, ARMA-RF, AR-Ridge, ARMA- Ridge. Las métricas estadísticas calculadas para los modelos híbridos se enumeran en las Tablas 5 y 6. Basado en el índice RRMSE, el desempeño de todos los modelos híbridos no aumento en gran medida los resultados en escala mensual. Los modelos de series temporales MA y ARMA, respectivamente, demostraron por si soloes un buen rendimiento.</p>
+<p>En este estudio, se investigó el desempeño de modelos lineales AR y ARMA en combinación con modelos de machine learning, específicamente Random Forest (RF) y Ridge (Ridge). Los modelos se evaluaron por separado y luego se emparejaron para analizar su impacto en las métricas R2 y RRMSE, que son indicadores clave de rendimiento en la predicción.
+Los valores métricos de evaluación calculados para los modelos independientes como RF. Los modelos independientes tuvieron un desempeño regular en la estimación del caudal mensual según el criterio de clasificación RRMSE (20%&lt;RRMSE&lt;30%). En total, se desarrollaron y evaluaron cuatro modelos híbridos: es decir, AR-RF, ARMA-RF, AR-Ridge, ARMA- Ridge. Las métricas estadísticas calculadas para los modelos híbridos se enumeran al final del siguiente capitulo. Basado en el índice RRMSE, el desempeño de todos los modelos híbridos no aumento en gran medida los resultados en escala mensual. Los modelos de series temporales AR y ARMA, respectivamente, demostraron por si solos un buen rendimiento.</p>
 <ol class="arabic simple">
 <li><p><em>Evaluación individual de modelos:</em></p>
 <ul class="simple">
 <li><p>Modelos lineales AR y ARMA: Inicialmente, se evaluaron los modelos AR y ARMA de forma individual. Los resultados mostraron un rendimiento moderado en términos de R2 y RMSE, lo que indica que estos modelos pueden capturar cierta tendencia en los datos.</p></li>
-<li><p>Modelos de machine learning (Ridge, Lasso, k-NN, RF, Ridge): Los modelos de machine learning, como Random Forest y Multi-layer Perceptron, se evaluaron independientemente. Estos modelos demostraron un rendimiento inferior en comparación con los modelos lineales AR y ARMA en términos de R2 y RMSE.</p></li>
+<li><p>Modelos de machine learning (Ridge, Lasso, k-NN, RF, Ridge): Los modelos de machine learning, como Random Forest y Ridge, se evaluaron independientemente. Estos modelos demostraron un rendimiento inferior en comparación con los modelos lineales AR y ARMA en términos de R2 y RMSE.</p></li>
 </ul>
 </li>
 <li><p><em>Emparejamiento de modelos:</em></p>
@@ -456,7 +497,7 @@ Los valores métricos de evaluación calculados para los modelos independientes 
 </section>
 <section id="interpretacion">
 <h3>Interpretación<a class="headerlink" href="#interpretacion" title="Permalink to this heading">#</a></h3>
-<p>Los resultados experimentales muestran que la combinación de modelos lineales AR/ARMA con modelos de Machine Learning RF y Ridge puede mejorar el rendimiento en términos de R2 y RMSE. Esto sugiere que esta estrategia puede ser efectiva para capturar tanto las tendencias lineales como los patrones no lineales en los datos, lo que lleva a predicciones más precisas. Los modelos AR/ARMA pueden capturar tendencias lineales en los datos, mientras que los modelos RF/Ridge pueden capturar patrones no lineales. La combinación de estos dos tipos de modelos puede ayudar a mejorar la precisión de las predicciones, especialmente para datos que presentan tendencias lineales y patrones no lineales.<br><br><br></p>
+<p>Los resultados experimentales muestran que la combinación de modelos lineales AR/ARMA con modelos de Machine Learning RF y Ridge puede mejorar el rendimiento en términos de R2 y RMSE. Esto sugiere que esta estrategia puede ser efectiva para capturar tanto las tendencias lineales como los patrones no lineales en los datos, lo que lleva a predicciones más precisas. Los modelos AR/ARMA pueden capturar tendencias lineales en los datos, mientras que los modelos de Machine Learning pueden capturar patrones no lineales. La combinación de estos dos tipos de modelos puede ayudar a mejorar la precisión de las predicciones, especialmente para datos que presentan tendencias lineales y patrones no lineales.<br><br><br></p>
 </section>
 <section id="conclusiones-experimentales">
 <h3>Conclusiones experimentales<a class="headerlink" href="#conclusiones-experimentales" title="Permalink to this heading">#</a></h3>
@@ -465,7 +506,7 @@ Los resultados obtenidos sugieren que la combinación de modelos AR, ARMA con RF
 </section>
 <section id="limitaciones">
 <h3>Limitaciones<a class="headerlink" href="#limitaciones" title="Permalink to this heading">#</a></h3>
-<p>Es importante destacar que los resultados pueden depender de la naturaleza de los datos y el problema específico, en este caso nos encontramos con caudales promedios de un hidro sistema que está altamente influencia por múltiples factores como cambios de uso de la cuenca, fenómenos globales como el niño y la niña, la precipitación y temperatura en su área tributaria. El punto donde se realizo la predicción corresponde a un punto muy próximo a la desembocadura del Rio Magdalena. Además, se requiere una evaluación más exhaustiva en diferentes estaciones a lo largo del Rio, que permitan validar la generalización de estos hallazgos. <br><br><br></p>
+<p>Es importante destacar que los resultados pueden depender de la naturaleza de los datos y el problema específico, en este caso nos encontramos con caudales promedios de un sistema natural que está altamente influenciado por múltiples factores como cambios de uso del suelo, fenómenos globales como el niño y la niña, la precipitación y temperatura en su área tributaria. El punto donde se realizo la predicción corresponde a un punto muy próximo a la desembocadura del Rio Magdalena. Además, se requiere una evaluación más exhaustiva en diferentes estaciones a lo largo del Rio, que permitan validar la generalización de estos hallazgos. <br><br><br></p>
 </section>
 <section id="futuras-lineas-de-investigacion">
 <h3>Futuras líneas de investigación<a class="headerlink" href="#futuras-lineas-de-investigacion" title="Permalink to this heading">#</a></h3>
@@ -543,7 +584,13 @@ En el contexto de hidrosistemas, se sugiere continuar investigando enfoques híb
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen"><strong>Resumen</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologia"><em>Metodología</em></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologia"><em>Metodología</em></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-hibrido-ar-rf-autoregressive-random-forest">Modelo Híbrido AR-RF (Autoregressive Random Forest)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-hibrido-arma-rf-autoregressive-moving-average-random-forest">Modelo Híbrido ARMA-RF (Autoregressive Moving Average Random Forest)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-hibrido-ar-ridge-autoregressive-ridge-regression">Modelo Híbrido AR-Ridge (Autoregressive Ridge Regression)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-hibrido-arma-ridge-autoregressive-moving-average-ridge-regression">Modelo Híbrido ARMA-Ridge (Autoregressive Moving Average Ridge Regression)</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados-y-discusion">Resultados y Discusión</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados-experimentales">Resultados experimentales</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion">Interpretación</a></li>
